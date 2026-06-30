@@ -25,11 +25,15 @@ function useReveal() {
       setShown(true)
       return
     }
+    // Safety net: never let content stay hidden if the observer misbehaves
+    // (e.g. an edge case after a production navigation).
+    const fallback = window.setTimeout(() => setShown(true), 1400)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setShown(true)
+            window.clearTimeout(fallback)
             observer.disconnect()
           }
         })
@@ -37,7 +41,10 @@ function useReveal() {
       { threshold: 0.16 }
     )
     observer.observe(node)
-    return () => observer.disconnect()
+    return () => {
+      window.clearTimeout(fallback)
+      observer.disconnect()
+    }
   }, [])
 
   return [ref, shown]

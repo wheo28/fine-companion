@@ -28,7 +28,7 @@ export default function Footer() {
 
         <nav className="footer__col" aria-label={t.footer.colTrust}>
           <p className="footer__col-title">{t.footer.colTrust}</p>
-          <a href="/#promise">{t.footer.links.promise}</a>
+          <Link to="/#promise">{t.footer.links.promise}</Link>
           <div className="footer__lang">
             <span className="footer__lang-label">{t.footer.lang}</span>
             <LanguageToggle />
