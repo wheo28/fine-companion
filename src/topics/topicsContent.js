@@ -7,7 +7,7 @@ export const topicsContent = {
   en: {
     order: ['cashflow', 'insurance', 'retirement', 'education', 'estate', 'tax', 'investing', 'stress', 'risk'],
     ui: {
-      instead: 'A common way to think',
+      introEyebrow: 'Let’s take a look, together', instead: 'A common way to think',
       understand: 'A more useful way to see it',
       beatLabels: { idea: 'The bigger idea', behavior: 'Behavioral insight', myth: 'Common misconception', example: 'In real life', did: 'Did you know' },
       mythLabel: 'The myth', truthLabel: 'Closer to the truth',
@@ -20,7 +20,7 @@ export const topicsContent = {
     topics: {
       cashflow: {
         icon: 'Coins', ch: '3', chTitle: 'Cash Flow & Net Worth Planning',
-        title: 'Cash Flow', tagline: 'Why seeing your money is more powerful than restricting it.', minutes: 3,
+        title: 'My money disappears every month.', tagline: 'Why seeing your money is more powerful than restricting it.', minutes: 3,
         reframe: { from: 'A budget means restricting myself.', to: 'Cash flow is the story of my choices — and seeing it clearly is the real lever.' },
         beats: [
           { kind: 'idea', title: 'It all starts here', body: 'Almost every financial plan begins by looking at cash flow and net worth — not to grade you, but to find your strengths and the one or two gaps worth working on. Money flows in, flows out, and pools into what you own. Seeing that flow is the quiet engine behind every goal.' },
@@ -33,7 +33,7 @@ export const topicsContent = {
       },
       insurance: {
         icon: 'Umbrella', ch: '5–9', chTitle: 'Insurance & Risk Management',
-        title: 'Insurance Awareness', tagline: 'Why coverage is about the losses you couldn\u2019t absorb — and why it changes as life changes.', minutes: 3,
+        title: 'Am I still properly protected?', tagline: 'Why coverage is about the losses you couldn\u2019t absorb — and why it changes as life changes.', minutes: 3,
         reframe: { from: 'Insurance protects against risk.', to: 'Insurance is for the losses I couldn\u2019t recover from on my own — and that set shifts as life shifts.' },
         beats: [
           { kind: 'idea', title: 'One honest question', body: 'Risk management asks a single question: which losses could you not recover from yourself? Insurance exists to transfer exactly those — not every little risk, just the ones that could genuinely undo you.' },
@@ -46,7 +46,7 @@ export const topicsContent = {
       },
       retirement: {
         icon: 'Clock', ch: '12', chTitle: 'Retirement Planning',
-        title: 'Retirement Readiness', tagline: 'Why time is usually worth more than finding the perfect investment.', minutes: 3,
+        title: 'Am I doing enough for the future?', tagline: 'Why time is usually worth more than finding the perfect investment.', minutes: 3,
         reframe: { from: 'Retirement grows through clever investing.', to: 'Time does the heavy lifting — starting matters more than being perfect.' },
         beats: [
           { kind: 'idea', title: 'A three-legged table', body: 'Retirement is often pictured as a three-legged table: Social Security, workplace plans, and personal savings. A stable retirement isn\u2019t one brilliant move — it\u2019s knowing which legs you have and slowly building them.' },
@@ -59,7 +59,7 @@ export const topicsContent = {
       },
       education: {
         icon: 'GraduationCap', ch: '11', chTitle: 'Education Planning',
-        title: 'Education Planning', tagline: 'Why funding a child\u2019s future works best when it doesn\u2019t borrow from your own.', minutes: 3,
+        title: 'How do I help pay for a child’s future?', tagline: 'Why funding a child\u2019s future works best when it doesn\u2019t borrow from your own.', minutes: 3,
         reframe: { from: 'Save for the kids\u2019 college above all else.', to: 'Education is one goal among several — the art is balancing it with your own foundation.' },
         beats: [
           { kind: 'idea', title: 'Goals share the stage', body: 'Education planning isn\u2019t separate from the rest of your money — it competes and cooperates with retirement, cash flow, and taxes. The skill is funding a child\u2019s future without quietly borrowing from your own.' },
@@ -72,7 +72,7 @@ export const topicsContent = {
       },
       estate: {
         icon: 'Scroll', ch: '13', chTitle: 'Estate Planning',
-        title: 'Estate Readiness', tagline: 'Why it\u2019s really about who acts for you if you can\u2019t — not just who inherits.', minutes: 3,
+        title: 'Would my family be okay without me?', tagline: 'Why it\u2019s really about who acts for you if you can\u2019t — not just who inherits.', minutes: 3,
         reframe: { from: 'Estate planning is for the wealthy, and for after death.', to: 'It\u2019s deciding who acts for me if I can\u2019t — for everyone, starting now.' },
         beats: [
           { kind: 'idea', title: 'Care and clarity', body: 'Estate planning answers two very human questions: who manages things for you if you\u2019re incapacitated, and how your wishes are honored later. It\u2019s less about wealth than about care and clarity for the people you love.' },
@@ -85,7 +85,7 @@ export const topicsContent = {
       },
       tax: {
         icon: 'Receipt', ch: '4', chTitle: 'Income Tax Planning',
-        title: 'Tax Readiness', tagline: 'Why tax awareness quietly increases the money you keep — all year, not just in April.', minutes: 3,
+        title: 'Am I keeping enough of what I earn?', tagline: 'Why tax awareness quietly increases the money you keep — all year, not just in April.', minutes: 3,
         reframe: { from: 'Taxes are an April chore I can\u2019t influence.', to: 'Tax awareness is a year-round lever on the money I actually keep.' },
         beats: [
           { kind: 'idea', title: 'It follows your cash flow', body: 'Tax planning flows naturally from your cash flow — and it\u2019s an educational tool, not just a filing. Understanding how choices are taxed reveals ways to keep more of what you earn, without any tricks.' },
@@ -98,7 +98,7 @@ export const topicsContent = {
       },
       investing: {
         icon: 'TrendingUp', ch: '10', chTitle: 'Investment Planning',
-        title: 'Investment Fundamentals', tagline: 'Why matching risk to who you are beats chasing the perfect pick.', minutes: 3,
+        title: 'I want my money to grow — where do I start?', tagline: 'Why matching risk to who you are beats chasing the perfect pick.', minutes: 3,
         reframe: { from: 'Good investing means picking winners.', to: 'Good investing means a plan I can actually stick with — matched to who I am.' },
         beats: [
           { kind: 'idea', title: 'Art and system', body: 'Investing is as much art as system: it blends the numbers with your own temperament. The core isn\u2019t a hot pick — it\u2019s the risk-return tradeoff and choosing a level of risk you can genuinely live with.' },
@@ -111,7 +111,7 @@ export const topicsContent = {
       },
       stress: {
         icon: 'Heart', ch: '1', chTitle: 'The Financial Planning Process',
-        title: 'Financial Stress', tagline: 'Why money stress is information — and easing it is part of the plan, not separate from it.', minutes: 3,
+        title: 'Money has been on my mind lately.', tagline: 'Why money stress is information — and easing it is part of the plan, not separate from it.', minutes: 3,
         reframe: { from: 'I just need to stop worrying about money.', to: 'Money stress is a signal — and planning is a behavioral practice, not only math.' },
         beats: [
           { kind: 'idea', title: 'A behavioral practice', body: 'Financial planning began as, and remains, a force for behavioral change in people\u2019s lives. Money stress isn\u2019t a character flaw or a math error — it\u2019s a signal, and easing it is part of the plan, not a distraction from it.' },
@@ -124,7 +124,7 @@ export const topicsContent = {
       },
       risk: {
         icon: 'Scale', ch: '10', chTitle: 'Investment Planning',
-        title: 'Financial Risk Comfort', tagline: 'Why knowing your own comfort with risk matters more than hitting some target.', minutes: 3,
+        title: 'Ups and downs make me nervous.', tagline: 'Why knowing your own comfort with risk matters more than hitting some target.', minutes: 3,
         reframe: { from: 'I should take more risk to grow my money.', to: 'The right risk level is the one that fits me — cautious and bold can both succeed.' },
         beats: [
           { kind: 'idea', title: 'Self-knowledge, not a target', body: 'Risk comfort is a personal trait, shaped by temperament and experience — neither good nor bad. A plan built around who you actually are is one you can hold onto when things get bumpy.' },
@@ -141,7 +141,7 @@ export const topicsContent = {
   ko: {
     order: ['cashflow', 'insurance', 'retirement', 'education', 'estate', 'tax', 'investing', 'stress', 'risk'],
     ui: {
-      instead: '흔한 생각',
+      introEyebrow: '함께 살펴봐요', instead: '흔한 생각',
       understand: '더 쓸모 있는 관점',
       beatLabels: { idea: '더 큰 그림', behavior: '행동 인사이트', myth: '흔한 오해', example: '현실에서는', did: '알고 계셨나요' },
       mythLabel: '오해', truthLabel: '진실에 더 가까운 것',
@@ -154,7 +154,7 @@ export const topicsContent = {
     topics: {
       cashflow: {
         icon: 'Coins', ch: '3', chTitle: '현금흐름과 순자산 설계',
-        title: '현금 흐름', tagline: '억누르기보다, 내 돈을 보는 것이 더 강력한 이유.', minutes: 3,
+        title: '돈이 매달 사라지는 것 같아요.', tagline: '억누르기보다, 내 돈을 보는 것이 더 강력한 이유.', minutes: 3,
         reframe: { from: '예산은 나를 억누르는 것.', to: '현금 흐름은 내 선택의 이야기이고, 그걸 또렷이 보는 것이 진짜 지렛대다.' },
         beats: [
           { kind: 'idea', title: '모든 게 여기서 시작돼요', body: '거의 모든 재무 계획은 현금 흐름과 순자산을 보는 데서 시작해요 — 당신을 판단하려는 게 아니라, 강점과 손볼 만한 한두 가지 빈틈을 찾으려는 거죠. 돈은 들어오고, 나가고, 소유한 것으로 고여요. 그 흐름을 보는 것이 모든 목표 뒤의 조용한 엔진이에요.' },
@@ -167,7 +167,7 @@ export const topicsContent = {
       },
       insurance: {
         icon: 'Umbrella', ch: '5–9', chTitle: '보험과 위험관리',
-        title: '보험 이해', tagline: '보험은 스스로 감당 못 할 손실을 위한 것 — 삶이 변하면 함께 변해야 하는 이유.', minutes: 3,
+        title: '저는 아직 제대로 보호받고 있을까요?', tagline: '보험은 스스로 감당 못 할 손실을 위한 것 — 삶이 변하면 함께 변해야 하는 이유.', minutes: 3,
         reframe: { from: '보험은 위험을 막아 주는 것.', to: '보험은 내가 스스로 회복할 수 없는 손실을 위한 것 — 그 목록은 삶과 함께 변한다.' },
         beats: [
           { kind: 'idea', title: '하나의 정직한 질문', body: '위험관리는 한 가지 질문을 던져요: 어떤 손실은 스스로 회복할 수 없는가? 보험은 바로 그런 손실을 넘기려 존재해요 — 사소한 위험 전부가 아니라, 당신을 정말 무너뜨릴 수 있는 것들이요.' },
@@ -180,7 +180,7 @@ export const topicsContent = {
       },
       retirement: {
         icon: 'Clock', ch: '12', chTitle: '은퇴 설계',
-        title: '은퇴 준비', tagline: '완벽한 투자를 찾기보다, 시간이 대개 더 값진 이유.', minutes: 3,
+        title: '미래를 위해 충분히 하고 있는 걸까요?', tagline: '완벽한 투자를 찾기보다, 시간이 대개 더 값진 이유.', minutes: 3,
         reframe: { from: '은퇴는 영리한 투자로 커진다.', to: '무거운 일은 시간이 해낸다 — 완벽함보다 시작이 더 중요하다.' },
         beats: [
           { kind: 'idea', title: '세 다리 탁자', body: '은퇴는 흔히 세 다리 탁자로 그려져요: 공적연금, 직장 제도, 개인 저축. 안정적인 은퇴는 한 번의 명수가 아니라, 어떤 다리를 가졌는지 알고 천천히 쌓는 일이에요.' },
@@ -193,7 +193,7 @@ export const topicsContent = {
       },
       education: {
         icon: 'GraduationCap', ch: '11', chTitle: '교육 설계',
-        title: '교육 설계', tagline: '아이의 미래를, 내 미래에서 빌려오지 않고 마련하는 법.', minutes: 3,
+        title: '아이의 미래, 어떻게 준비하죠?', tagline: '아이의 미래를, 내 미래에서 빌려오지 않고 마련하는 법.', minutes: 3,
         reframe: { from: '무엇보다 아이 학자금을 먼저.', to: '교육은 여러 목표 중 하나 — 핵심은 내 토대와의 균형이다.' },
         beats: [
           { kind: 'idea', title: '목표들은 무대를 나눠 써요', body: '교육 설계는 나머지 재정과 별개가 아니라 은퇴·현금흐름·세금과 경쟁하고 협력해요. 요령은 내 미래에서 조용히 빌려오지 않으면서 아이의 미래를 마련하는 거예요.' },
@@ -206,7 +206,7 @@ export const topicsContent = {
       },
       estate: {
         icon: 'Scroll', ch: '13', chTitle: '상속·유산 설계',
-        title: '상속 준비', tagline: '누가 상속받느냐보다, 내가 못 할 때 누가 대신 결정하느냐의 문제인 이유.', minutes: 3,
+        title: '내가 없어도 가족이 괜찮을까요?', tagline: '누가 상속받느냐보다, 내가 못 할 때 누가 대신 결정하느냐의 문제인 이유.', minutes: 3,
         reframe: { from: '유산 설계는 부자, 그리고 죽은 뒤의 일.', to: '내가 결정할 수 없을 때 누가 나를 대신할지 정하는 일 — 모두에게, 지금부터.' },
         beats: [
           { kind: 'idea', title: '돌봄과 또렷함', body: '유산 설계는 아주 인간적인 두 질문에 답해요: 내가 결정할 수 없게 되면 누가 나를 대신 관리하는가, 그리고 내 뜻이 나중에 어떻게 존중되는가. 재산보다 사랑하는 이들을 위한 돌봄과 또렷함에 관한 일이죠.' },
@@ -219,7 +219,7 @@ export const topicsContent = {
       },
       tax: {
         icon: 'Receipt', ch: '4', chTitle: '소득세 설계',
-        title: '세금 준비', tagline: '세금 감각이, 4월뿐 아니라 일 년 내내 내가 지키는 돈을 늘리는 이유.', minutes: 3,
+        title: '버는 것 중 충분히 지키고 있을까요?', tagline: '세금 감각이, 4월뿐 아니라 일 년 내내 내가 지키는 돈을 늘리는 이유.', minutes: 3,
         reframe: { from: '세금은 어쩔 수 없는 4월의 숙제.', to: '세금 감각은 내가 실제로 지키는 돈에 대한 연중 지렛대다.' },
         beats: [
           { kind: 'idea', title: '현금 흐름을 따라와요', body: '세금 설계는 현금 흐름에서 자연스럽게 이어져요 — 그리고 단순한 신고가 아니라 교육 도구예요. 선택이 어떻게 과세되는지 이해하면, 어떤 꼼수 없이도 버는 돈을 더 지키는 길이 보여요.' },
@@ -232,7 +232,7 @@ export const topicsContent = {
       },
       investing: {
         icon: 'TrendingUp', ch: '10', chTitle: '투자 설계',
-        title: '투자 기초', tagline: '완벽한 종목을 쫓기보다, 나에게 맞는 위험을 고르는 것이 이기는 이유.', minutes: 3,
+        title: '돈을 불리고 싶은데, 어디서 시작하죠?', tagline: '완벽한 종목을 쫓기보다, 나에게 맞는 위험을 고르는 것이 이기는 이유.', minutes: 3,
         reframe: { from: '좋은 투자는 승자를 고르는 것.', to: '좋은 투자는 내가 실제로 지킬 수 있는 계획 — 나에게 맞춘 것이다.' },
         beats: [
           { kind: 'idea', title: '기술이자 체계', body: '투자는 체계인 만큼 기술이에요: 숫자와 당신의 기질을 함께 엮죠. 핵심은 뜨거운 종목이 아니라 위험-수익 상충, 그리고 정말로 견딜 수 있는 위험 수준을 고르는 거예요.' },
@@ -245,7 +245,7 @@ export const topicsContent = {
       },
       stress: {
         icon: 'Heart', ch: '1', chTitle: '재무설계 프로세스',
-        title: '재정 스트레스', tagline: '돈 스트레스는 정보이고, 그것을 더는 일이 계획의 일부인 이유.', minutes: 3,
+        title: '요즘 돈이 자꾸 마음에 걸려요.', tagline: '돈 스트레스는 정보이고, 그것을 더는 일이 계획의 일부인 이유.', minutes: 3,
         reframe: { from: '그냥 돈 걱정을 멈춰야 해.', to: '돈 스트레스는 신호 — 계획은 수학만이 아니라 행동의 실천이다.' },
         beats: [
           { kind: 'idea', title: '행동의 실천', body: '재무설계는 사람들의 삶에서 행동을 바꾸는 힘으로 시작했고, 지금도 그래요. 돈 스트레스는 성격 결함이나 계산 실수가 아니라 신호예요 — 그것을 더는 일은 계획을 방해하는 게 아니라 계획의 일부죠.' },
@@ -258,7 +258,7 @@ export const topicsContent = {
       },
       risk: {
         icon: 'Scale', ch: '10', chTitle: '투자 설계',
-        title: '위험 감수 성향', tagline: '어떤 목표치를 맞추기보다, 내 위험 편안함을 아는 것이 더 중요한 이유.', minutes: 3,
+        title: '오르내림이 저를 불안하게 해요.', tagline: '어떤 목표치를 맞추기보다, 내 위험 편안함을 아는 것이 더 중요한 이유.', minutes: 3,
         reframe: { from: '돈을 불리려면 위험을 더 져야 해.', to: '알맞은 위험 수준은 나에게 맞는 것 — 신중함도 과감함도 성공할 수 있다.' },
         beats: [
           { kind: 'idea', title: '목표가 아니라 자기 이해', body: '위험 감수 성향은 기질과 경험이 빚은 개인적 특성이에요 — 좋고 나쁨이 아니죠. 진짜 나에게 맞춘 계획이라야, 흔들릴 때도 붙잡고 갈 수 있어요.' },

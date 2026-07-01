@@ -902,3 +902,34 @@ button { font: inherit; cursor: pointer; color: inherit; background: none; borde
   text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 4px;
 }
 .tx-recap__step p { color: var(--ink-soft); font-size: 0.96rem; line-height: 1.55; }
+
+/* ===================================================================
+   Consumer language pass — situations read as sentences, not labels
+   =================================================================== */
+
+/* Topic opens on the person's situation; the "why" sits beneath as a lead */
+.tx-intro__lead {
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  line-height: 1.55;
+  max-width: 46ch;
+  margin: -14px 0 28px;
+}
+
+/* The Hub's guiding question — a warm heading, never a shouted label */
+.shelves .sectionbreak__label {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--ink);
+}
+
+/* A situation sentence shouldn't be uppercased in the roadmap card label */
+.rj-ex-card__topic {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}

@@ -5,7 +5,7 @@
 export const checkupContent = {
   en: {
     intro: {
-      eyebrow: 'Financial Wellness Checkup',
+      eyebrow: 'Where you are today',
       title: "Let's take an honest look, together.",
       sub: 'Ten plain questions, about two minutes. No sign-up, nothing sent to a server, nothing sold — just a clearer picture of where you stand, and a few small steps to take next.',
       time: '~2 minutes',
@@ -291,7 +291,7 @@ export const checkupContent = {
 
   ko: {
     intro: {
-      eyebrow: '재정 건강 체크업',
+      eyebrow: '지금 나의 자리',
       title: '함께, 솔직하게 한번 살펴봐요.',
       sub: '쉬운 질문 열 개, 약 2분이면 됩니다. 회원가입도, 서버로 보내는 것도, 파는 것도 없습니다 — 그저 지금 당신이 어디에 서 있는지 또렷한 그림과, 다음에 밟을 작은 걸음 몇 개뿐입니다.',
       time: '약 2분',

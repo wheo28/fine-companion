@@ -125,8 +125,9 @@ export default function TopicExplorer() {
             <span className="tx-intro__icon" aria-hidden="true">
               <Icon size={28} />
             </span>
-            <p className="eyebrow eyebrow--accent">{topic.title}</p>
-            <h1 className="display tx-intro__title">{topic.tagline}</h1>
+            <p className="eyebrow eyebrow--accent">{ui.introEyebrow}</p>
+            <h1 className="display tx-intro__title">{topic.title}</h1>
+            <p className="tx-intro__lead">{topic.tagline}</p>
             <div className="tx-reframe">
               <div className="tx-reframe__row tx-reframe__row--from">
                 <span className="tx-reframe__label">{ui.instead}</span>
