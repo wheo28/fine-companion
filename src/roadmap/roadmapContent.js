@@ -18,6 +18,7 @@ export const roadmapContent = {
       eyebrow: 'Your roadmap',
       title: 'A path made from your checkup.',
       based: 'Based on your checkup',
+      ongoing: 'This isn\u2019t a final report — it\u2019s a companion you can return to. It changes as your life changes.',
       intros: {
         strong:
           'Your checkup showed a genuinely steady foundation — so this roadmap is less about fixing anything and more about building on the strength you already have.',
@@ -141,6 +142,14 @@ export const roadmapContent = {
       onlyBody: 'You haven\u2019t taken the checkup yet, so this roadmap is built from the topics you\u2019ve explored so far. Take the two-minute checkup anytime to add a personalized, time-based plan alongside it.',
       onlyCta: 'Try the checkup',
     },
+    revisitLabel: 'When to revisit',
+    revisit: {
+      today: 'Look again in a week — it only takes a minute.',
+      next30: 'Check back at the end of the month.',
+      habits: 'These are meant to repeat — revisit each month.',
+      sixTwelve: 'Revisit in a few months, or sooner if life changes.',
+      vision: 'Revisit once a year, or whenever something big shifts.',
+    },
   },
 
   ko: {
@@ -154,6 +163,7 @@ export const roadmapContent = {
       eyebrow: '나의 로드맵',
       title: '당신의 체크업으로 만든 길.',
       based: '체크업 결과 기준',
+      ongoing: '이건 최종 보고서가 아니라, 언제든 다시 찾는 동반자예요. 삶이 변하면 함께 변해요.',
       intros: {
         strong:
           '체크업 결과, 정말로 단단한 토대가 보였어요 — 그래서 이 로드맵은 무언가를 고치기보다, 이미 가진 강점 위에 쌓아 가는 데 가깝습니다.',
@@ -261,6 +271,14 @@ export const roadmapContent = {
       onlyTitle: '탐색한 것으로 만든 길.',
       onlyBody: '아직 체크업을 하지 않아서, 이 로드맵은 지금까지 탐색한 주제들로 만들어졌어요. 언제든 2분 체크업을 하면 개인화된 시간별 계획이 함께 더해져요.',
       onlyCta: '체크업 해보기',
+    },
+    revisitLabel: '다시 볼 때',
+    revisit: {
+      today: '일주일 뒤에 다시 보세요 — 1분이면 돼요.',
+      next30: '이달 말에 다시 확인해 보세요.',
+      habits: '이건 반복하라고 있는 거예요 — 매달 다시 보세요.',
+      sixTwelve: '몇 달 뒤에, 또는 삶이 바뀌면 더 일찍 다시 보세요.',
+      vision: '일 년에 한 번, 또는 큰 변화가 있을 때 다시 보세요.',
     },
   },
 }

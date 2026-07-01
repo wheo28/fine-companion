@@ -33,7 +33,7 @@ export const topicsContent = {
       },
       insurance: {
         icon: 'Umbrella', ch: '5–9', chTitle: 'Insurance & Risk Management',
-        title: 'Insurance', tagline: 'Why coverage is about the losses you couldn\u2019t absorb — and why it changes as life changes.', minutes: 3,
+        title: 'Insurance Awareness', tagline: 'Why coverage is about the losses you couldn\u2019t absorb — and why it changes as life changes.', minutes: 3,
         reframe: { from: 'Insurance protects against risk.', to: 'Insurance is for the losses I couldn\u2019t recover from on my own — and that set shifts as life shifts.' },
         beats: [
           { kind: 'idea', title: 'One honest question', body: 'Risk management asks a single question: which losses could you not recover from yourself? Insurance exists to transfer exactly those — not every little risk, just the ones that could genuinely undo you.' },
@@ -46,7 +46,7 @@ export const topicsContent = {
       },
       retirement: {
         icon: 'Clock', ch: '12', chTitle: 'Retirement Planning',
-        title: 'Retirement', tagline: 'Why time is usually worth more than finding the perfect investment.', minutes: 3,
+        title: 'Retirement Readiness', tagline: 'Why time is usually worth more than finding the perfect investment.', minutes: 3,
         reframe: { from: 'Retirement grows through clever investing.', to: 'Time does the heavy lifting — starting matters more than being perfect.' },
         beats: [
           { kind: 'idea', title: 'A three-legged table', body: 'Retirement is often pictured as a three-legged table: Social Security, workplace plans, and personal savings. A stable retirement isn\u2019t one brilliant move — it\u2019s knowing which legs you have and slowly building them.' },
@@ -72,7 +72,7 @@ export const topicsContent = {
       },
       estate: {
         icon: 'Scroll', ch: '13', chTitle: 'Estate Planning',
-        title: 'Estate Planning', tagline: 'Why it\u2019s really about who acts for you if you can\u2019t — not just who inherits.', minutes: 3,
+        title: 'Estate Readiness', tagline: 'Why it\u2019s really about who acts for you if you can\u2019t — not just who inherits.', minutes: 3,
         reframe: { from: 'Estate planning is for the wealthy, and for after death.', to: 'It\u2019s deciding who acts for me if I can\u2019t — for everyone, starting now.' },
         beats: [
           { kind: 'idea', title: 'Care and clarity', body: 'Estate planning answers two very human questions: who manages things for you if you\u2019re incapacitated, and how your wishes are honored later. It\u2019s less about wealth than about care and clarity for the people you love.' },
@@ -167,7 +167,7 @@ export const topicsContent = {
       },
       insurance: {
         icon: 'Umbrella', ch: '5–9', chTitle: '보험과 위험관리',
-        title: '보험', tagline: '보험은 스스로 감당 못 할 손실을 위한 것 — 삶이 변하면 함께 변해야 하는 이유.', minutes: 3,
+        title: '보험 이해', tagline: '보험은 스스로 감당 못 할 손실을 위한 것 — 삶이 변하면 함께 변해야 하는 이유.', minutes: 3,
         reframe: { from: '보험은 위험을 막아 주는 것.', to: '보험은 내가 스스로 회복할 수 없는 손실을 위한 것 — 그 목록은 삶과 함께 변한다.' },
         beats: [
           { kind: 'idea', title: '하나의 정직한 질문', body: '위험관리는 한 가지 질문을 던져요: 어떤 손실은 스스로 회복할 수 없는가? 보험은 바로 그런 손실을 넘기려 존재해요 — 사소한 위험 전부가 아니라, 당신을 정말 무너뜨릴 수 있는 것들이요.' },
@@ -180,7 +180,7 @@ export const topicsContent = {
       },
       retirement: {
         icon: 'Clock', ch: '12', chTitle: '은퇴 설계',
-        title: '은퇴', tagline: '완벽한 투자를 찾기보다, 시간이 대개 더 값진 이유.', minutes: 3,
+        title: '은퇴 준비', tagline: '완벽한 투자를 찾기보다, 시간이 대개 더 값진 이유.', minutes: 3,
         reframe: { from: '은퇴는 영리한 투자로 커진다.', to: '무거운 일은 시간이 해낸다 — 완벽함보다 시작이 더 중요하다.' },
         beats: [
           { kind: 'idea', title: '세 다리 탁자', body: '은퇴는 흔히 세 다리 탁자로 그려져요: 공적연금, 직장 제도, 개인 저축. 안정적인 은퇴는 한 번의 명수가 아니라, 어떤 다리를 가졌는지 알고 천천히 쌓는 일이에요.' },
@@ -206,7 +206,7 @@ export const topicsContent = {
       },
       estate: {
         icon: 'Scroll', ch: '13', chTitle: '상속·유산 설계',
-        title: '상속·유산 설계', tagline: '누가 상속받느냐보다, 내가 못 할 때 누가 대신 결정하느냐의 문제인 이유.', minutes: 3,
+        title: '상속 준비', tagline: '누가 상속받느냐보다, 내가 못 할 때 누가 대신 결정하느냐의 문제인 이유.', minutes: 3,
         reframe: { from: '유산 설계는 부자, 그리고 죽은 뒤의 일.', to: '내가 결정할 수 없을 때 누가 나를 대신할지 정하는 일 — 모두에게, 지금부터.' },
         beats: [
           { kind: 'idea', title: '돌봄과 또렷함', body: '유산 설계는 아주 인간적인 두 질문에 답해요: 내가 결정할 수 없게 되면 누가 나를 대신 관리하는가, 그리고 내 뜻이 나중에 어떻게 존중되는가. 재산보다 사랑하는 이들을 위한 돌봄과 또렷함에 관한 일이죠.' },

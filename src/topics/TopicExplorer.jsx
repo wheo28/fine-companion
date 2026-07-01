@@ -4,7 +4,7 @@ import { useLanguage } from '../i18n/LanguageContext'
 import { topicsContent } from './topicsContent'
 import { markExplored } from '../lib/progress'
 import {
-  ArrowRight, Compass, BookOpen, Lightbulb, Check, Coins, Umbrella, Clock,
+  ArrowRight, Compass, Lightbulb, Check, Coins, Umbrella, Clock,
   GraduationCap, Scroll, Receipt, TrendingUp, Heart, Scale,
 } from '../components/Icons'
 
@@ -130,9 +130,6 @@ export default function TopicExplorer() {
                 <p>{topic.reframe.to}</p>
               </div>
             </div>
-            <p className="tx-grounded">
-              <BookOpen size={13} /> {ui.groundedIn} · {ui.chapter} {topic.ch} · {topic.chTitle}
-            </p>
           </div>
         )}
 

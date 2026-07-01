@@ -58,14 +58,15 @@ function Rec({ rc, rec }) {
             <span className="rj-learn__label">{rc.learnLabel}</span>
             {rec.learn}
           </p>
-          {rec.ref && (
-            <span className="rj-learn__ref">
-              <BookOpen size={13} />
-              {rc.curriculum.refLabel} · Ch {rec.ref.ch} · {rec.ref.title}
-            </span>
-          )}
         </div>
       </div>
+      {rec.revisit && (
+        <p className="rj-revisit">
+          <Clock size={13} />
+          <span className="rj-revisit__label">{rc.revisitLabel}</span>
+          {rec.revisit}
+        </p>
+      )}
     </div>
   )
 }
@@ -185,7 +186,7 @@ export default function RoadmapView() {
         {
           ...base.today[result.roadmap.today],
           learn: rc.learn.today[result.roadmap.today],
-          ref: rc.curriculum.map[result.roadmap.today],
+          revisit: rc.revisit.today,
         },
       ],
     },
@@ -198,7 +199,7 @@ export default function RoadmapView() {
         {
           ...base.next30[result.roadmap.next30],
           learn: rc.learn.next30[result.roadmap.next30],
-          ref: rc.curriculum.map[result.roadmap.next30],
+          revisit: rc.revisit.next30,
         },
       ],
     },
@@ -207,7 +208,7 @@ export default function RoadmapView() {
       label: rc.horizons.habits.label,
       lead: rc.horizons.habits.lead,
       icon: <Compass size={16} />,
-      recs: base.habits.map((hb, i) => ({ ...hb, learn: rc.habitsLearn[i], ref: rc.curriculum.habits[i] })),
+      recs: base.habits.map((hb, i) => ({ ...hb, learn: rc.habitsLearn[i], revisit: rc.revisit.habits })),
     },
     {
       key: 'sixTwelve',
@@ -218,7 +219,7 @@ export default function RoadmapView() {
         {
           ...base.sixTwelve[result.roadmap.sixTwelve],
           learn: rc.learn.sixTwelve[result.roadmap.sixTwelve],
-          ref: rc.curriculum.map[result.roadmap.sixTwelve],
+          revisit: rc.revisit.sixTwelve,
         },
       ],
     },
@@ -261,9 +262,9 @@ export default function RoadmapView() {
                 </span>
               ))}
             </div>
-            <p className="rj-curriculum-note">
-              <BookOpen size={14} />
-              {rc.curriculum.note}
+            <p className="rj-ongoing">
+              <Compass size={14} />
+              {h.ongoing}
             </p>
           </div>
         </header>
@@ -306,12 +307,13 @@ export default function RoadmapView() {
                       <span className="rj-learn__label">{rc.learnLabel}</span>
                       {rc.vision.learn}
                     </p>
-                    <span className="rj-learn__ref">
-                      <BookOpen size={13} />
-                      {rc.curriculum.refLabel} · Ch {rc.curriculum.vision.ch} · {rc.curriculum.vision.title}
-                    </span>
                   </div>
                 </div>
+                <p className="rj-revisit rj-revisit--on-dark">
+                  <Clock size={13} />
+                  <span className="rj-revisit__label">{rc.revisitLabel}</span>
+                  {rc.revisit.vision}
+                </p>
               </div>
             </div>
           </li>

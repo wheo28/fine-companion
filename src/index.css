@@ -2667,3 +2667,103 @@ html[lang='ko'] .rj-vision__text {
   .hub-feature { flex-wrap: wrap; }
   .tx-beat__body { font-size: 1.06rem; }
 }
+
+/* ============================================================
+   CHAPTER 1 INTEGRATION — journey, missions, check-in, process
+   ============================================================ */
+
+/* Mission status tags */
+.hub-tag {
+  display: inline-flex; align-items: center; gap: 5px; align-self: flex-start;
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 999px; background: var(--band); color: var(--ink-faint);
+  border: 1px solid var(--line);
+}
+.hub-tag--gold { background: var(--wheat-soft); color: #8a6416; border-color: transparent; }
+.hub-tag--soft { background: var(--green-tint); color: var(--green); border-color: transparent; }
+.hub-tag--inline { margin-left: 8px; vertical-align: middle; }
+
+/* Journey strip */
+.hub-journey {
+  padding: 18px 22px; border: 1px solid var(--line); border-radius: var(--radius-lg);
+  background: var(--surface); margin-bottom: clamp(24px, 3.5vw, 36px);
+}
+.hub-journey__label {
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 14px;
+}
+.hub-journey__row { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+.hub-journey__stat { display: flex; flex-direction: column; gap: 2px; }
+.hub-journey__num { font-family: var(--font-display); font-size: 1.7rem; line-height: 1; color: var(--green-deep); }
+.hub-journey__den { font-size: 1rem; color: var(--ink-faint); }
+.hub-journey__cap { font-size: 0.78rem; color: var(--ink-soft); }
+.hub-journey__badge {
+  display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono);
+  font-size: 0.72rem; color: var(--ink-faint); padding: 6px 12px; border-radius: 999px; background: var(--band);
+}
+.hub-journey__badge.is-done { color: var(--green); background: var(--green-tint); }
+.hub-journey__road {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 0.78rem; color: var(--green); text-decoration: none;
+}
+.hub-journey__road:hover { gap: 11px; }
+
+/* card top row for icon + tag */
+.hub-card__toprow { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.hub-card--soon { opacity: 0.72; background: repeating-linear-gradient(135deg, var(--surface), var(--surface) 10px, var(--paper) 10px, var(--paper) 20px); cursor: default; }
+.hub-card--soon:hover { transform: none; box-shadow: none; border-color: var(--line); }
+
+.hub-tool--checkin { border-color: var(--green-tint); background: linear-gradient(180deg, var(--surface), var(--green-tint)); }
+.hub-tool__title { display: inline-flex; align-items: center; flex-wrap: wrap; }
+.hub__come-back { margin-top: 16px; font-size: 0.88rem; color: var(--ink-soft); font-style: italic; }
+
+/* Monthly Check-in */
+.checkin__inner { max-width: 640px; margin: 0 auto; padding: clamp(24px, 4vw, 48px) var(--gutter) 72px; }
+.checkin__head { margin-bottom: 28px; }
+.checkin__icon { display: inline-grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: var(--green-tint); color: var(--green-deep); margin-bottom: 16px; }
+.checkin__title { font-size: clamp(1.7rem, 3.6vw, 2.4rem); line-height: 1.12; margin: 6px 0 14px; }
+.checkin__sub { font-size: 1.05rem; line-height: 1.6; color: var(--ink-soft); }
+.checkin__prompt { font-family: var(--font-display); font-size: 1.25rem; color: var(--ink); margin-bottom: 4px; }
+.checkin__hint { font-size: 0.9rem; color: var(--ink-faint); margin-bottom: 18px; }
+.checkin__options { display: flex; flex-direction: column; gap: 10px; }
+.checkin-opt {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  padding: 15px 17px; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); cursor: pointer; font-size: 1rem; color: var(--ink);
+  font-family: var(--font-body); transition: border-color .15s ease, background .15s ease;
+}
+.checkin-opt:hover { border-color: var(--line-strong); }
+.checkin-opt.is-on { border-color: var(--green); background: var(--green-tint); }
+.checkin-opt__box {
+  flex: none; width: 22px; height: 22px; border-radius: 7px; border: 1.5px solid var(--line-strong);
+  display: grid; place-items: center; color: var(--surface); background: var(--surface);
+}
+.checkin-opt.is-on .checkin-opt__box { background: var(--green); border-color: var(--green); }
+.checkin__actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+
+/* Roadmap: revisit line + ongoing note */
+.rj-revisit {
+  display: inline-flex; align-items: baseline; gap: 8px; margin-top: 12px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--ink-soft);
+}
+.rj-revisit svg { color: var(--green); position: relative; top: 2px; flex: none; }
+.rj-revisit__label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); }
+.rj-revisit--on-dark { color: rgba(255,255,255,0.82); margin-top: 14px; }
+.rj-revisit--on-dark svg,
+.rj-revisit--on-dark .rj-revisit__label { color: var(--wheat); }
+.rj-ongoing {
+  display: inline-flex; align-items: center; gap: 9px; margin-top: 16px;
+  padding: 9px 15px; border-radius: var(--radius); background: var(--green-tint);
+  font-size: 0.9rem; line-height: 1.4; color: var(--green-deep);
+}
+.rj-ongoing svg { color: var(--green); flex: none; }
+
+/* Results: how it connects + why revisit */
+.rx-connect { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 26px 0; }
+.rx-connect__item { padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.rx-connect__body { font-size: 0.96rem; line-height: 1.6; color: var(--ink-soft); margin-top: 8px; }
+
+@media (max-width: 720px) {
+  .rx-connect { grid-template-columns: 1fr; }
+  .hub-journey__road { margin-left: 0; }
+}

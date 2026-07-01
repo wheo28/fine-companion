@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import { hubContent } from './hubContent'
 import { topicsContent } from '../topics/topicsContent'
-import { getExplored, getCheckup } from '../lib/progress'
+import { getExplored, getCheckup, daysSinceCheckin } from '../lib/progress'
 import {
   ArrowRight, Compass, Sunrise, BookOpen, Lightbulb, Check, ShieldCheck,
   Coins, Umbrella, Clock, GraduationCap, Scroll, Receipt, TrendingUp, Heart, Scale,
@@ -24,9 +24,15 @@ export default function Hub() {
   const tc = topicsContent[lang]
   const [explored] = useState(() => getExplored())
   const [hasCheckup] = useState(() => Boolean(getCheckup()))
+  const [checkinDays] = useState(() => daysSinceCheckin())
 
   const lesson = h.lessons[dayIndex(h.lessons.length)]
   const tip = h.tips[dayIndex(h.tips.length)]
+
+  const exploredCount = tc.order.filter((id) => explored[id]).length
+  const total = tc.order.length
+  const hasProgress = hasCheckup || exploredCount > 0
+  const checkedInRecently = checkinDays !== null && checkinDays < 25
 
   // Recommended next step
   const firstUnexplored = tc.order.find((id) => !explored[id])
@@ -54,7 +60,32 @@ export default function Hub() {
           </p>
         </header>
 
-        {/* Daily strip: lesson + tip + next step */}
+        {/* Journey strip */}
+        <section className="hub-journey" aria-label={h.journey.label}>
+          <p className="hub-journey__label">{h.journey.label}</p>
+          <div className="hub-journey__row">
+            <div className="hub-journey__stat">
+              <span className="hub-journey__num">
+                {exploredCount}
+                <span className="hub-journey__den"> / {total}</span>
+              </span>
+              <span className="hub-journey__cap">{h.journey.exploredOf}</span>
+            </div>
+            <div className="hub-journey__stat">
+              <span className={`hub-journey__badge${hasCheckup ? ' is-done' : ''}`}>
+                {hasCheckup ? <Check size={13} /> : null}
+                {hasCheckup ? h.journey.checkupDone : h.journey.checkupPending}
+              </span>
+            </div>
+            <Link to="/roadmap" className="hub-journey__road">
+              <Compass size={15} />
+              {hasProgress ? h.journey.roadmapGrowing : h.journey.roadmapEmpty}
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+        </section>
+
+        {/* Daily strip */}
         <section className="hub__daily" aria-label={h.todaysLessonLabel}>
           <article className="hub-daily hub-daily--lesson">
             <p className="hub-daily__label">
@@ -78,6 +109,7 @@ export default function Hub() {
               <Compass size={14} />
               {h.nextStepLabel}
             </p>
+            <span className="hub-tag hub-tag--gold">{h.labels.goodNext}</span>
             <h2 className="hub-daily__title">{next.title}</h2>
             <p className="hub-daily__body">{next.body}</p>
             <span className="hub-daily__cta">
@@ -94,11 +126,14 @@ export default function Hub() {
             <Sunrise size={26} />
           </span>
           <div className="hub-feature__text">
+            <span className={`hub-tag${hasCheckup ? '' : ' hub-tag--gold'}`}>
+              {hasCheckup ? h.labels.availableNow : h.labels.tryFirst}
+            </span>
             <p className="hub-feature__title">{h.cards.checkup.title}</p>
             <p className="hub-feature__tagline">{h.cards.checkup.tagline}</p>
           </div>
           <span className="hub-feature__meta">
-            {getCheckup() ? <Check size={16} /> : null}
+            {hasCheckup ? <Check size={16} /> : null}
             <span className="hub-card__minutes">
               {h.cards.checkup.minutes} {h.minutesLabel}
             </span>
@@ -116,9 +151,12 @@ export default function Hub() {
               const isDone = Boolean(explored[id])
               return (
                 <Link to={`/explore/${id}`} key={id} className={`hub-card${isDone ? ' is-explored' : ''}`}>
-                  <span className="hub-card__icon" aria-hidden="true">
-                    <Icon size={22} />
-                  </span>
+                  <div className="hub-card__toprow">
+                    <span className="hub-card__icon" aria-hidden="true">
+                      <Icon size={22} />
+                    </span>
+                    <span className="hub-tag hub-tag--soft">{h.labels.twoMin}</span>
+                  </div>
                   <p className="hub-card__title">{t.title}</p>
                   <p className="hub-card__tagline">{t.tagline}</p>
                   <div className="hub-card__foot">
@@ -128,9 +166,7 @@ export default function Hub() {
                         {h.exploredBadge}
                       </span>
                     ) : (
-                      <span className="hub-card__minutes">
-                        {t.minutes} {h.minutesLabel}
-                      </span>
+                      <span className="hub-card__minutes">{h.labels.availableNow}</span>
                     )}
                     <span className="hub-card__go">
                       {isDone ? '' : h.exploreCta}
@@ -140,6 +176,19 @@ export default function Hub() {
                 </Link>
               )
             })}
+
+            {h.comingSoon.map((cs) => (
+              <div className="hub-card hub-card--soon" key={cs.title} aria-disabled="true">
+                <div className="hub-card__toprow">
+                  <span className="hub-card__icon" aria-hidden="true">
+                    <Compass size={22} />
+                  </span>
+                  <span className="hub-tag">{h.labels.comingSoon}</span>
+                </div>
+                <p className="hub-card__title">{cs.title}</p>
+                <p className="hub-card__tagline">{cs.tagline}</p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -147,6 +196,21 @@ export default function Hub() {
         <section aria-label={h.toolsLabel}>
           <p className="hub__section-label">{h.toolsLabel}</p>
           <div className="hub-tools">
+            <Link to="/checkin" className="hub-tool hub-tool--checkin">
+              <span className="hub-tool__icon" aria-hidden="true">
+                <Sunrise size={22} />
+              </span>
+              <div>
+                <p className="hub-tool__title">
+                  {h.checkin.title}
+                  <span className="hub-tag hub-tag--soft hub-tag--inline">
+                    {checkedInRecently ? h.checkin.comeBackNote : h.labels.quick}
+                  </span>
+                </p>
+                <p className="hub-tool__tagline">{h.checkin.tagline}</p>
+              </div>
+              <ArrowRight size={18} />
+            </Link>
             <Link to="/roadmap" className="hub-tool">
               <span className="hub-tool__icon" aria-hidden="true">
                 <Compass size={22} />
@@ -168,6 +232,7 @@ export default function Hub() {
               <ArrowRight size={18} />
             </Link>
           </div>
+          <p className="hub__come-back">{h.journey.comeBack}</p>
         </section>
       </div>
     </main>

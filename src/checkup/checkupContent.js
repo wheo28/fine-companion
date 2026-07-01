@@ -120,6 +120,12 @@ export const checkupContent = {
         },
 
         priorityLabel: 'One thing worth focusing on first',
+        connectLabel: 'How this fits together',
+        connectBody:
+          'Money areas are connected — your cash flow feeds your savings, your savings soften a setback, and less worry makes every other choice easier. You don\u2019t have to fix them one-by-one in isolation; a small move in one place tends to help the others.',
+        revisitLabel: 'Why a fresh look helps',
+        revisitBody:
+          'This is a snapshot of one moment, not a verdict. Life keeps changing, so it\u2019s worth checking in now and then. And one small step you\u2019ll actually take beats a big plan that overwhelms you.',
         priorityIntro:
           "You don't need to fix everything at once. If you change just one thing, let it be this.",
         priorityCopy: {
@@ -397,6 +403,12 @@ export const checkupContent = {
         },
 
         priorityLabel: '먼저 집중하면 좋을 한 가지',
+        connectLabel: '이것들이 어떻게 이어지는가',
+        connectBody:
+          '돈의 영역들은 서로 연결돼 있어요 — 현금 흐름이 저축을 채우고, 저축이 뜻밖의 일을 완화하고, 걱정이 줄면 다른 모든 선택이 쉬워져요. 하나씩 따로 고칠 필요는 없어요; 한 곳의 작은 변화가 다른 곳들을 돕는 경향이 있어요.',
+        revisitLabel: '다시 보는 것이 도움이 되는 이유',
+        revisitBody:
+          '이건 한 순간의 스냅샷이지, 판정이 아니에요. 삶은 계속 변하니 가끔 다시 확인하는 게 좋아요. 그리고 압도하는 큰 계획보다, 실제로 밟을 작은 한 걸음이 나아요.',
         priorityIntro:
           '모든 걸 한 번에 고칠 필요는 없어요. 단 하나만 바꾼다면, 이걸로 하세요.',
         priorityCopy: {

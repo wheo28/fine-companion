@@ -172,6 +172,18 @@ export default function Results({ result, onRestart }) {
         </div>
       </section>
 
+      {/* How areas connect + why a fresh look matters */}
+      <section className="rx-connect" aria-label={story.connectLabel}>
+        <div className="rx-connect__item">
+          <p className="rx-label">{story.connectLabel}</p>
+          <p className="rx-connect__body">{story.connectBody}</p>
+        </div>
+        <div className="rx-connect__item">
+          <p className="rx-label">{story.revisitLabel}</p>
+          <p className="rx-connect__body">{story.revisitBody}</p>
+        </div>
+      </section>
+
       {/* Optional detailed breakdown (progressive disclosure) */}
       <section className="rx-details">
         <button
