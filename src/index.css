@@ -2412,3 +2412,48 @@ html[lang='ko'] .rj-vision__text {
     flex: 1 1 auto;
   }
 }
+
+/* Curriculum grounding (Sprint 4 — materials) */
+.rj-learn__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.rj-learn__ref {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  color: var(--green);
+  opacity: 0.85;
+}
+
+.rj-learn__ref svg {
+  flex: none;
+}
+
+.rj-learn--on-dark .rj-learn__ref {
+  color: var(--wheat);
+  opacity: 0.92;
+}
+
+.rj-curriculum-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 8px 14px;
+  border: 1px dashed var(--green-tint);
+  border-radius: 999px;
+  font-size: 0.84rem;
+  color: var(--green-deep);
+}
+
+.rj-curriculum-note svg {
+  color: var(--green);
+  flex: none;
+}

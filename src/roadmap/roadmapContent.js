@@ -112,6 +112,25 @@ export const roadmapContent = {
         'The long game rewards consistency over intensity. Small habits repeated for years compound quietly into a financial life that once felt out of reach — the single most reliable pattern in personal finance.',
     },
     actions: { retake: 'Retake the checkup', home: 'Back to home', learn: 'Learning Center' },
+    curriculum: {
+      note: 'Every "Learn" note draws on the financial-planning curriculum.',
+      refLabel: 'From the curriculum',
+      map: {
+        cashflow: { ch: '3', title: 'Cash Flow & Net Worth Planning' },
+        emergency: { ch: '3', title: 'Cash Flow & Net Worth Planning' },
+        debt: { ch: '3', title: 'Cash Flow & Net Worth Planning' },
+        retirement: { ch: '12', title: 'Retirement Planning' },
+        insurance: { ch: '5–9', title: 'Insurance & Risk Management' },
+        stress: { ch: '1', title: 'The Financial Planning Process' },
+        steady: { ch: '1', title: 'The Financial Planning Process' },
+      },
+      habits: [
+        { ch: '3', title: 'Cash Flow & Net Worth Planning' },
+        { ch: '3', title: 'Cash Flow & Net Worth Planning' },
+        { ch: '1', title: 'The Financial Planning Process' },
+      ],
+      vision: { ch: '1', title: 'The Financial Planning Process' },
+    },
   },
 
   ko: {
@@ -204,5 +223,24 @@ export const roadmapContent = {
         '긴 게임은 강도보다 꾸준함에 보답해요. 여러 해 반복된 작은 습관이 조용히 복리로 쌓여, 한때 닿을 수 없어 보이던 재정 생활이 됩니다 — 개인 재무에서 가장 믿을 만한 단 하나의 패턴이에요.',
     },
     actions: { retake: '체크업 다시 하기', home: '홈으로', learn: '러닝 센터' },
+    curriculum: {
+      note: '모든 "배워요" 노트는 재무설계 커리큘럼에 바탕을 둡니다.',
+      refLabel: '커리큘럼에서',
+      map: {
+        cashflow: { ch: '3', title: '현금흐름과 순자산 설계' },
+        emergency: { ch: '3', title: '현금흐름과 순자산 설계' },
+        debt: { ch: '3', title: '현금흐름과 순자산 설계' },
+        retirement: { ch: '12', title: '은퇴 설계' },
+        insurance: { ch: '5–9', title: '보험과 위험관리' },
+        stress: { ch: '1', title: '재무설계 프로세스' },
+        steady: { ch: '1', title: '재무설계 프로세스' },
+      },
+      habits: [
+        { ch: '3', title: '현금흐름과 순자산 설계' },
+        { ch: '3', title: '현금흐름과 순자산 설계' },
+        { ch: '1', title: '재무설계 프로세스' },
+      ],
+      vision: { ch: '1', title: '재무설계 프로세스' },
+    },
   },
 }
