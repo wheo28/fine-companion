@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import { hubContent } from './hubContent'
+import { predictContent } from './predictContent'
+import Predict from '../components/Predict'
 import { topicsContent } from '../topics/topicsContent'
 import { learningContent } from '../learning/learningContent'
 import { getExplored, getCheckup, daysSinceCheckin } from '../lib/progress'
@@ -29,6 +31,8 @@ export default function Hub() {
 
   const lesson = h.lessons[dayIndex(h.lessons.length)]
   const tip = h.tips[dayIndex(h.tips.length)]
+  const pc = predictContent[lang]
+  const prediction = pc.prompts[dayIndex(pc.prompts.length)]
   const insightTitles = learningContent[lang].behavioralInsights.slice(0, 3).map((it) => it.title)
 
   const exploredCount = tc.order.filter((id) => explored[id]).length
@@ -70,6 +74,9 @@ export default function Hub() {
           <h1 className="mh__title display">{h.title}</h1>
           <p className="mh__sub">{h.sub}</p>
         </header>
+
+        {/* ---------- The question (predict, then learn) ---------- */}
+        <Predict data={prediction} kicker={pc.kicker} revealLabel={pc.revealLabel} />
 
         {/* ---------- Today's Companion ---------- */}
         <section className="tc">
