@@ -1,6 +1,5 @@
-import ModuleShell from '../components/ModuleShell'
-import { Sunrise } from '../components/Icons'
+import CheckupFlow from '../checkup/CheckupFlow'
 
 export default function Checkup() {
-  return <ModuleShell contentKey="checkup" icon={<Sunrise size={26} />} />
+  return <CheckupFlow />
 }
