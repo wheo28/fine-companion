@@ -1,7 +1,7 @@
 // Pure, framework-free scoring for the Financial Wellness Checkup.
 // Everything here is descriptive and educational — it classifies a person's
-// own numbers into plain-language states. It never recommends products,
-// investments, insurance, tax, or legal strategies.
+// own numbers into plain-language states, then builds a supportive narrative.
+// It never recommends products, investments, insurance, tax, or legal strategies.
 
 function num(v) {
   const n = Number(v)
@@ -61,7 +61,7 @@ export function computeResults(answers) {
   if (riskScore > 66) riskBand = 'comfortable'
   else if (riskScore > 33) riskBand = 'balanced'
 
-  // ----- Roadmap focus selection -----
+  // ----- Roadmap focus selection (weighted concerns) -----
   const focuses = []
   if (cashflowState === 'short') focuses.push({ key: 'cashflow', w: 5 })
   if (emergencyState === 'none') focuses.push({ key: 'emergency', w: 4 })
@@ -87,6 +87,34 @@ export function computeResults(answers) {
 
   const longtermVariant = top === 'steady' ? 'strengthening' : 'building'
 
+  // ----- Narrative (tone, strengths, single priority) -----
+  const strengthKeys = []
+  if (emergencyState === 'solid' || emergencyState === 'cushioned') strengthKeys.push('emergency')
+  if (cashflowState === 'healthy' || cashflowState === 'strong') strengthKeys.push('cashflow')
+  if (debtState === 'none' || debtState === 'light') strengthKeys.push('debt')
+  if (retirementState === 'regularly') strengthKeys.push('retirement')
+  if (insuranceState === 'mostly' || insuranceState === 'veryClear') strengthKeys.push('insurance')
+  if (stressBand === 'low') strengthKeys.push('stress')
+
+  const hardConcern =
+    cashflowState === 'short' || emergencyState === 'none' || debtState === 'heavy' || stressBand === 'high'
+  const strengthsCount = strengthKeys.length
+  const concernsCount = focuses.length
+
+  let tone
+  if (strengthsCount >= 4 && !hardConcern) tone = 'strong'
+  else if (strengthsCount >= 2 && concernsCount <= 2 && !hardConcern) tone = 'stable'
+  else if (hardConcern && strengthsCount <= 1) tone = 'stretched'
+  else tone = 'mixed'
+
+  // Always surface 2–3 genuine positives; fall back to universal ones.
+  const displayStrengths = [...strengthKeys]
+  for (const fb of ['reflection', 'clarity']) {
+    if (displayStrengths.length >= 3) break
+    if (!displayStrengths.includes(fb)) displayStrengths.push(fb)
+  }
+  const strengths = displayStrengths.slice(0, 3)
+
   return {
     currency: answers.currency || 'usd',
     cashflow: { state: cashflowState, leftover, ratioPct: Math.round(cashflowRatio * 100) },
@@ -100,6 +128,7 @@ export function computeResults(answers) {
     retirement: { state: retirementState },
     stress: { score: stressScore, band: stressBand },
     risk: { score: riskScore, band: riskBand },
+    narrative: { tone, strengths, priority: top },
     roadmap: { today: top, next30: top, sixTwelve, longterm: longtermVariant },
   }
 }
