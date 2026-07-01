@@ -5,7 +5,7 @@ import { checkupContent } from './checkupContent'
 import { computeResults } from './scoring'
 import QuestionStep from './QuestionStep'
 import Results from './Results'
-import { Sunrise, ArrowRight } from '../components/Icons'
+import { Sunrise, ArrowRight, Check } from '../components/Icons'
 
 const STORAGE_KEY = 'fine-companion.checkup.v1'
 
@@ -129,6 +129,17 @@ export default function CheckupFlow() {
             <span>{c.intro.privacy}</span>
           </div>
 
+          {c.intro.assure && (
+            <ul className="ck-assure" aria-label={c.intro.privacy}>
+              {c.intro.assure.map((a) => (
+                <li key={a}>
+                  <Check size={13} aria-hidden="true" />
+                  {a}
+                </li>
+              ))}
+            </ul>
+          )}
+
           <div className="ck-currency" role="group" aria-label={c.currency.label}>
             <span className="ck-currency__label">{c.currency.label}</span>
             <div className="ck-currency__opts">
@@ -213,6 +224,8 @@ export default function CheckupFlow() {
           onChange={(v) => setValue(question.id, v)}
           currency={currency}
         />
+
+        {c.qReassure && <p className="ck-reassure">{c.qReassure}</p>}
 
         <div className="ck-nav">
           <button type="button" className="btn btn--ghost" onClick={goBack}>

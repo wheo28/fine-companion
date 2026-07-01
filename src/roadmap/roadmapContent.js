@@ -9,16 +9,16 @@
 export const roadmapContent = {
   en: {
     empty: {
-      eyebrow: 'Your roadmap',
-      title: 'Your roadmap grows from your checkup.',
-      body: 'Take the two-minute Financial Wellness Checkup, and a personalized path — for today, this month, and the years ahead — will appear right here, shaped entirely around your answers.',
-      cta: 'Take the checkup',
+      eyebrow: 'Your path',
+      title: 'Nothing here yet — and that\u2019s okay.',
+      body: 'Start with one short check, about two minutes, and your path begins to grow right here — one small step for today, and a gentle sense of where you\u2019re headed. Nothing is sent anywhere; it all stays on your device.',
+      cta: 'Start with a 2-minute check',
     },
     header: {
       eyebrow: 'Your roadmap',
       title: 'A path made from your checkup.',
       based: 'Based on your checkup',
-      ongoing: 'This isn\u2019t a final report — it\u2019s a companion you can return to. It changes as your life changes.',
+      ongoing: 'This isn\u2019t the last word — it\u2019s a companion you can return to. It changes as your life changes.',
       intros: {
         strong:
           'Your checkup showed a genuinely steady foundation — so this roadmap is less about fixing anything and more about building on the strength you already have.',
@@ -154,16 +154,16 @@ export const roadmapContent = {
 
   ko: {
     empty: {
-      eyebrow: '나의 로드맵',
-      title: '로드맵은 당신의 체크업에서 자라납니다.',
-      body: '2분짜리 재정 건강 체크업을 마치면, 오늘·이번 달·그리고 앞으로의 여러 해를 위한 맞춤 경로가 당신의 답변을 바탕으로 이곳에 나타납니다.',
-      cta: '체크업 하러 가기',
+      eyebrow: '나의 길',
+      title: '아직 여기엔 아무것도 없어요 — 괜찮아요.',
+      body: '약 2분이면 되는 짧은 점검 하나로 시작하면, 당신의 길이 이곳에서 자라기 시작해요 — 오늘의 작은 한 걸음과, 어디로 향하는지에 대한 부드러운 감각이요. 어디로도 전송되지 않고, 모두 기기에만 남아요.',
+      cta: '2분 점검으로 시작하기',
     },
     header: {
       eyebrow: '나의 로드맵',
       title: '당신의 체크업으로 만든 길.',
       based: '체크업 결과 기준',
-      ongoing: '이건 최종 보고서가 아니라, 언제든 다시 찾는 동반자예요. 삶이 변하면 함께 변해요.',
+      ongoing: '이건 마지막 말이 아니라, 언제든 다시 찾는 동반자예요. 삶이 변하면 함께 변해요.',
       intros: {
         strong:
           '체크업 결과, 정말로 단단한 토대가 보였어요 — 그래서 이 로드맵은 무언가를 고치기보다, 이미 가진 강점 위에 쌓아 가는 데 가깝습니다.',

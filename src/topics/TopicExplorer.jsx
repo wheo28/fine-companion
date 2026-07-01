@@ -77,6 +77,16 @@ export default function TopicExplorer() {
           </p>
           <h1 className="display tx-done__title">{ui.doneTitle}</h1>
           <p className="tx-done__body">{ui.doneBody}</p>
+
+          <div className="tx-recap">
+            <span className="tx-recap__label">{ui.learnedLabel}</span>
+            <p className="tx-recap__title">{topic.takeaway.title}</p>
+            <div className="tx-recap__step">
+              <span className="tx-recap__step-label">{ui.stepLabel}</span>
+              <p>{topic.takeaway.step}</p>
+            </div>
+          </div>
+
           <div className="tx-done__actions">
             <Link to="/" className="btn btn--primary">
               {ui.backToHub}

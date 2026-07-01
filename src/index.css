@@ -839,3 +839,66 @@ button { font: inherit; cursor: pointer; color: inherit; background: none; borde
 .rj-explored__head { margin-bottom: 4px; }
 .rstrip__intro { min-width: 0; }
 .rx-connect__item { min-width: 0; }
+
+/* ===================================================================
+   Friendliness pass — reassurance, guidance, completion clarity
+   =================================================================== */
+
+/* Masthead reassurance row — what it is, how long, no wrong answers, safe */
+.mh__assure {
+  display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 22px;
+}
+.mh__assure-item {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+.mh__assure-item svg { color: var(--gold); flex-shrink: 0; }
+
+/* Time · outcome badge on the "Start here" card */
+.tc__meta {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gold-bright);
+  display: inline-flex; align-items: center; width: fit-content;
+  padding: 5px 11px; border: 1px solid rgba(201, 162, 75, 0.4); border-radius: 100px;
+}
+
+/* Checkup intro reassurance chips */
+.ck-assure {
+  display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center;
+  margin-top: 20px; max-width: 480px;
+}
+.ck-assure li {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.03em;
+  color: var(--ink-soft);
+}
+.ck-assure svg { color: var(--gold); flex-shrink: 0; }
+
+/* Per-question reassurance — calm, never in the way */
+.ck-reassure {
+  margin-top: 26px; text-align: center;
+  font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.03em;
+  color: var(--ink-faint);
+}
+
+/* Completion recap on finishing a topic: what you took away + one step */
+.tx-recap {
+  width: 100%; max-width: 520px; margin: 4px auto 30px; text-align: left;
+  border: 1px solid var(--line-strong); border-top: 3px solid var(--gold);
+  background: var(--surface); padding: 22px 24px;
+}
+.tx-recap__label {
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold-deep); display: block; margin-bottom: 8px;
+}
+.tx-recap__title {
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 600;
+  line-height: 1.25; letter-spacing: -0.01em;
+}
+.tx-recap__step { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.tx-recap__step-label {
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 4px;
+}
+.tx-recap__step p { color: var(--ink-soft); font-size: 0.96rem; line-height: 1.55; }

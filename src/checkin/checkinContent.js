@@ -20,7 +20,7 @@ export const checkinContent = {
     changedTitle: 'Thanks for noticing.',
     changedBody: 'When life shifts, the plan that fit before may not fit now — and that\u2019s completely normal. You may find it helpful to revisit your checkup or a topic, so your roadmap keeps pace with your real life.',
     steadyTitle: 'Steady is good.',
-    steadyBody: 'Nothing big to report is its own kind of progress. A quick look like this keeps things fresh, so you\u2019re never caught off guard. See you again next month.',
+    steadyBody: 'Nothing big to note is its own kind of progress. A quick look like this keeps things fresh, so you\u2019re never caught off guard. See you again next month.',
     savedNote: 'Check-in saved',
     seeRoadmap: 'See your roadmap',
     revisitCheckup: 'Revisit the checkup',

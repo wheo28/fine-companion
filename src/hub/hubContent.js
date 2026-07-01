@@ -5,6 +5,8 @@ export const hubContent = {
     title: 'A calmer way to understand your money.',
     sub: 'No long survey to finish. Just short, honest topics you can explore in a few minutes each — and a roadmap that quietly grows as you do.',
     trust: 'Educational, always. We never sell products, and nothing leaves your device.',
+    assure: ['About 2 minutes to start', 'No wrong answers', 'Stays on your device', 'Educational, not advice'],
+    startHereLabel: 'Start here',
     todaysLessonLabel: "Today's lesson",
     todaysTipLabel: "Today's companion tip",
     nextStepLabel: 'Recommended next step',
@@ -78,9 +80,9 @@ export const hubContent = {
       'Say your loudest money worry out loud, once. Named, it gets a little smaller.',
     ],
     next: {
-      checkup: { title: 'Get your bearings first', body: 'A gentle two-minute checkup gives your roadmap a starting point — no pressure, and nothing saved off your device.', cta: 'Try the checkup' },
-      explore: { title: 'Explore something new', body: 'You\u2019ve got momentum. Here\u2019s a topic you haven\u2019t opened yet, ready in a few minutes.', cta: 'Explore' },
-      learning: { title: 'Deepen what you know', body: 'You\u2019ve explored a lot. The Learning Center gathers the ideas behind it all in one calm place.', cta: 'Open the Learning Center' },
+      checkup: { title: 'Get your bearings first', body: 'A gentle two-minute checkup gives your roadmap a starting point — no pressure, and nothing saved off your device.', cta: 'Try the checkup', meta: '2 min · See where your money is going' },
+      explore: { title: 'Explore something new', body: 'You\u2019ve got momentum. Here\u2019s a topic you haven\u2019t opened yet, ready in a few minutes.', cta: 'Explore', meta: '2 min · Understand one new topic' },
+      learning: { title: 'Deepen what you know', body: 'You\u2019ve explored a lot. The Learning Center gathers the ideas behind it all in one calm place.', cta: 'Open the Learning Center', meta: '5 min · The ideas behind it all' },
     },
     cards: {
       checkup: { title: 'Financial Wellness Checkup', tagline: 'A gentle two-minute snapshot of where you stand — the roadmap starts here.', minutes: 2 },
@@ -93,6 +95,8 @@ export const hubContent = {
     title: '내 돈을 이해하는, 더 차분한 방법.',
     sub: '끝내야 할 긴 설문은 없어요. 각각 몇 분이면 되는 짧고 정직한 주제들을 탐색하면 — 당신과 함께 조용히 자라는 로드맵이 생겨요.',
     trust: '언제나 교육 목적입니다. 상품을 팔지 않고, 어떤 것도 기기를 떠나지 않아요.',
+    assure: ['시작까지 약 2분', '틀린 답은 없어요', '기기에만 저장돼요', '교육 목적, 자문 아님'],
+    startHereLabel: '여기서 시작',
     todaysLessonLabel: '오늘의 배움',
     todaysTipLabel: '오늘의 컴패니언 팁',
     nextStepLabel: '추천 다음 단계',
@@ -166,9 +170,9 @@ export const hubContent = {
       '가장 큰 돈 걱정을 한 번 소리 내어 말해 보세요. 이름이 붙으면 조금 작아져요.',
     ],
     next: {
-      checkup: { title: '먼저 방향을 잡아요', body: '부드러운 2분 체크업이 로드맵의 출발점을 만들어 줘요 — 부담 없이, 기기를 벗어나 저장되는 것도 없이요.', cta: '체크업 해보기' },
-      explore: { title: '새로운 것을 탐색해요', body: '흐름을 타고 있네요. 아직 열지 않은 주제가 여기 있어요, 몇 분이면 돼요.', cta: '탐색하기' },
-      learning: { title: '아는 것을 더 깊게', body: '많이 탐색했어요. 러닝 센터가 그 뒤의 생각들을 한 곳에 차분히 모아 둡니다.', cta: '러닝 센터 열기' },
+      checkup: { title: '먼저 방향을 잡아요', body: '부드러운 2분 체크업이 로드맵의 출발점을 만들어 줘요 — 부담 없이, 기기를 벗어나 저장되는 것도 없이요.', cta: '체크업 해보기', meta: '2분 · 내 돈이 어디로 가는지 보기' },
+      explore: { title: '새로운 것을 탐색해요', body: '흐름을 타고 있네요. 아직 열지 않은 주제가 여기 있어요, 몇 분이면 돼요.', cta: '탐색하기', meta: '2분 · 한 가지 주제 이해하기' },
+      learning: { title: '아는 것을 더 깊게', body: '많이 탐색했어요. 러닝 센터가 그 뒤의 생각들을 한 곳에 차분히 모아 둡니다.', cta: '러닝 센터 열기', meta: '5분 · 그 뒤에 있는 생각들' },
     },
     cards: {
       checkup: { title: '재정 건강 체크업', tagline: '지금 어디에 서 있는지 부드러운 2분 스냅샷 — 로드맵이 여기서 시작돼요.', minutes: 2 },

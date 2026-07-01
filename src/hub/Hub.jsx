@@ -73,16 +73,22 @@ export default function Hub() {
           <span className="mh__doublerule" aria-hidden="true" />
           <h1 className="mh__title display">{h.title}</h1>
           <p className="mh__sub">{h.sub}</p>
+          <ul className="mh__assure" aria-label={h.trust}>
+            {(h.assure || []).map((a) => (
+              <li className="mh__assure-item" key={a}>
+                <Check size={13} aria-hidden="true" />
+                {a}
+              </li>
+            ))}
+          </ul>
         </header>
 
-        {/* ---------- The question (predict, then learn) ---------- */}
-        <Predict data={prediction} kicker={pc.kicker} revealLabel={pc.revealLabel} />
-
-        {/* ---------- Today's Companion ---------- */}
+        {/* ---------- Start here: today's one clear next step ---------- */}
         <section className="tc">
           <Link to={companion.to} className="tc__feature">
-            <span className="tc__label">{h.companionLabel}</span>
+            <span className="tc__label">{hasCheckup ? h.companionLabel : h.startHereLabel}</span>
             <h2 className="tc__title display">{companion.title}</h2>
+            {companion.meta ? <span className="tc__meta">{companion.meta}</span> : null}
             <p className="tc__lead">{companion.body}</p>
             <span className="tc__cta">
               {companion.cta}
@@ -107,6 +113,9 @@ export default function Hub() {
             </div>
           </aside>
         </section>
+
+        {/* ---------- A small moment: think first, then see ---------- */}
+        <Predict data={prediction} kicker={pc.kicker} revealLabel={pc.revealLabel} />
 
         {/* ---------- Roadmap progress strip (ongoing process) ---------- */}
         <Link to="/roadmap" className="rstrip">
