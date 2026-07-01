@@ -131,6 +131,16 @@ export const roadmapContent = {
       ],
       vision: { ch: '1', title: 'The Financial Planning Process' },
     },
+    explored: {
+      label: 'From what you\u2019ve explored',
+      sub: 'Insights you\u2019ve gathered, one topic at a time — this section grows as you explore more.',
+      stepLabel: 'Your step',
+      exploreMore: 'Explore another topic',
+      onlyEyebrow: 'Your roadmap is taking shape',
+      onlyTitle: 'A path made from what you\u2019ve explored.',
+      onlyBody: 'You haven\u2019t taken the checkup yet, so this roadmap is built from the topics you\u2019ve explored so far. Take the two-minute checkup anytime to add a personalized, time-based plan alongside it.',
+      onlyCta: 'Try the checkup',
+    },
   },
 
   ko: {
@@ -241,6 +251,16 @@ export const roadmapContent = {
         { ch: '1', title: '재무설계 프로세스' },
       ],
       vision: { ch: '1', title: '재무설계 프로세스' },
+    },
+    explored: {
+      label: '탐색한 것에서',
+      sub: '한 번에 한 주제씩 모은 인사이트 — 더 탐색할수록 이 섹션은 자라요.',
+      stepLabel: '당신의 한 걸음',
+      exploreMore: '다른 주제 탐색하기',
+      onlyEyebrow: '로드맵이 모양을 갖춰 가요',
+      onlyTitle: '탐색한 것으로 만든 길.',
+      onlyBody: '아직 체크업을 하지 않아서, 이 로드맵은 지금까지 탐색한 주제들로 만들어졌어요. 언제든 2분 체크업을 하면 개인화된 시간별 계획이 함께 더해져요.',
+      onlyCta: '체크업 해보기',
     },
   },
 }

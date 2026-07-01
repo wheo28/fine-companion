@@ -1,6 +1,5 @@
-import ModuleShell from '../components/ModuleShell'
-import { BookOpen } from '../components/Icons'
+import LearningCenter from '../learning/LearningCenter'
 
 export default function Learning() {
-  return <ModuleShell contentKey="learning" icon={<BookOpen size={26} />} />
+  return <LearningCenter />
 }

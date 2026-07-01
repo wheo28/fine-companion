@@ -4,7 +4,14 @@ import { useLanguage } from '../i18n/LanguageContext'
 import { checkupContent } from '../checkup/checkupContent'
 import { computeResults } from '../checkup/scoring'
 import { roadmapContent } from './roadmapContent'
-import { Sunrise, ArrowRight, Compass, Spark, Flag, Lightbulb, BookOpen } from '../components/Icons'
+import { topicsContent } from '../topics/topicsContent'
+import { getExplored } from '../lib/progress'
+import {
+  Sunrise, ArrowRight, Compass, Spark, Flag, Lightbulb, BookOpen, Check,
+  Coins, Umbrella, Clock, GraduationCap, Scroll, Receipt, TrendingUp, Heart, Scale,
+} from '../components/Icons'
+
+const TOPIC_ICONS = { Coins, Umbrella, Clock, GraduationCap, Scroll, Receipt, TrendingUp, Heart, Scale }
 
 const STORAGE_KEY = 'fine-companion.checkup.v1'
 
@@ -63,6 +70,46 @@ function Rec({ rc, rec }) {
   )
 }
 
+function ExploredSection({ rc, items }) {
+  if (!items.length) return null
+  const ex = rc.explored
+  return (
+    <section className="rj-explored" aria-label={ex.label}>
+      <div className="rj-explored__head">
+        <p className="rj-explored__label">
+          <Lightbulb size={15} />
+          {ex.label}
+        </p>
+        <p className="rj-explored__sub">{ex.sub}</p>
+      </div>
+      <div className="rj-explored__grid">
+        {items.map((t) => {
+          const Icon = TOPIC_ICONS[t.icon] || Compass
+          return (
+            <Link to={`/explore/${t.id}`} className="rj-ex-card" key={t.id}>
+              <p className="rj-ex-card__topic">
+                <span className="rj-ex-card__icon" aria-hidden="true">
+                  <Icon size={17} />
+                </span>
+                {t.title}
+              </p>
+              <p className="rj-ex-card__title">{t.takeaway.title}</p>
+              <div className="rj-ex-card__step">
+                <span className="rj-ex-card__step-label">{ex.stepLabel}</span>
+                <p>{t.takeaway.step}</p>
+              </div>
+            </Link>
+          )
+        })}
+      </div>
+      <Link to="/" className="rj-explored__more">
+        {ex.exploreMore}
+        <ArrowRight size={15} />
+      </Link>
+    </section>
+  )
+}
+
 function EmptyState({ rc }) {
   return (
     <main className="roadmap">
@@ -82,13 +129,46 @@ function EmptyState({ rc }) {
   )
 }
 
+/* Roadmap built only from explored topics (no checkup yet). */
+function ExploredOnly({ rc, items }) {
+  const ex = rc.explored
+  return (
+    <main className="roadmap">
+      <div className="roadmap__inner">
+        <header className="rj-head">
+          <p className="eyebrow eyebrow--accent">
+            <Compass size={15} />
+            {ex.onlyEyebrow}
+          </p>
+          <h1 className="display rj-head__title">{ex.onlyTitle}</h1>
+          <p className="rj-head__intro">{ex.onlyBody}</p>
+          <Link to="/checkup" className="btn btn--primary" style={{ marginTop: '18px' }}>
+            {ex.onlyCta}
+            <ArrowRight size={17} />
+          </Link>
+        </header>
+        <ExploredSection rc={rc} items={items} />
+      </div>
+    </main>
+  )
+}
+
 export default function RoadmapView() {
   const { lang } = useLanguage()
   const rc = roadmapContent[lang]
   const base = checkupContent[lang].results.roadmap
+  const tc = topicsContent[lang]
   const [saved] = useState(() => readSaved())
+  const [exploredMap] = useState(() => getExplored())
 
-  if (!saved) return <EmptyState rc={rc} />
+  const exploredItems = tc.order
+    .filter((id) => exploredMap[id])
+    .map((id) => ({ id, ...tc.topics[id] }))
+
+  if (!saved) {
+    if (exploredItems.length) return <ExploredOnly rc={rc} items={exploredItems} />
+    return <EmptyState rc={rc} />
+  }
 
   const result = computeResults(saved.answers)
   const n = result.narrative
@@ -236,6 +316,8 @@ export default function RoadmapView() {
             </div>
           </li>
         </ol>
+
+        <ExploredSection rc={rc} items={exploredItems} />
 
         <div className="rj-actions">
           <Link to="/checkup" className="btn btn--primary">

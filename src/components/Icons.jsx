@@ -118,3 +118,92 @@ export function Flag(props) {
     </Svg>
   )
 }
+
+export function Coins(props) {
+  return (
+    <Svg {...props}>
+      <ellipse cx="8" cy="6" rx="5" ry="2.5" />
+      <path d="M3 6v5c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V6" />
+      <path d="M3 11v5c0 1.4 2.2 2.5 5 2.5 1 0 1.9-.1 2.7-.4" />
+      <ellipse cx="16" cy="15" rx="5" ry="2.5" />
+      <path d="M11 15v3c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-3" />
+    </Svg>
+  )
+}
+
+export function Umbrella(props) {
+  return (
+    <Svg {...props}>
+      <path d="M12 3v2" />
+      <path d="M3 12a9 9 0 0 1 18 0Z" />
+      <path d="M12 12v6a2.5 2.5 0 0 0 5 0" />
+    </Svg>
+  )
+}
+
+export function Clock(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </Svg>
+  )
+}
+
+export function GraduationCap(props) {
+  return (
+    <Svg {...props}>
+      <path d="M12 4 2 9l10 5 10-5-10-5Z" />
+      <path d="M6 11v5c0 1 2.7 3 6 3s6-2 6-3v-5" />
+    </Svg>
+  )
+}
+
+export function Scroll(props) {
+  return (
+    <Svg {...props}>
+      <path d="M6 4h11a2 2 0 0 1 2 2v1H8" />
+      <path d="M8 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3H10" />
+      <path d="M5 7H3v11a2 2 0 0 0 2 2" />
+    </Svg>
+  )
+}
+
+export function Receipt(props) {
+  return (
+    <Svg {...props}>
+      <path d="M5 3v18l2-1.5L9 21l2-1.5L13 21l2-1.5L17 21l2-1.5V3l-2 1.5L15 3l-2 1.5L11 3 9 4.5 7 3 5 4.5Z" />
+      <path d="M8 8h8" />
+      <path d="M8 12h8" />
+    </Svg>
+  )
+}
+
+export function TrendingUp(props) {
+  return (
+    <Svg {...props}>
+      <path d="M3 17 10 10l4 4 7-7" />
+      <path d="M15 7h6v6" />
+    </Svg>
+  )
+}
+
+export function Heart(props) {
+  return (
+    <Svg {...props}>
+      <path d="M12 20s-7-4.4-9.3-8.6C1.3 8.7 2.7 5.5 5.8 5.5c1.9 0 3.2 1.1 4.2 2.4 1-1.3 2.3-2.4 4.2-2.4 3.1 0 4.5 3.2 3.1 5.9C19 15.6 12 20 12 20Z" />
+    </Svg>
+  )
+}
+
+export function Scale(props) {
+  return (
+    <Svg {...props}>
+      <path d="M12 4v16" />
+      <path d="M7 20h10" />
+      <path d="M5 7h14" />
+      <path d="M5 7 2.5 13a3 3 0 0 0 5 0Z" />
+      <path d="M19 7l-2.5 6a3 3 0 0 0 5 0Z" />
+    </Svg>
+  )
+}

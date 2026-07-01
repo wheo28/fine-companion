@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
-import Landing from './pages/Landing'
+import Hub from './hub/Hub'
+import TopicExplorer from './topics/TopicExplorer'
 import Roadmap from './pages/Roadmap'
 import Checkup from './pages/Checkup'
 import Learning from './pages/Learning'
@@ -14,7 +15,6 @@ function ScrollManager() {
   useEffect(() => {
     if (hash) {
       const id = hash.replace('#', '')
-      // Wait a frame so the target section is mounted.
       requestAnimationFrame(() => {
         const el = document.getElementById(id)
         if (el) {
@@ -37,7 +37,8 @@ export default function App() {
       <ScrollManager />
       <NavBar />
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Hub />} />
+        <Route path="/explore/:topicId" element={<TopicExplorer />} />
         <Route path="/roadmap" element={<Roadmap />} />
         <Route path="/checkup" element={<Checkup />} />
         <Route path="/learning" element={<Learning />} />

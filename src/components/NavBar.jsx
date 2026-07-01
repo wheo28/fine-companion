@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import LanguageToggle from './LanguageToggle'
 import { Compass } from './Icons'
 
 export default function NavBar() {
   const { t } = useLanguage()
-  const location = useLocation()
-  const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -16,24 +14,6 @@ export default function NavBar() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-  const onHome = location.pathname === '/'
-
-  // On the landing page, section links scroll. Elsewhere, they route home + hash.
-  const sectionLink = (hash, label) => {
-    if (onHome) {
-      return (
-        <a className="nav__link" href={`#${hash}`}>
-          {label}
-        </a>
-      )
-    }
-    return (
-      <button className="nav__link" type="button" onClick={() => navigate(`/#${hash}`)}>
-        {label}
-      </button>
-    )
-  }
 
   return (
     <header className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
@@ -49,10 +29,11 @@ export default function NavBar() {
         </Link>
 
         <nav className="nav__links" aria-label="Primary">
-          {sectionLink('promise', t.nav.promise)}
-          {sectionLink('how', t.nav.how)}
           <Link className="nav__link" to="/learning">
             {t.nav.learning}
+          </Link>
+          <Link className="nav__link" to="/roadmap">
+            {t.footer.links.roadmap}
           </Link>
         </nav>
 
