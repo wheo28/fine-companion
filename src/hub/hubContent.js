@@ -14,6 +14,25 @@ export const hubContent = {
     exploreCta: 'Explore',
     exploredBadge: 'Explored',
     startCta: 'Start',
+    companionLabel: "Today's Companion",
+    exploreIntro: 'Short, honest topics — a few minutes each. Choose whatever speaks to you.',
+    strip: {
+      ongoing: 'A companion for the long run — come back whenever life shifts.',
+      horizonsMini: ['Today', 'Next 30 days', 'Monthly', '6–12 months', 'Long-term'],
+      nowLabel: 'You are here',
+      checkinNudge: 'New month? Take a one-minute check-in',
+    },
+    learningTeaser: {
+      label: 'The reading room',
+      title: 'The ideas behind it all.',
+      body: 'A calm place for the thinking under every topic — why we behave the way we do with money.',
+      cta: 'Browse the ideas',
+    },
+    shelves: [
+      { label: 'Start with understanding', intro: 'Before any plan: simply see where you are, and how you feel about it.', ids: ['cashflow', 'stress', 'risk'] },
+      { label: 'Protect what matters', intro: 'Cover the losses you could not absorb alone — and revisit them as life changes.', ids: ['insurance', 'estate'] },
+      { label: 'Build toward the life you want', intro: 'Connect today\u2019s money to tomorrow\u2019s goals, one small step at a time.', ids: ['retirement', 'education', 'investing', 'tax'] },
+    ],
     labels: {
       availableNow: 'Available now',
       comingSoon: 'Coming soon',
@@ -83,6 +102,25 @@ export const hubContent = {
     exploreCta: '탐색',
     exploredBadge: '탐색함',
     startCta: '시작',
+    companionLabel: '오늘의 동반자',
+    exploreIntro: '짧고 정직한 주제들 — 각각 몇 분이면 돼요. 마음이 가는 걸 골라 보세요.',
+    strip: {
+      ongoing: '오래 함께하는 동반자 — 삶이 바뀔 때 언제든 다시 오세요.',
+      horizonsMini: ['오늘', '앞으로 30일', '매달', '6–12개월', '장기'],
+      nowLabel: '지금 여기',
+      checkinNudge: '새 달인가요? 1분 체크인을 해보세요',
+    },
+    learningTeaser: {
+      label: '리딩 룸',
+      title: '그 뒤에 있는 생각들.',
+      body: '모든 주제 아래 흐르는 생각을 위한 차분한 공간 — 우리가 돈 앞에서 왜 그렇게 행동하는지.',
+      cta: '생각들 둘러보기',
+    },
+    shelves: [
+      { label: '이해에서 시작해요', intro: '어떤 계획보다 먼저: 지금 내가 어디 있는지, 그리고 그것을 어떻게 느끼는지 보는 것.', ids: ['cashflow', 'stress', 'risk'] },
+      { label: '소중한 것을 지켜요', intro: '혼자 감당 못 할 손실을 대비하고, 삶이 변하면 다시 살펴봐요.', ids: ['insurance', 'estate'] },
+      { label: '원하는 삶을 향해 쌓아요', intro: '오늘의 돈을 내일의 목표와 잇습니다, 작은 한 걸음씩.', ids: ['retirement', 'education', 'investing', 'tax'] },
+    ],
     labels: {
       availableNow: '지금 이용 가능',
       comingSoon: '곧 공개',
