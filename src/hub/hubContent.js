@@ -19,6 +19,33 @@ export const hubContent = {
       begin: 'Start with a gentle look',
       safeNote: 'About two minutes · nothing to sign up for · stays on your device',
     },
+    concerns: {
+      question: 'What would you like help with today?',
+      lead: 'Choose whatever feels closest to how things are right now. There’s no wrong answer, and whatever you don’t pick will still be here when you come back.',
+      hint: 'Open whichever feels most like you',
+      doors: [
+        {
+          feeling: 'Right now, money feels tight or heavy.',
+          reply: 'Let’s start by simply seeing where things stand — gently, and without any judgment.',
+          ids: ['cashflow', 'stress', 'risk'],
+        },
+        {
+          feeling: 'I want to take care of the people I love.',
+          reply: 'A few small things can keep the people who depend on you steady, whatever comes.',
+          ids: ['insurance', 'estate', 'education'],
+        },
+        {
+          feeling: 'I’m ready to look a little further ahead.',
+          reply: 'Small, early steps have a quiet way of adding up to the life you’re hoping for.',
+          ids: ['retirement', 'investing', 'tax'],
+        },
+      ],
+      unsure: {
+        feeling: 'Honestly, I’m not sure where to start.',
+        reply: 'That’s completely okay — most people feel that way. We can begin with one short, honest look at where you are today.',
+        cta: 'Start with a gentle look',
+      },
+    },
     startHereLabel: 'Start here',
     todaysLessonLabel: "Today's lesson",
     todaysTipLabel: "Today's companion tip",
@@ -121,6 +148,33 @@ export const hubContent = {
       body: '돈을 잘 알아야 시작할 수 있는 건 아니에요. 오늘 모든 걸 해결하지 않아도 괜찮아요. 작은 한 걸음씩, 천천히 — 언제든 다시 와도 돼요. 마음이 가는 곳에서 시작하세요.',
       begin: '가볍게 살펴보기',
       safeNote: '약 2분 · 가입 필요 없음 · 기기에만 저장돼요',
+    },
+    concerns: {
+      question: '오늘 무엇을 도와드릴까요?',
+      lead: '지금 상황에 가장 가까운 걸 골라 보세요. 틀린 답은 없고, 지금 고르지 않은 것들도 다시 오면 그대로 있을 거예요.',
+      hint: '가장 나 같은 걸 열어 보세요',
+      doors: [
+        {
+          feeling: '요즘 돈이 빠듯하거나 무겁게 느껴져요.',
+          reply: '판단 없이, 지금 어디에 서 있는지 부드럽게 살펴보는 것부터 시작해요.',
+          ids: ['cashflow', 'stress', 'risk'],
+        },
+        {
+          feeling: '사랑하는 사람들을 잘 지키고 싶어요.',
+          reply: '작은 몇 가지가, 나에게 기대는 사람들을 어떤 일이 와도 든든하게 지켜 줄 수 있어요.',
+          ids: ['insurance', 'estate', 'education'],
+        },
+        {
+          feeling: '이제 조금 더 앞을 내다볼 준비가 됐어요.',
+          reply: '이르고 작은 걸음들이, 바라는 삶으로 조용히 쌓여 가요.',
+          ids: ['retirement', 'investing', 'tax'],
+        },
+      ],
+      unsure: {
+        feeling: '솔직히 어디서 시작할지 모르겠어요.',
+        reply: '괜찮아요 — 대부분 그렇게 느껴요. 지금 어디 있는지 짧고 정직하게 한 번 살펴보는 것부터 시작할 수 있어요.',
+        cta: '가볍게 살펴보기',
+      },
     },
     startHereLabel: '여기서 시작',
     todaysLessonLabel: '오늘의 배움',

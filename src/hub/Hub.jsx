@@ -3,27 +3,33 @@ import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import { hubContent } from './hubContent'
 import { topicsContent } from '../topics/topicsContent'
-import { getExplored, getCheckup, daysSinceCheckin } from '../lib/progress'
-import {
-  ArrowRight, Compass, Sun, Check,
-  Coins, Umbrella, Clock, GraduationCap, Scroll, Receipt, TrendingUp, Heart, Scale,
-} from '../components/Icons'
+import { daysSinceCheckin } from '../lib/progress'
+import { ArrowRight, Sun } from '../components/Icons'
 
-const ICONS = { Coins, Umbrella, Clock, GraduationCap, Scroll, Receipt, TrendingUp, Heart, Scale }
+function Chevron({ open }) {
+  return (
+    <svg className={`concern__chev${open ? ' is-open' : ''}`} width="20" height="20"
+      viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+      strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  )
+}
 
 /**
- * The Companion Hub. The Hero is the emotional front door — a warm welcome
- * in a human voice, one gentle invitation, and a dawn that lets the journey
- * be felt. Everything below (the halls, the doorway, the promise) is unchanged.
+ * The Companion Hub. The Hero welcomes; then the front door becomes a quiet
+ * question — "What would you like help with today?" — answered by a few
+ * feelings in the visitor's own voice. Choose a feeling, and it opens to the
+ * specific worries within. Recognition, not navigation. One small step at a time.
  */
 export default function Hub() {
   const { lang } = useLanguage()
   const h = hubContent[lang]
   const hero = h.hero
+  const c = h.concerns
   const tc = topicsContent[lang]
-  const [explored] = useState(() => getExplored())
   const [checkinDays] = useState(() => daysSinceCheckin())
-  const [hasCheckup] = useState(() => Boolean(getCheckup()))
+  const [openDoor, setOpenDoor] = useState(null)
   const checkedInRecently = checkinDays !== null && checkinDays < 25
 
   return (
@@ -89,79 +95,67 @@ export default function Hub() {
         </div>
       </section>
 
-      {/* ---------- The halls: human situations, each a doorway (the heart) ---------- */}
-      <section className="halls wrap">
-        {h.shelves.map((shelf) => (
-          <section className="hall" key={shelf.label}>
-            <header className="hall__head">
-              <h2 className="serif hall__name">{shelf.label}</h2>
-              <p className="hall__intro">{shelf.intro}</p>
-            </header>
-            <ol className="doors">
-              {shelf.ids.map((id) => {
-                const t = tc.topics[id]
-                if (!t) return null
-                const Icon = ICONS[t.icon] || Compass
-                const isDone = Boolean(explored[id])
-                return (
-                  <li key={id}>
-                    <Link to={`/explore/${id}`} className="door">
-                      <span className="door__icon" aria-hidden="true"><Icon size={20} /></span>
-                      <span className="door__text">
-                        <span className="door__title">{t.title}</span>
-                        <span className="door__tag">{t.tagline}</span>
-                      </span>
-                      <span className="door__meta">
-                        {isDone ? (
-                          <span className="door__done"><Check size={13} /> {h.exploredBadge}</span>
-                        ) : (
-                          <span className="door__min">{t.minutes} {h.minutesLabel}</span>
-                        )}
-                        <ArrowRight size={17} className="door__arrow" />
-                      </span>
-                    </Link>
-                  </li>
-                )
-              })}
-            </ol>
-          </section>
-        ))}
+      {/* ============ CONCERNS — the question, answered in the visitor's own voice ============ */}
+      <section className="concerns wrap" aria-labelledby="concerns-q">
+        <header className="concerns__head">
+          <h2 id="concerns-q" className="serif concerns__q">{c.question}</h2>
+          <p className="concerns__lead">{c.lead}</p>
+          <p className="sign concerns__hint">{c.hint}</p>
+        </header>
 
-        <section className="hall hall--soon">
-          <header className="hall__head">
-            <h2 className="serif hall__name">{h.labels.comingSoon}</h2>
-          </header>
-          <ol className="doors">
-            {h.comingSoon.map((cs) => (
-              <li key={cs.title}>
-                <div className="door door--soon" aria-disabled="true">
-                  <span className="door__icon" aria-hidden="true"><Compass size={20} /></span>
-                  <span className="door__text">
-                    <span className="door__title">{cs.title}</span>
-                    <span className="door__tag">{cs.tagline}</span>
+        <ul className="ways">
+          {c.doors.map((door, i) => {
+            const open = openDoor === i
+            return (
+              <li key={i} className={`way${open ? ' is-open' : ''}`}>
+                <button
+                  type="button"
+                  className="way__head"
+                  aria-expanded={open}
+                  onClick={() => setOpenDoor(open ? null : i)}
+                >
+                  <span className="way__text">
+                    <span className="serif way__feeling">{door.feeling}</span>
+                    <span className="way__reply">{door.reply}</span>
                   </span>
-                  <span className="door__meta">
-                    <span className="door__soon">{h.labels.comingSoon}</span>
-                  </span>
-                </div>
+                  <Chevron open={open} />
+                </button>
+
+                {open && (
+                  <ul className="worries">
+                    {door.ids.map((id) => {
+                      const t = tc.topics[id]
+                      if (!t) return null
+                      return (
+                        <li key={id}>
+                          <Link to={`/explore/${id}`} className="worry">
+                            <span className="worry__text">
+                              <span className="serif worry__voice">{t.title}</span>
+                              <span className="worry__reply">{t.tagline}</span>
+                            </span>
+                            <ArrowRight size={17} className="worry__arrow" />
+                          </Link>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                )}
               </li>
-            ))}
-          </ol>
-        </section>
-      </section>
+            )
+          })}
 
-      {/* ---------- A quiet doorway for anyone unsure where to begin ---------- */}
-      {!hasCheckup && (
-        <section className="wrap">
-          <Link to="/checkup" className="foyer__door">
-            <span className="foyer__door-body">
-              <span className="sign sign--lake foyer__door-kicker">{h.door.kicker}</span>
-              <span className="foyer__door-line">{h.door.line}</span>
-            </span>
-            <span className="foyer__door-cta">{h.door.cta}<ArrowRight size={17} /></span>
-          </Link>
-        </section>
-      )}
+          {/* The gentle catch-all, for anyone who doesn't see their own thought */}
+          <li className="way way--unsure">
+            <Link to="/checkup" className="way__head way__head--link">
+              <span className="way__text">
+                <span className="serif way__feeling">{c.unsure.feeling}</span>
+                <span className="way__reply">{c.unsure.reply}</span>
+              </span>
+              <span className="way__cta">{c.unsure.cta}<ArrowRight size={16} /></span>
+            </Link>
+          </li>
+        </ul>
+      </section>
 
       {/* ---------- The promise — a quiet closing inscription, and a way to return ---------- */}
       <section className="room inscription">

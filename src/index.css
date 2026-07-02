@@ -411,6 +411,126 @@ button { font: inherit; cursor: pointer; color: inherit; background: none; borde
 .hero__scene { justify-self: center; width: 100%; max-width: 480px; }
 .hero__art { width: 100%; height: auto; display: block; }
 
+/* ---- CONCERNS — the question, answered in the visitor's own voice.
+   Feelings the person recognizes, each opening to the specific worries
+   within. Recognition, not navigation. One thing at a time. ---- */
+.concerns {
+  padding-top: clamp(50px, 7vw, 92px);
+  padding-bottom: clamp(16px, 3vw, 32px);
+}
+.concerns__head { max-width: 44rem; margin-bottom: clamp(30px, 4vw, 48px); }
+.concerns__q {
+  font-size: clamp(1.95rem, 3.6vw, 2.9rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+}
+.concerns__lead {
+  margin-top: 0.95rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.56;
+  color: var(--ink-soft);
+  max-width: 54ch;
+}
+.concerns__hint { color: var(--ink-faint); margin-top: 1.3rem; }
+
+.ways { display: flex; flex-direction: column; gap: clamp(12px, 1.6vw, 18px); }
+
+.way {
+  border-radius: var(--r-lg);
+  background: var(--paper-lift);
+  box-shadow: var(--lift);
+  overflow: hidden;
+  transition: box-shadow 0.3s var(--ease);
+}
+.way:hover { box-shadow: var(--lift-lg); }
+.way__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  width: 100%;
+  text-align: left;
+  padding: clamp(20px, 2.6vw, 30px) clamp(20px, 2.6vw, 32px);
+  cursor: pointer;
+}
+.way__text { flex: 1; min-width: 0; }
+.way__feeling {
+  display: block;
+  font-size: clamp(1.28rem, 2.3vw, 1.72rem);
+  line-height: 1.16;
+  color: var(--ink);
+  max-width: 30ch;
+  transition: color 0.25s var(--ease);
+}
+.way__head:hover .way__feeling { color: var(--lake-deep); }
+.way__reply {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: clamp(0.98rem, 1.3vw, 1.08rem);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 56ch;
+}
+.concern__chev {
+  flex: none;
+  color: var(--amber-deep);
+  margin-top: 0.4rem;
+  transition: transform 0.3s var(--ease);
+}
+.concern__chev.is-open { transform: rotate(180deg); }
+
+/* the worries revealed inside a feeling */
+.worries {
+  padding: 0 clamp(20px, 2.6vw, 32px) clamp(10px, 1.6vw, 18px);
+}
+.worry {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: clamp(15px, 1.9vw, 19px) 0;
+  border-top: 1px solid var(--line);
+  transition: padding-left 0.3s var(--ease);
+}
+.worry:hover { padding-left: 0.6rem; }
+.worry__text { flex: 1; min-width: 0; }
+.worry__voice {
+  display: block;
+  font-size: clamp(1.12rem, 1.7vw, 1.32rem);
+  line-height: 1.18;
+  color: var(--ink);
+  transition: color 0.25s var(--ease);
+}
+.worry:hover .worry__voice { color: var(--lake-deep); }
+.worry__reply {
+  display: block;
+  margin-top: 0.28rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  max-width: 56ch;
+}
+.worry__arrow { flex: none; color: var(--ink-faint); transition: transform 0.3s var(--ease), color 0.25s var(--ease); }
+.worry:hover .worry__arrow { transform: translateX(4px); color: var(--lake); }
+
+/* the gentle catch-all door */
+.way--unsure { background: transparent; box-shadow: inset 0 0 0 1.5px var(--line-soft); }
+.way--unsure:hover { box-shadow: inset 0 0 0 1.5px var(--lake), var(--lift); }
+.way__head--link { display: flex; align-items: flex-start; }
+.way--unsure .way__feeling { color: var(--ink); }
+.way__cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  margin-top: 0.35rem;
+  color: var(--lake-deep);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.way__cta svg { transition: transform 0.3s var(--ease); }
+.way--unsure:hover .way__cta svg { transform: translateX(4px); }
+
 /* ---- The halls: human situations as named doorways (the heart) ---- */
 .halls {
   padding-top: clamp(46px, 7vw, 84px);
@@ -924,6 +1044,8 @@ button { font: inherit; cursor: pointer; color: inherit; background: none; borde
 }
 @media (max-width: 640px) {
   body { font-size: 16px; }
+  .way__head--link { flex-direction: column; align-items: flex-start; gap: 0.9rem; }
+  .way__cta { margin-top: 0; }
   .nav__links { display: none; }
   .nav__inner { gap: 0.8rem; }
   .footer__inner { grid-template-columns: 1fr; }
