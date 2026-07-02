@@ -1,22 +1,18 @@
 import { useLanguage } from '../i18n/LanguageContext'
 import { LANGUAGES } from '../i18n/translations'
 
-export default function LanguageToggle({ compact = false }) {
+export default function LanguageToggle({ onForest = false }) {
   const { lang, setLang } = useLanguage()
 
   return (
-    <div
-      className={`lang-toggle${compact ? ' lang-toggle--compact' : ''}`}
-      role="group"
-      aria-label="Select language"
-    >
+    <div className={`lang${onForest ? ' lang--on-forest' : ''}`} role="group" aria-label="Select language">
       {LANGUAGES.map((option) => {
         const active = lang === option.code
         return (
           <button
             key={option.code}
             type="button"
-            className={`lang-toggle__btn${active ? ' is-active' : ''}`}
+            className={`lang__btn${active ? ' is-active' : ''}`}
             aria-pressed={active}
             onClick={() => setLang(option.code)}
           >

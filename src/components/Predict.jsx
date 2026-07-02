@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { Lightbulb } from './Icons'
+import { Sun } from './Icons'
 
 /**
- * A single "predict, then learn" moment. The reader chooses before the idea
- * is revealed; the reveal teaches regardless of the choice, never scolds it.
- * Fully client-side and deterministic. `data` is one prompt from predictContent.
+ * "The question" — a small daily prediction. The reader chooses before the
+ * idea is revealed; the reveal teaches regardless of the choice, never scolds.
+ * Renders the inner content of the forest "ask" room; the Hub provides the room.
  */
 export default function Predict({ data, kicker, revealLabel }) {
   const [chosen, setChosen] = useState(null)
@@ -12,22 +12,15 @@ export default function Predict({ data, kicker, revealLabel }) {
   const revealed = chosen !== null
 
   return (
-    <section className="predict" aria-label={kicker}>
-      <p className="predict__kicker">
-        <Lightbulb size={15} />
-        {kicker}
-      </p>
-      <h2 className="predict__q display">{data.question}</h2>
+    <>
+      <p className="sign sign--on-forest ask__kicker">{kicker}</p>
+      <h2 className="serif ask__q">{data.question}</h2>
 
-      <div className="predict__opts" role="group">
+      <div className="ask__opts" role="group" aria-label={kicker}>
         {data.options.map((opt) => {
           const isChosen = chosen === opt.key
           const isAnswer = revealed && opt.key === data.answer
-          const cls = [
-            'predict__opt',
-            isChosen ? 'is-chosen' : '',
-            isAnswer ? 'is-answer' : '',
-          ]
+          const cls = ['ask__opt', isChosen ? 'is-chosen' : '', isAnswer ? 'is-answer' : '']
             .filter(Boolean)
             .join(' ')
           return (
@@ -39,9 +32,7 @@ export default function Predict({ data, kicker, revealLabel }) {
               aria-pressed={isChosen}
               onClick={() => setChosen(opt.key)}
             >
-              <span className="predict__opt-key" aria-hidden="true">
-                {opt.key}
-              </span>
+              <span className="ask__opt-key" aria-hidden="true">{opt.key}</span>
               <span>{opt.label}</span>
             </button>
           )
@@ -49,16 +40,14 @@ export default function Predict({ data, kicker, revealLabel }) {
       </div>
 
       {revealed && (
-        <div className="predict__reveal">
-          <span className="predict__reveal-mark" aria-hidden="true">
-            <Lightbulb size={18} />
-          </span>
+        <div className="ask__reveal">
+          <span className="ask__reveal-mark" aria-hidden="true"><Sun size={20} /></span>
           <div>
-            <span className="predict__reveal-label">{revealLabel}</span>
+            <span className="ask__reveal-label">{revealLabel}</span>
             <p dangerouslySetInnerHTML={{ __html: data.insight }} />
           </div>
         </div>
       )}
-    </section>
+    </>
   )
 }

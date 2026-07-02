@@ -207,3 +207,33 @@ export function Scale(props) {
     </Svg>
   )
 }
+
+/* --- Signature brand marks: the Horizon (a low sun rising over a line) --- */
+export function Horizon(props) {
+  return (
+    <Svg {...props}>
+      <path d="M12 3.5v2" />
+      <path d="m5.6 7.2 1.2 1.2" />
+      <path d="m18.4 7.2-1.2 1.2" />
+      <path d="M7 15.5a5 5 0 0 1 10 0" />
+      <path d="M2.5 15.5h19" />
+      <path d="M4.5 20q7.5-2.2 15 0" />
+    </Svg>
+  )
+}
+
+export function Sun(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2.5v2.2" />
+      <path d="M12 19.3v2.2" />
+      <path d="M4.3 4.3l1.6 1.6" />
+      <path d="M18.1 18.1l1.6 1.6" />
+      <path d="M2.5 12h2.2" />
+      <path d="M19.3 12h2.2" />
+      <path d="M4.3 19.7l1.6-1.6" />
+      <path d="M18.1 5.9l1.6-1.6" />
+    </Svg>
+  )
+}

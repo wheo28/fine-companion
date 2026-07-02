@@ -4,24 +4,24 @@ import { useLanguage } from '../i18n/LanguageContext'
 import { topicsContent } from './topicsContent'
 import { markExplored } from '../lib/progress'
 import {
-  ArrowRight, Compass, Lightbulb, Check, Coins, Umbrella, Clock,
+  ArrowRight, Compass, Sun, Check, Coins, Umbrella, Clock,
   GraduationCap, Scroll, Receipt, TrendingUp, Heart, Scale,
 } from '../components/Icons'
 
 const ICONS = { Coins, Umbrella, Clock, GraduationCap, Scroll, Receipt, TrendingUp, Heart, Scale }
 
-function BeatCard({ ui, beat }) {
+function Beat({ ui, beat }) {
   if (beat.kind === 'myth') {
     return (
-      <div className="tx-beat tx-beat--myth">
-        <p className="tx-beat__label">{ui.beatLabels.myth}</p>
-        <div className="tx-myth">
-          <div className="tx-myth__row tx-myth__row--myth">
-            <span className="tx-myth__tag">{ui.mythLabel}</span>
+      <div className="beat beat--myth">
+        <p className="sign beat__label">{ui.beatLabels.myth}</p>
+        <div className="myth">
+          <div className="myth__row myth__row--myth">
+            <span className="myth__tag">{ui.mythLabel}</span>
             <p>{beat.myth}</p>
           </div>
-          <div className="tx-myth__row tx-myth__row--truth">
-            <span className="tx-myth__tag">{ui.truthLabel}</span>
+          <div className="myth__row myth__row--truth">
+            <span className="myth__tag"><Check size={12} /> {ui.truthLabel}</span>
             <p>{beat.truth}</p>
           </div>
         </div>
@@ -29,10 +29,10 @@ function BeatCard({ ui, beat }) {
     )
   }
   return (
-    <div className="tx-beat">
-      <p className="tx-beat__label">{ui.beatLabels[beat.kind]}</p>
-      {beat.title && <h2 className="tx-beat__title display">{beat.title}</h2>}
-      <p className="tx-beat__body">{beat.body}</p>
+    <div className="beat">
+      <p className="sign beat__label">{ui.beatLabels[beat.kind]}</p>
+      {beat.title && <h2 className="serif beat__title">{beat.title}</h2>}
+      <p className="beat__body">{beat.body}</p>
     </div>
   )
 }
@@ -54,47 +54,30 @@ export default function TopicExplorer() {
   const total = pages.length
   const current = pages[step]
 
-  const go = (dir) => {
-    setStep((s) => Math.min(total - 1, Math.max(0, s + dir)))
-    window.scrollTo({ top: 0 })
-  }
-
-  const finish = () => {
-    markExplored(topicId)
-    setDone(true)
-    window.scrollTo({ top: 0 })
-  }
+  const go = (dir) => { setStep((s) => Math.min(total - 1, Math.max(0, s + dir))); window.scrollTo({ top: 0 }) }
+  const finish = () => { markExplored(topicId); setDone(true); window.scrollTo({ top: 0 }) }
 
   if (done) {
     return (
-      <main className="topic">
-        <div className="topic__inner tx-done">
-          <span className="tx-done__icon" aria-hidden="true">
-            <Check size={30} />
-          </span>
-          <p className="tx-added">
-            <Check size={14} /> {ui.addedNote}
-          </p>
-          <h1 className="display tx-done__title">{ui.doneTitle}</h1>
-          <p className="tx-done__body">{ui.doneBody}</p>
+      <main className="page page__reading">
+        <div className="done rise rise-1">
+          <span className="done__sun" aria-hidden="true"><Sun size={30} /></span>
+          <p className="done__added"><Check size={13} /> {ui.addedNote}</p>
+          <h1 className="serif done__title">{ui.doneTitle}</h1>
+          <p className="done__body">{ui.doneBody}</p>
 
-          <div className="tx-recap">
-            <span className="tx-recap__label">{ui.learnedLabel}</span>
-            <p className="tx-recap__title">{topic.takeaway.title}</p>
-            <div className="tx-recap__step">
-              <span className="tx-recap__step-label">{ui.stepLabel}</span>
+          <div className="done__recap">
+            <span className="done__recap-label">{ui.learnedLabel}</span>
+            <p className="done__recap-title">{topic.takeaway.title}</p>
+            <div className="done__recap-step">
+              <span className="done__recap-step-label">{ui.stepLabel}</span>
               <p>{topic.takeaway.step}</p>
             </div>
           </div>
 
-          <div className="tx-done__actions">
-            <Link to="/" className="btn btn--primary">
-              {ui.backToHub}
-            </Link>
-            <Link to="/roadmap" className="btn btn--ghost">
-              <Compass size={17} />
-              {lang === 'ko' ? '로드맵 보기' : 'See your roadmap'}
-            </Link>
+          <div className="done__actions">
+            <Link to="/" className="btn btn--primary">{ui.backToHub}</Link>
+            <Link to="/roadmap" className="btn btn--ghost"><Compass size={17} />{lang === 'ko' ? '로드맵 보기' : 'See your path'}</Link>
           </div>
         </div>
       </main>
@@ -102,42 +85,34 @@ export default function TopicExplorer() {
   }
 
   return (
-    <main className="topic">
-      <div className="topic__inner">
-        {/* header */}
-        <div className="tx-top">
-          <Link to="/" className="tx-back">
-            <ArrowRight size={15} style={{ transform: 'rotate(180deg)' }} />
-            {ui.backToHub}
-          </Link>
-          <span className="tx-progress-count">
-            {step + 1} {ui.of} {total}
-          </span>
-        </div>
-        <div className="tx-dots" aria-hidden="true">
-          {pages.map((p, i) => (
-            <span key={p} className={`tx-dot${i <= step ? ' is-on' : ''}`} />
-          ))}
-        </div>
+    <main className="page page__reading">
+      <div className="reading__top">
+        <Link to="/" className="backlink">
+          <ArrowRight size={15} style={{ transform: 'rotate(180deg)' }} />{ui.backToHub}
+        </Link>
+        <span className="reading__count">{step + 1} {ui.of} {total}</span>
+      </div>
+      <div className="reading__leaves" aria-hidden="true">
+        {pages.map((p, i) => (
+          <span key={p} className={`rleaf${i < step ? ' is-on' : ''}${i === step ? ' is-cur' : ''}`} />
+        ))}
+      </div>
 
+      <div className="reading__panel" key={current}>
         {current === 'intro' && (
-          <div className="tx-intro">
-            <span className="tx-intro__icon" aria-hidden="true">
-              <Icon size={28} />
-            </span>
-            <p className="eyebrow eyebrow--accent">{ui.introEyebrow}</p>
-            <h1 className="display tx-intro__title">{topic.title}</h1>
-            <p className="tx-intro__lead">{topic.tagline}</p>
-            <div className="tx-reframe">
-              <div className="tx-reframe__row tx-reframe__row--from">
-                <span className="tx-reframe__label">{ui.instead}</span>
+          <div className="reading-intro">
+            <span className="reading-intro__sun" aria-hidden="true"><Icon size={28} /></span>
+            <p className="sign sign--amber">{ui.introEyebrow}</p>
+            <h1 className="serif reading-intro__title">{topic.title}</h1>
+            <p className="reading-intro__lead">{topic.tagline}</p>
+            <div className="reframe">
+              <div className="reframe__row reframe__row--from">
+                <span className="reframe__label">{ui.instead}</span>
                 <p>{topic.reframe.from}</p>
               </div>
-              <div className="tx-reframe__arrow" aria-hidden="true">
-                <ArrowRight size={18} />
-              </div>
-              <div className="tx-reframe__row tx-reframe__row--to">
-                <span className="tx-reframe__label">{ui.understand}</span>
+              <div className="reframe__arrow" aria-hidden="true"><ArrowRight size={20} style={{ transform: 'rotate(90deg)' }} /></div>
+              <div className="reframe__row reframe__row--to">
+                <span className="reframe__label">{ui.understand}</span>
                 <p>{topic.reframe.to}</p>
               </div>
             </div>
@@ -145,40 +120,29 @@ export default function TopicExplorer() {
         )}
 
         {current && current.startsWith('beat-') && (
-          <BeatCard ui={ui} beat={topic.beats[Number(current.split('-')[1])]} />
+          <Beat ui={ui} beat={topic.beats[Number(current.split('-')[1])]} />
         )}
 
         {current === 'takeaway' && (
-          <div className="tx-takeaway">
-            <span className="tx-takeaway__icon" aria-hidden="true">
-              <Lightbulb size={24} />
-            </span>
-            <p className="tx-beat__label">{ui.takeawayLabel}</p>
-            <h2 className="display tx-takeaway__title">{topic.takeaway.title}</h2>
-            <div className="tx-step">
-              <span className="tx-step__label">{ui.stepLabel}</span>
+          <div className="takeaway">
+            <span className="takeaway__sun" aria-hidden="true"><Sun size={24} /></span>
+            <p className="sign takeaway__label">{ui.takeawayLabel}</p>
+            <h2 className="serif takeaway__title">{topic.takeaway.title}</h2>
+            <div className="takeaway__step">
+              <span className="takeaway__step-label">{ui.stepLabel}</span>
               <p>{topic.takeaway.step}</p>
             </div>
           </div>
         )}
+      </div>
 
-        {/* nav */}
-        <div className="tx-nav">
-          <button type="button" className="btn btn--ghost" onClick={() => (step === 0 ? navigate('/') : go(-1))}>
-            {ui.prev}
-          </button>
-          {current === 'takeaway' ? (
-            <button type="button" className="btn btn--primary" onClick={finish}>
-              {ui.finish}
-              <Check size={17} />
-            </button>
-          ) : (
-            <button type="button" className="btn btn--primary" onClick={() => go(1)}>
-              {step === 0 ? ui.start : ui.next}
-              <ArrowRight size={17} />
-            </button>
-          )}
-        </div>
+      <div className="reading__nav">
+        <button type="button" className="btn btn--ghost" onClick={() => (step === 0 ? navigate('/') : go(-1))}>{ui.prev}</button>
+        {current === 'takeaway' ? (
+          <button type="button" className="btn btn--primary" onClick={finish}>{ui.finish}<Check size={17} /></button>
+        ) : (
+          <button type="button" className="btn btn--primary" onClick={() => go(1)}>{step === 0 ? ui.start : ui.next}<ArrowRight size={17} /></button>
+        )}
       </div>
     </main>
   )

@@ -2,273 +2,136 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import { hubContent } from './hubContent'
-import { predictContent } from './predictContent'
-import Predict from '../components/Predict'
 import { topicsContent } from '../topics/topicsContent'
-import { learningContent } from '../learning/learningContent'
 import { getExplored, getCheckup, daysSinceCheckin } from '../lib/progress'
 import {
-  ArrowRight, Compass, Sunrise, BookOpen, Check, ShieldCheck,
+  ArrowRight, Compass, Sun, Check, ShieldCheck,
   Coins, Umbrella, Clock, GraduationCap, Scroll, Receipt, TrendingUp, Heart, Scale,
 } from '../components/Icons'
 
 const ICONS = { Coins, Umbrella, Clock, GraduationCap, Scroll, Receipt, TrendingUp, Heart, Scale }
 
-function dayIndex(len) {
-  const now = new Date()
-  const start = new Date(now.getFullYear(), 0, 0)
-  const doy = Math.floor((now - start) / 86400000)
-  return ((doy % len) + len) % len
-}
-
+/**
+ * The Companion Hub — the front door of a public educational companion.
+ * Not a dashboard: it says what this place is, asks "what would you like help
+ * with today?", and opens onto clearly-named halls of human situations.
+ */
 export default function Hub() {
   const { lang } = useLanguage()
   const h = hubContent[lang]
   const tc = topicsContent[lang]
   const [explored] = useState(() => getExplored())
-  const [hasCheckup] = useState(() => Boolean(getCheckup()))
   const [checkinDays] = useState(() => daysSinceCheckin())
-
-  const lesson = h.lessons[dayIndex(h.lessons.length)]
-  const tip = h.tips[dayIndex(h.tips.length)]
-  const pc = predictContent[lang]
-  const prediction = pc.prompts[dayIndex(pc.prompts.length)]
-  const insightTitles = learningContent[lang].behavioralInsights.slice(0, 3).map((it) => it.title)
-
-  const exploredCount = tc.order.filter((id) => explored[id]).length
-  const total = tc.order.length
-  const hasProgress = hasCheckup || exploredCount > 0
+  const [hasCheckup] = useState(() => Boolean(getCheckup()))
   const checkedInRecently = checkinDays !== null && checkinDays < 25
-
-  const dateline = new Date().toLocaleDateString(lang === 'ko' ? 'ko-KR' : 'en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-  })
-
-  // Today's Companion — one adaptive mission
-  const firstUnexplored = tc.order.find((id) => !explored[id])
-  let companion
-  if (!hasCheckup) {
-    companion = { ...h.next.checkup, to: '/checkup', Icon: Sunrise }
-  } else if (firstUnexplored) {
-    const t = tc.topics[firstUnexplored]
-    companion = { ...h.next.explore, to: `/explore/${firstUnexplored}`, extra: t.title, Icon: ICONS[t.icon] || Compass }
-  } else {
-    companion = { ...h.next.learning, to: '/learning', Icon: BookOpen }
-  }
-  const CompanionIcon = companion.Icon
-
-  let running = 0
 
   return (
     <main className="hub">
-      <div className="hub__inner">
-        {/* ---------- Masthead ---------- */}
-        <header className="mh">
-          <div className="mh__top">
-            <span className="mh__kicker">{h.eyebrow}</span>
-            <span className="mh__date">{dateline}</span>
-          </div>
-          <span className="mh__doublerule" aria-hidden="true" />
-          <h1 className="mh__title display">{h.title}</h1>
-          <p className="mh__sub">{h.sub}</p>
-          <ul className="mh__assure" aria-label={h.trust}>
-            {(h.assure || []).map((a) => (
-              <li className="mh__assure-item" key={a}>
-                <Check size={13} aria-hidden="true" />
-                {a}
-              </li>
-            ))}
-          </ul>
-        </header>
+      {/* ---------- The foyer: what this place is, and the one human question ---------- */}
+      <section className="foyer wrap">
+        <p className="sign sign--amber foyer__eyebrow rise rise-1">{h.eyebrow}</p>
+        <h1 className="serif foyer__question rise rise-1">{h.exploreLabel}</h1>
+        <p className="foyer__invite rise rise-2">{h.sub}</p>
+        <p className="foyer__promise rise rise-3">
+          <span className="foyer__promise-mark" aria-hidden="true"><ShieldCheck size={15} /></span>
+          {h.promiseShort}
+        </p>
+      </section>
 
-        {/* ---------- Start here: today's one clear next step ---------- */}
-        <section className="tc">
-          <Link to={companion.to} className="tc__feature">
-            <span className="tc__label">{hasCheckup ? h.companionLabel : h.startHereLabel}</span>
-            <h2 className="tc__title display">{companion.title}</h2>
-            {companion.meta ? <span className="tc__meta">{companion.meta}</span> : null}
-            <p className="tc__lead">{companion.body}</p>
-            <span className="tc__cta">
-              {companion.cta}
-              {companion.extra ? <span className="tc__extra"> · {companion.extra}</span> : null}
-              <ArrowRight size={18} />
-            </span>
-            <span className="tc__art" aria-hidden="true">
-              <CompanionIcon size={116} />
-            </span>
-          </Link>
+      {/* ---------- A serene threshold — dawn over the reading room (pure signature) ---------- */}
+      <div className="threshold rise rise-4" aria-hidden="true">
+        <div className="threshold__sky">
+          <span className="threshold__glow" />
+          <span className="threshold__sun" />
+        </div>
+        <div className="threshold__line" />
+      </div>
 
-          <aside className="tc__aside">
-            <div className="note">
-              <p className="note__kicker">{h.todaysLessonLabel}</p>
-              <h3 className="note__title">{lesson.title}</h3>
-              <p className="note__body">{lesson.body}</p>
-            </div>
-            <span className="note__rule" aria-hidden="true" />
-            <div className="note">
-              <p className="note__kicker">{h.todaysTipLabel}</p>
-              <p className="note__tip">{tip}</p>
-            </div>
-          </aside>
-        </section>
+      {/* ---------- The halls: human situations, each a doorway (the heart) ---------- */}
+      <section className="halls wrap">
+        {h.shelves.map((shelf) => (
+          <section className="hall" key={shelf.label}>
+            <header className="hall__head">
+              <h2 className="serif hall__name">{shelf.label}</h2>
+              <p className="hall__intro">{shelf.intro}</p>
+            </header>
+            <ol className="doors">
+              {shelf.ids.map((id) => {
+                const t = tc.topics[id]
+                if (!t) return null
+                const Icon = ICONS[t.icon] || Compass
+                const isDone = Boolean(explored[id])
+                return (
+                  <li key={id}>
+                    <Link to={`/explore/${id}`} className="door">
+                      <span className="door__icon" aria-hidden="true"><Icon size={20} /></span>
+                      <span className="door__text">
+                        <span className="door__title">{t.title}</span>
+                        <span className="door__tag">{t.tagline}</span>
+                      </span>
+                      <span className="door__meta">
+                        {isDone ? (
+                          <span className="door__done"><Check size={13} /> {h.exploredBadge}</span>
+                        ) : (
+                          <span className="door__min">{t.minutes} {h.minutesLabel}</span>
+                        )}
+                        <ArrowRight size={17} className="door__arrow" />
+                      </span>
+                    </Link>
+                  </li>
+                )
+              })}
+            </ol>
+          </section>
+        ))}
 
-        {/* ---------- A small moment: think first, then see ---------- */}
-        <Predict data={prediction} kicker={pc.kicker} revealLabel={pc.revealLabel} />
-
-        {/* ---------- Roadmap progress strip (ongoing process) ---------- */}
-        <Link to="/roadmap" className="rstrip">
-          <div className="rstrip__intro">
-            <p className="rstrip__kicker">{h.journey.label}</p>
-            <p className="rstrip__line">{hasProgress ? h.journey.roadmapGrowing : h.journey.roadmapEmpty}</p>
-            <p className="rstrip__ongoing">{h.strip.ongoing}</p>
-          </div>
-
-          <ol className="horizons" aria-hidden="true">
-            {h.strip.horizonsMini.map((label, i) => (
-              <li className={`horizons__node${i === 0 ? ' is-now' : ''}`} key={label}>
-                <span className="horizons__dot" />
-                <span className="horizons__label">{label}</span>
+        <section className="hall hall--soon">
+          <header className="hall__head">
+            <h2 className="serif hall__name">{h.labels.comingSoon}</h2>
+          </header>
+          <ol className="doors">
+            {h.comingSoon.map((cs) => (
+              <li key={cs.title}>
+                <div className="door door--soon" aria-disabled="true">
+                  <span className="door__icon" aria-hidden="true"><Compass size={20} /></span>
+                  <span className="door__text">
+                    <span className="door__title">{cs.title}</span>
+                    <span className="door__tag">{cs.tagline}</span>
+                  </span>
+                  <span className="door__meta">
+                    <span className="door__soon">{h.labels.comingSoon}</span>
+                  </span>
+                </div>
               </li>
             ))}
           </ol>
-
-          <div className="rstrip__meta">
-            <span className="rstrip__stat">
-              <b>{exploredCount}</b>
-              <span className="rstrip__den">/{total}</span> {h.journey.exploredOf}
-            </span>
-            <span className="rstrip__stat">
-              {hasCheckup ? (
-                <>
-                  <Check size={13} /> {h.journey.checkupDone}
-                </>
-              ) : (
-                h.journey.checkupPending
-              )}
-            </span>
-            <span className="rstrip__go">
-              {h.journey.seeRoadmap}
-              <ArrowRight size={15} />
-            </span>
-          </div>
-        </Link>
-
-        {/* ---------- Curated topic shelves ---------- */}
-        <section className="shelves">
-          <div className="sectionbreak">
-            <span className="sectionbreak__label">{h.exploreLabel}</span>
-            <span className="sectionbreak__orn" aria-hidden="true">◆</span>
-            <span className="sectionbreak__rule" aria-hidden="true" />
-          </div>
-          <p className="shelves__intro">{h.exploreIntro}</p>
-
-          {h.shelves.map((shelf) => (
-            <div className="shelf" key={shelf.label}>
-              <div className="shelf__head">
-                <h3 className="shelf__title display">{shelf.label}</h3>
-                <p className="shelf__intro">{shelf.intro}</p>
-              </div>
-              <ol className="idx">
-                {shelf.ids.map((id) => {
-                  const t = tc.topics[id]
-                  if (!t) return null
-                  running += 1
-                  const Icon = ICONS[t.icon] || Compass
-                  const isDone = Boolean(explored[id])
-                  return (
-                    <li key={id}>
-                      <Link to={`/explore/${id}`} className={`idx__row${isDone ? ' is-done' : ''}`}>
-                        <span className="idx__num" aria-hidden="true">
-                          {String(running).padStart(2, '0')}
-                        </span>
-                        <span className="idx__icon" aria-hidden="true">
-                          <Icon size={18} />
-                        </span>
-                        <span className="idx__text">
-                          <span className="idx__title">{t.title}</span>
-                          <span className="idx__tag">{t.tagline}</span>
-                        </span>
-                        <span className="idx__meta">
-                          {isDone ? (
-                            <span className="idx__done">
-                              <Check size={13} /> {h.exploredBadge}
-                            </span>
-                          ) : (
-                            <span className="idx__min">{t.minutes} {h.minutesLabel}</span>
-                          )}
-                          <ArrowRight size={16} />
-                        </span>
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ol>
-            </div>
-          ))}
-
-          {/* Coming soon — a quiet closing shelf */}
-          <div className="shelf shelf--soon">
-            <div className="shelf__head">
-              <h3 className="shelf__title display">{h.labels.comingSoon}</h3>
-            </div>
-            <ol className="idx">
-              {h.comingSoon.map((cs) => (
-                <li key={cs.title}>
-                  <div className="idx__row idx__row--soon" aria-disabled="true">
-                    <span className="idx__num" aria-hidden="true">··</span>
-                    <span className="idx__icon" aria-hidden="true">
-                      <Compass size={18} />
-                    </span>
-                    <span className="idx__text">
-                      <span className="idx__title">{cs.title}</span>
-                      <span className="idx__tag">{cs.tagline}</span>
-                    </span>
-                    <span className="idx__meta">
-                      <span className="idx__soon">{h.labels.comingSoon}</span>
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
         </section>
+      </section>
 
-        {/* ---------- Learning teaser ---------- */}
-        <Link to="/learning" className="teaser">
-          <div className="teaser__left">
-            <span className="teaser__kicker">{h.learningTeaser.label}</span>
-            <h3 className="teaser__title display">{h.learningTeaser.title}</h3>
-            <p className="teaser__body">{h.learningTeaser.body}</p>
-            <span className="teaser__cta">
-              {h.learningTeaser.cta}
-              <ArrowRight size={16} />
+      {/* ---------- A quiet doorway for anyone unsure where to begin ---------- */}
+      {!hasCheckup && (
+        <section className="wrap">
+          <Link to="/checkup" className="foyer__door">
+            <span className="foyer__door-body">
+              <span className="sign sign--lake foyer__door-kicker">{h.door.kicker}</span>
+              <span className="foyer__door-line">{h.door.line}</span>
             </span>
-          </div>
-          <ul className="teaser__list">
-            {insightTitles.map((t, i) => (
-              <li key={i}>
-                <span className="teaser__num">{String(i + 1).padStart(2, '0')}</span>
-                <span>{t}</span>
-              </li>
-            ))}
-          </ul>
-        </Link>
-
-        {/* ---------- Quiet trust coda ---------- */}
-        <footer className="coda">
-          <span className="coda__orn" aria-hidden="true">◆</span>
-          <p className="coda__trust">
-            <ShieldCheck size={15} />
-            {h.trust}
-          </p>
-          <Link to="/checkin" className="coda__checkin">
-            {checkedInRecently ? h.checkin.comeBackNote : h.strip.checkinNudge}
-            <ArrowRight size={14} />
+            <span className="foyer__door-cta">{h.door.cta}<ArrowRight size={17} /></span>
           </Link>
-        </footer>
-      </div>
+        </section>
+      )}
+
+      {/* ---------- The promise — a quiet closing inscription, and a way to return ---------- */}
+      <section className="room inscription">
+        <div className="wrap inscription__inner">
+          <span className="inscription__sun" aria-hidden="true"><Sun size={26} /></span>
+          <p className="serif inscription__text">{h.trust}</p>
+          <Link to="/checkin" className="inscription__return">
+            {checkedInRecently ? h.checkin.comeBackNote : h.strip.checkinNudge}
+            <ArrowRight size={15} />
+          </Link>
+        </div>
+      </section>
     </main>
   )
 }

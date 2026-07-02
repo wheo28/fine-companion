@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import LanguageToggle from './LanguageToggle'
-import { Compass } from './Icons'
+import { Horizon } from './Icons'
 
 export default function Footer() {
   const { t } = useLanguage()
@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="footer__inner">
         <div className="footer__brand">
           <span className="nav__mark" aria-hidden="true">
-            <Compass size={22} />
+            <Horizon size={30} />
           </span>
           <div>
             <p className="footer__name">{t.nav.brand}</p>
@@ -31,7 +31,7 @@ export default function Footer() {
           <Link to="/learning">{t.footer.links.promise}</Link>
           <div className="footer__lang">
             <span className="footer__lang-label">{t.footer.lang}</span>
-            <LanguageToggle />
+            <LanguageToggle onForest />
           </div>
         </nav>
       </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import LanguageToggle from './LanguageToggle'
-import { Compass } from './Icons'
+import { Horizon } from './Icons'
 
 export default function NavBar() {
   const { t } = useLanguage()
@@ -20,7 +20,7 @@ export default function NavBar() {
       <div className="nav__inner">
         <Link to="/" className="nav__brand" aria-label={t.nav.brand}>
           <span className="nav__mark" aria-hidden="true">
-            <Compass size={22} />
+            <Horizon size={26} />
           </span>
           <span className="nav__brand-text">
             <span className="nav__brand-name">{t.nav.brand}</span>
@@ -29,19 +29,13 @@ export default function NavBar() {
         </Link>
 
         <nav className="nav__links" aria-label="Primary">
-          <Link className="nav__link" to="/learning">
-            {t.nav.learning}
-          </Link>
-          <Link className="nav__link" to="/roadmap">
-            {t.footer.links.roadmap}
-          </Link>
+          <Link className="nav__link" to="/learning">{t.nav.learning}</Link>
+          <Link className="nav__link" to="/roadmap">{t.footer.links.roadmap}</Link>
         </nav>
 
         <div className="nav__actions">
-          <LanguageToggle compact />
-          <Link to="/checkup" className="btn btn--primary btn--sm">
-            {t.nav.begin}
-          </Link>
+          <LanguageToggle />
+          <Link to="/checkup" className="btn btn--primary btn--sm">{t.nav.begin}</Link>
         </div>
       </div>
     </header>
