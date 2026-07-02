@@ -5,23 +5,16 @@ import { hubContent } from './hubContent'
 import { topicsContent } from '../topics/topicsContent'
 import { getExplored, getCheckup, daysSinceCheckin } from '../lib/progress'
 import {
-  ArrowRight, Compass, Sun, Check, ShieldCheck, Lightbulb,
+  ArrowRight, Compass, Sun, Check,
   Coins, Umbrella, Clock, GraduationCap, Scroll, Receipt, TrendingUp, Heart, Scale,
 } from '../components/Icons'
 
 const ICONS = { Coins, Umbrella, Clock, GraduationCap, Scroll, Receipt, TrendingUp, Heart, Scale }
 
-function dayIndex(len) {
-  const now = new Date()
-  const start = new Date(now.getFullYear(), 0, 0)
-  const doy = Math.floor((now - start) / 86400000)
-  return ((doy % len) + len) % len
-}
-
 /**
- * The Companion Hub — the front door of a public educational companion.
- * The Hero greets warmly, offers one small step, and features today's
- * companion, today's lesson, and the ongoing journey — never a dashboard.
+ * The Companion Hub. The Hero is the emotional front door — a warm welcome
+ * in a human voice, one gentle invitation, and a dawn that lets the journey
+ * be felt. Everything below (the halls, the doorway, the promise) is unchanged.
  */
 export default function Hub() {
   const { lang } = useLanguage()
@@ -33,76 +26,65 @@ export default function Hub() {
   const [hasCheckup] = useState(() => Boolean(getCheckup()))
   const checkedInRecently = checkinDays !== null && checkinDays < 25
 
-  // ---- Hero data (warm, gentle, one-small-step) ----
-  const hour = new Date().getHours()
-  const greeting = hour < 12 ? hero.greetings.morning : hour < 18 ? hero.greetings.afternoon : hero.greetings.evening
-
-  const firstUnexplored = tc.order.find((id) => !explored[id])
-  const companionId = firstUnexplored || tc.order[dayIndex(tc.order.length)]
-  const companionTopic = tc.topics[companionId]
-  const CompanionIcon = ICONS[companionTopic.icon] || Compass
-
-  const lesson = h.lessons[dayIndex(h.lessons.length)]
-
-  const exploredCount = tc.order.filter((id) => explored[id]).length
-  const hasProgress = hasCheckup || exploredCount > 0
-  const journeyTitle = hasProgress ? hero.journeyContinue : hero.journeyStart
-  const journeyBody = hasProgress ? hero.journeyGrowing : hero.journeyEmpty
-  const journeyCta = exploredCount > 0 ? `${exploredCount} ${hero.journeyExplored}` : hero.journeySeeHow
-
   return (
     <main className="hub">
-      {/* ======================= HERO (top section) ======================= */}
+      {/* ========================= HERO — the emotional front door ========================= */}
       <section className="hero">
-        <span className="hero__sun" aria-hidden="true" />
         <div className="hero__inner wrap">
-          <div className="hero__masthead">
-            <p className="sign sign--amber hero__greeting rise rise-1">{greeting}</p>
-            <h1 className="serif hero__title rise rise-1">{h.exploreLabel}</h1>
-            <p className="hero__reassure rise rise-2">{hero.reassure}</p>
-            <div className="hero__begin rise rise-3">
-              <Link to="/checkup" className="btn btn--primary btn--lg">{hero.begin}<ArrowRight size={18} /></Link>
-              <span className="hero__begin-meta"><ShieldCheck size={15} />{hero.beginMeta}</span>
+          <div className="hero__welcome">
+            <p className="sign sign--amber hero__kicker rise rise-1">{hero.welcome}</p>
+            <h1 className="serif hero__headline rise rise-1">{hero.headline}</h1>
+            <p className="hero__body rise rise-2">{hero.body}</p>
+            <div className="hero__act rise rise-3">
+              <Link to="/checkup" className="hero__cta">
+                {hero.begin}<ArrowRight size={19} />
+              </Link>
+              <p className="hero__safe">{hero.safeNote}</p>
             </div>
           </div>
 
-          <div className="hero__today rise rise-4">
-            <p className="sign sign--tick hero__today-kicker">{hero.todayKicker}</p>
-            <div className="hero__cards">
-              {/* Today's Companion — one gentle thing worth a few minutes */}
-              <Link to={`/explore/${companionId}`} className="feat feat--companion">
-                <span className="sign feat__label">{hero.companionLabel}</span>
-                <span className="feat__icon" aria-hidden="true"><CompanionIcon size={20} /></span>
-                <h2 className="serif feat__title">{companionTopic.title}</h2>
-                <p className="feat__body">{companionTopic.tagline}</p>
-                <span className="feat__cta">
-                  {hero.companionCta} · {companionTopic.minutes} {h.minutesLabel}
-                  <ArrowRight size={16} />
-                </span>
-              </Link>
+          {/* A dawn over a gentle path of small steps — the journey, felt, not explained */}
+          <div className="hero__scene rise rise-2" aria-hidden="true">
+            <svg className="hero__art" viewBox="0 0 460 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+              <defs>
+                <radialGradient id="fineSun" cx="50%" cy="42%" r="62%">
+                  <stop offset="0%" stopColor="#f0d69b" />
+                  <stop offset="64%" stopColor="#d29a3e" />
+                  <stop offset="100%" stopColor="#b1741f" />
+                </radialGradient>
+                <radialGradient id="fineHalo" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#e6c689" stopOpacity="0.55" />
+                  <stop offset="70%" stopColor="#e6c689" stopOpacity="0" />
+                </radialGradient>
+              </defs>
 
-              {/* Today's Financial Lesson — a thought for today */}
-              <Link to="/learning" className="feat feat--lesson">
-                <span className="sign feat__label">{hero.lessonLabel}</span>
-                <span className="feat__icon" aria-hidden="true"><Lightbulb size={20} /></span>
-                <h2 className="serif feat__title">{lesson.title}</h2>
-                <p className="feat__body">{lesson.body}</p>
-                <span className="feat__cta">{hero.lessonCta}<ArrowRight size={16} /></span>
-              </Link>
+              {/* warm halo */}
+              <circle cx="300" cy="214" r="170" fill="url(#fineHalo)" />
 
-              {/* Continue my journey — the path so far */}
-              <Link to="/roadmap" className="feat feat--journey">
-                <span className="sign feat__label">{hero.journeyLabel}</span>
-                <span className="feat__icon" aria-hidden="true"><Compass size={20} /></span>
-                <h2 className="serif feat__title">{journeyTitle}</h2>
-                <p className="feat__body">{journeyBody}</p>
-                <span className="feat__cta">
-                  {hasProgress && <span className="feat__count"><Check size={13} /> {journeyCta}</span>}
-                  {!hasProgress && journeyCta}
-                  <ArrowRight size={16} />
-                </span>
-              </Link>
-            </div>
+              {/* soft rays */}
+              <g stroke="#c1802c" strokeWidth="3" strokeLinecap="round" opacity="0.42">
+                <line x1="300" y1="104" x2="300" y2="72" />
+                <line x1="232" y1="120" x2="214" y2="94" />
+                <line x1="368" y1="120" x2="386" y2="94" />
+                <line x1="190" y1="176" x2="160" y2="162" />
+                <line x1="410" y1="176" x2="440" y2="162" />
+              </g>
+
+              {/* the sun, rising over the path */}
+              <circle cx="300" cy="214" r="70" fill="url(#fineSun)" />
+
+              {/* a gentle path of small steps toward the light */}
+              <path
+                d="M40 316 C 120 314, 168 300, 214 280 S 288 244, 300 216"
+                stroke="#9c6417" strokeWidth="2.4" strokeLinecap="round"
+                strokeDasharray="0.5 13" opacity="0.75"
+              />
+              <g fill="#efe7d6" stroke="#9c6417" strokeWidth="2.2">
+                <circle cx="66" cy="314" r="6.5" />
+                <circle cx="150" cy="298" r="6.5" />
+                <circle cx="226" cy="272" r="6.5" />
+              </g>
+            </svg>
           </div>
         </div>
       </section>
