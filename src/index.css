@@ -357,8 +357,8 @@ button { font: inherit; cursor: pointer; color: inherit; background: none; borde
   grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
   gap: clamp(24px, 4vw, 60px);
-  padding-top: clamp(54px, 8vw, 108px);
-  padding-bottom: clamp(58px, 8vw, 108px);
+  padding-top: clamp(40px, 6vw, 80px);
+  padding-bottom: clamp(44px, 6vw, 82px);
 }
 
 /* The welcome — a human voice, generous and calm */
@@ -415,7 +415,7 @@ button { font: inherit; cursor: pointer; color: inherit; background: none; borde
    Feelings the person recognizes, each opening to the specific worries
    within. Recognition, not navigation. One thing at a time. ---- */
 .concerns {
-  padding-top: clamp(50px, 7vw, 92px);
+  padding-top: clamp(24px, 4vw, 48px);
   padding-bottom: clamp(16px, 3vw, 32px);
 }
 .concerns__head { max-width: 44rem; margin-bottom: clamp(30px, 4vw, 48px); }
@@ -1035,8 +1035,8 @@ button { font: inherit; cursor: pointer; color: inherit; background: none; borde
    ============================================================ */
 @media (max-width: 900px) {
   .hero__inner { grid-template-columns: 1fr; gap: clamp(18px, 5vw, 34px); }
-  .hero__scene { grid-row: 1; max-width: 340px; justify-self: start; }
-  .hero__welcome { grid-row: 2; }
+  .hero__welcome { grid-row: 1; }
+  .hero__scene { grid-row: 2; max-width: 300px; justify-self: start; }
   .rx-connect { grid-template-columns: 1fr; gap: 1.6rem; }
   .footer__inner { grid-template-columns: 1fr 1fr; gap: 1.8rem; }
   .footer__brand { grid-column: 1 / -1; }
