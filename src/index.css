@@ -883,6 +883,43 @@ button { font: inherit; cursor: pointer; color: inherit; background: none; borde
 .ck-choice.is-on { background: var(--forest); color: var(--on-forest); box-shadow: var(--lift); }
 .ck-choice.is-on .ck-choice__mark { background: var(--amber); box-shadow: none; color: #221602; }
 .ck-reassure { margin-top: 1.4rem; font-size: 0.84rem; color: var(--ink-faint); }
+
+/* ---- First-question experience: intro privacy line, guide's think-aloud, reflective reply ---- */
+.ck-intro__privacy {
+  margin-top: 1.4rem;
+  font-size: 0.86rem;
+  color: var(--ink-faint);
+}
+.ck-aloud {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  max-width: 40rem;
+  margin: 0 auto clamp(22px, 3vw, 34px);
+  padding: clamp(16px, 2.2vw, 22px) clamp(18px, 2.4vw, 24px);
+  background: var(--paper-lift);
+  border-radius: var(--r-lg);
+  border-left: 3px solid var(--amber);
+  box-shadow: var(--lift);
+  text-align: left;
+}
+.ck-aloud__mark { color: var(--amber-deep); flex: none; margin-top: 0.15rem; }
+.ck-aloud__text {
+  font-family: var(--serif);
+  font-size: clamp(1.06rem, 1.5vw, 1.2rem);
+  line-height: 1.5;
+  color: var(--ink);
+}
+.ck-reflect {
+  max-width: 40rem;
+  margin: 1.3rem auto 0;
+  padding-left: 0.1rem;
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.45;
+  color: var(--lake-deep);
+  text-align: left;
+}
 .ck-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 2.2rem; gap: 1rem; }
 .ck-exit { margin-top: 1.6rem; text-align: center; }
 .ck-exit a { color: var(--ink-faint); font-size: 0.86rem; }

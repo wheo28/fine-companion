@@ -5,7 +5,7 @@ import { checkupContent } from './checkupContent'
 import { computeResults } from './scoring'
 import QuestionStep from './QuestionStep'
 import Results from './Results'
-import { Sun, ArrowRight, Check } from '../components/Icons'
+import { Sun, ArrowRight } from '../components/Icons'
 
 const STORAGE_KEY = 'fine-companion.checkup.v1'
 
@@ -78,19 +78,7 @@ export default function CheckupFlow() {
           <h1 className="serif ck-intro__title">{c.intro.title}</h1>
           <p className="ck-intro__sub">{c.intro.sub}</p>
 
-          <div className="ck-intro__meta">
-            <span>{c.intro.time}</span>
-            <span aria-hidden="true">·</span>
-            <span>{c.intro.privacy}</span>
-          </div>
-
-          {c.intro.assure && (
-            <ul className="ck-assure" aria-label={c.intro.privacy}>
-              {c.intro.assure.map((a) => (
-                <li key={a}><Check size={13} aria-hidden="true" />{a}</li>
-              ))}
-            </ul>
-          )}
+          <p className="ck-intro__privacy">{c.intro.privacy}</p>
 
           <div className="ck-currency" role="group" aria-label={c.currency.label}>
             <span className="ck-currency__label">{c.currency.label}</span>
@@ -132,13 +120,16 @@ export default function CheckupFlow() {
   const value = answers[question.id]
   const answered = isAnswered(question, value)
   const isLast = qIndex === total - 1
+  const isFirst = qIndex === 0
 
   return (
     <main className="page page__reading">
       <div className="ck-progress">
-        <div className="ck-progress__meta">
-          <span className="ck-progress__step">{c.nav.step} {qIndex + 1} {c.nav.of} {total}</span>
-        </div>
+        {!isFirst && (
+          <div className="ck-progress__meta">
+            <span className="ck-progress__step">{c.nav.step} {qIndex + 1} {c.nav.of} {total}</span>
+          </div>
+        )}
         <div className="ck-progress__leaves" aria-hidden="true">
           {questions.map((q, i) => (
             <span key={q.id} className={`ck-leaf${i < qIndex ? ' is-on' : ''}${i === qIndex ? ' is-cur' : ''}`} />
@@ -146,9 +137,21 @@ export default function CheckupFlow() {
         </div>
       </div>
 
+      {/* The guide thinks aloud first — one step ahead, walking beside */}
+      {isFirst && c.firstReflection && (
+        <div className="ck-aloud rise rise-1">
+          <span className="ck-aloud__mark" aria-hidden="true"><Sun size={20} /></span>
+          <p className="ck-aloud__text">{c.firstReflection.aloud}</p>
+        </div>
+      )}
+
       <QuestionStep key={question.id} question={question} value={value} onChange={(v) => setValue(question.id, v)} currency={currency} />
 
-      {c.qReassure && <p className="ck-reassure">{c.qReassure}</p>}
+      {/* A reflective reply, not a verdict — the conversation takes a turn */}
+      {isFirst && answered && c.firstReflection && (
+        <p className="ck-reflect rise">{c.firstReflection.response}</p>
+      )}
+      {!isFirst && c.qReassure && <p className="ck-reassure">{c.qReassure}</p>}
 
       <div className="ck-nav">
         <button type="button" className="btn btn--ghost" onClick={goBack}>{c.nav.back}</button>

@@ -6,11 +6,11 @@ export const checkupContent = {
   en: {
     intro: {
       eyebrow: 'Where you are today',
-      title: "Let's take an honest look, together.",
-      sub: 'Ten plain questions, about two minutes. No sign-up, nothing sent to a server, nothing sold — just a clearer picture of where you stand, and a few small steps to take next.',
+      title: "Let’s look at a few things, together.",
+      sub: 'You already know more than enough to begin. We’re just going to notice a few plain things about your money — out loud, together — and see what they quietly tell you. Nothing to study, nothing to get right.',
       time: '~2 minutes',
       privacy: 'Private — stays on your device',
-      start: 'Start checkup',
+      start: 'Let’s take a look',
       assure: ['A rough estimate is always fine', 'Skip anything you\u2019re not sure of', 'Educational — never advice'],
       resumeTitle: 'You finished a checkup before.',
       resume: 'View your last checkup',
@@ -19,9 +19,13 @@ export const checkupContent = {
     },
     currency: { label: 'Amounts in', usd: '$ USD', krw: '₩ KRW' },
     qReassure: 'No wrong answers · A rough number is fine · Your answers stay on this device',
+    firstReflection: {
+      aloud: 'Here’s something most people never notice: we can usually picture the money that comes in far more clearly than where it quietly slips back out. So let’s start with the part you already know by heart — and let the rest surprise you in a minute.',
+      response: 'Good — that’s the anchor. Almost everything else we look at hangs quietly off this one number.',
+    },
     nav: { back: 'Back', next: 'Next', see: 'See my results', of: 'of', step: 'Question' },
     questions: [
-      { id: 'income', type: 'number', label: "What's your rough monthly income?", help: 'After tax, a rough estimate is fine — the take-home pay you can actually spend.' },
+      { id: 'income', type: 'number', label: "Roughly, what reaches you in a typical month?", help: 'Your take-home pay — the amount you actually get to spend. This is the one number you already carry in your head.' },
       { id: 'essentials', type: 'number', label: 'About how much goes to essentials each month?', help: 'The must-pays: housing, food, utilities, transport, minimum bills.' },
       { id: 'discretionary', type: 'number', label: 'And roughly how much on non-essentials?', help: 'The nice-to-haves: eating out, subscriptions, fun, extras. Enter 0 if none.' },
       { id: 'debt', type: 'number', label: 'How much do you pay toward debts each month?', help: 'Credit cards and loans — not counting rent or mortgage. Enter 0 if none.' },
@@ -292,11 +296,11 @@ export const checkupContent = {
   ko: {
     intro: {
       eyebrow: '지금 나의 자리',
-      title: '함께, 솔직하게 한번 살펴봐요.',
-      sub: '쉬운 질문 열 개, 약 2분이면 됩니다. 회원가입도, 서버로 보내는 것도, 파는 것도 없습니다 — 그저 지금 당신이 어디에 서 있는지 또렷한 그림과, 다음에 밟을 작은 걸음 몇 개뿐입니다.',
+      title: '몇 가지를 함께 살펴봐요.',
+      sub: '시작하기엔 이미 충분히 알고 있어요. 그저 돈에 관한 몇 가지 단순한 것들을 — 함께, 소리 내어 — 살펴보고, 그것들이 조용히 무엇을 말해 주는지 보는 거예요. 공부할 것도, 맞혀야 할 것도 없어요.',
       time: '약 2분',
       privacy: '비공개 — 기기에만 저장됩니다',
-      start: '체크업 시작하기',
+      start: '함께 살펴보기',
       assure: ['대략적인 추정으로 충분해요', '잘 모르는 건 건너뛰어도 돼요', '교육 목적이에요 — 자문이 아니에요'],
       resumeTitle: '이전에 마친 체크업이 있어요.',
       resume: '지난 체크업 보기',
@@ -305,9 +309,13 @@ export const checkupContent = {
     },
     currency: { label: '금액 단위', usd: '$ 달러', krw: '₩ 원' },
     qReassure: '틀린 답은 없어요 · 대략적인 숫자면 충분해요 · 답은 기기에만 저장돼요',
+    firstReflection: {
+      aloud: '대부분이 잘 눈치채지 못하는 게 있어요: 우리는 들어오는 돈은 꽤 또렷하게 떠올리면서도, 그게 조용히 어디로 빠져나가는지는 잘 못 그려요. 그러니 이미 훤히 아는 부분부터 시작해요 — 나머지는 잠시 뒤에 놀라게 두고요.',
+      response: '좋아요 — 이게 기준점이에요. 앞으로 볼 거의 모든 게 이 한 숫자에 조용히 매달려 있거든요.',
+    },
     nav: { back: '이전', next: '다음', see: '결과 보기', of: '중', step: '질문' },
     questions: [
-      { id: 'income', type: 'number', label: '한 달 대략적인 수입은 얼마인가요?', help: '세후 기준, 대략적인 추정으로 충분합니다 — 실제로 쓸 수 있는 실수령액이요.' },
+      { id: 'income', type: 'number', label: '보통 한 달에, 대략 얼마가 들어오나요?', help: '실수령액 — 실제로 쓸 수 있는 돈이요. 이미 머릿속에 지니고 있는 바로 그 숫자예요.' },
       { id: 'essentials', type: 'number', label: '매달 꼭 필요한 지출은 대략 얼마인가요?', help: '반드시 나가는 돈: 주거, 식비, 공과금, 교통, 최소 청구액.' },
       { id: 'discretionary', type: 'number', label: '꼭 필요하지 않은 지출은 대략 얼마인가요?', help: '있으면 좋은 것들: 외식, 구독, 여가, 여윳돈. 없으면 0을 입력하세요.' },
       { id: 'debt', type: 'number', label: '매달 갚는 빚은 얼마인가요?', help: '신용카드와 대출 — 월세나 주택담보대출은 제외합니다. 없으면 0을 입력하세요.' },
