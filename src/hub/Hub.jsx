@@ -22,6 +22,39 @@ function Chevron({ open }) {
  * feelings in the visitor's own voice. Choose a feeling, and it opens to the
  * specific worries within. Recognition, not navigation. One small step at a time.
  */
+/**
+ * The first exhibit — a tiny experiment at the entrance. One guess, one reveal,
+ * one quiet "huh, is that true about me?". Not a feature: a moment of discovery.
+ */
+function FirstExhibit({ data }) {
+  const [chosen, setChosen] = useState(null)
+  if (!data) return null
+  const revealed = chosen !== null
+  return (
+    <section className="exhibit wrap" aria-label={data.label}>
+      <div className="exhibit__inner">
+        <p className="sign sign--amber exhibit__label">{data.label}</p>
+        <p className="serif exhibit__prompt">{data.prompt}</p>
+        <div className="exhibit__choices" role="group" aria-label={data.prompt}>
+          {data.choices.map((label, i) => (
+            <button
+              key={i}
+              type="button"
+              className={`exhibit__choice${chosen === i ? ' is-chosen' : ''}`}
+              aria-pressed={chosen === i}
+              disabled={revealed}
+              onClick={() => setChosen(i)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        {revealed && <p className="exhibit__reveal rise">{data.reveal}</p>}
+      </div>
+    </section>
+  )
+}
+
 export default function Hub() {
   const { lang } = useLanguage()
   const h = hubContent[lang]
@@ -41,12 +74,7 @@ export default function Hub() {
             <p className="sign sign--amber hero__kicker rise rise-1">{hero.welcome}</p>
             <h1 className="serif hero__headline rise rise-1">{hero.headline}</h1>
             <p className="hero__body rise rise-2">{hero.body}</p>
-            <div className="hero__act rise rise-3">
-              <Link to="/checkup" className="hero__cta">
-                {hero.begin}<ArrowRight size={19} />
-              </Link>
-              <p className="hero__safe">{hero.safeNote}</p>
-            </div>
+            <p className="hero__safe rise rise-3">{hero.safeNote}</p>
           </div>
 
           {/* A dawn over a gentle path of small steps — the journey, felt, not explained */}
@@ -94,6 +122,9 @@ export default function Hub() {
           </div>
         </div>
       </section>
+
+      {/* ===================== THE FIRST EXHIBIT — a tiny discovery ===================== */}
+      <FirstExhibit data={h.exhibit} />
 
       {/* ============ CONCERNS — the question, answered in the visitor's own voice ============ */}
       <section className="concerns wrap" aria-labelledby="concerns-q">

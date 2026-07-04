@@ -411,6 +411,51 @@ button { font: inherit; cursor: pointer; color: inherit; background: none; borde
 .hero__scene { justify-self: center; width: 100%; max-width: 480px; }
 .hero__art { width: 100%; height: auto; display: block; }
 
+/* ---- THE FIRST EXHIBIT — a tiny experiment at the entrance ---- */
+.exhibit {
+  padding-top: clamp(30px, 4vw, 52px);
+  padding-bottom: clamp(4px, 1vw, 12px);
+}
+.exhibit__inner {
+  max-width: 41rem;
+  padding: clamp(20px, 2.6vw, 30px) clamp(20px, 2.6vw, 32px);
+  border-radius: var(--r-lg);
+  background: var(--paper-lift);
+  box-shadow: var(--lift);
+  border-left: 3px solid var(--amber);
+}
+.exhibit__label { margin-bottom: 0.7rem; }
+.exhibit__prompt {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.24;
+  color: var(--ink);
+  max-width: 34ch;
+}
+.exhibit__choices { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.2rem; }
+.exhibit__choice {
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 0.62em 1.3em;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.exhibit__choice:hover { border-color: var(--amber); color: var(--amber-deep); }
+.exhibit__choice.is-chosen { background: var(--forest); color: var(--on-forest); border-color: var(--forest); }
+.exhibit__choice:disabled { cursor: default; }
+.exhibit__choice:disabled:not(.is-chosen) { opacity: 0.5; }
+.exhibit__reveal {
+  margin-top: 1.2rem;
+  font-size: clamp(1.02rem, 1.4vw, 1.15rem);
+  line-height: 1.56;
+  color: var(--ink-soft);
+  max-width: 58ch;
+}
+
 /* ---- CONCERNS — the question, answered in the visitor's own voice.
    Feelings the person recognizes, each opening to the specific worries
    within. Recognition, not navigation. One thing at a time. ---- */
