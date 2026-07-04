@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import { hubContent } from './hubContent'
@@ -52,6 +52,82 @@ function FirstExhibit({ data }) {
         {revealed && <p className="exhibit__reveal rise">{data.reveal}</p>}
       </div>
     </section>
+  )
+}
+
+/**
+ * The First Click — clicking a situation opens a small conversation, not a menu.
+ * Recognition → a tiny guess → a deliberate pause (so "is that true about me?"
+ * lands before the reveal) → one small discovery → a conversational invitation
+ * into the existing experience. It should feel like "we started looking together."
+ */
+function FirstClick({ door, tc, consideringLabel }) {
+  const [phase, setPhase] = useState('ask') // ask | considering | revealed
+  const [guess, setGuess] = useState(null)
+  const timer = useRef(null)
+  useEffect(() => () => clearTimeout(timer.current), [])
+
+  const choose = (i) => {
+    if (phase !== 'ask') return
+    setGuess(i)
+    setPhase('considering')
+    timer.current = setTimeout(() => setPhase('revealed'), 1100)
+  }
+
+  return (
+    <div className="fc">
+      <p className="fc__recognition">{door.recognition}</p>
+
+      <div className="fc__guess">
+        <p className="serif fc__q">{door.guess.question}</p>
+        <div className="fc__choices" role="group" aria-label={door.guess.question}>
+          {door.guess.choices.map((label, i) => (
+            <button
+              key={i}
+              type="button"
+              className={`fc__choice${guess === i ? ' is-chosen' : ''}`}
+              aria-pressed={guess === i}
+              disabled={phase !== 'ask'}
+              onClick={() => choose(i)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {phase === 'considering' && (
+        <p className="fc__considering" aria-label={consideringLabel}>
+          <span className="fc__dots" aria-hidden="true"><span /><span /><span /></span>
+        </p>
+      )}
+
+      {phase === 'revealed' && (
+        <div className="fc__reveal" aria-live="polite">
+          <p className="fc__discovery rise">{door.discovery}</p>
+          <p className="fc__invitation rise">{door.invitation}</p>
+          <div className="fc__ways rise">
+            {door.ids ? (
+              door.ids.map((id) => {
+                const t = tc.topics[id]
+                if (!t) return null
+                return (
+                  <Link key={id} to={`/explore/${id}`} className="fc__way">
+                    <span className="fc__way-text">{t.title}</span>
+                    <ArrowRight size={16} />
+                  </Link>
+                )
+              })
+            ) : (
+              <Link to="/checkup" className="fc__way fc__way--primary">
+                <span className="fc__way-text">{door.wayLabel}</span>
+                <ArrowRight size={16} />
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
   )
 }
 
@@ -135,10 +211,10 @@ export default function Hub() {
         </header>
 
         <ul className="ways">
-          {c.doors.map((door, i) => {
+          {[...c.doors, { ...c.unsure, unsure: true }].map((door, i) => {
             const open = openDoor === i
             return (
-              <li key={i} className={`way${open ? ' is-open' : ''}`}>
+              <li key={i} className={`way${door.unsure ? ' way--unsure' : ''}${open ? ' is-open' : ''}`}>
                 <button
                   type="button"
                   className="way__head"
@@ -152,39 +228,10 @@ export default function Hub() {
                   <Chevron open={open} />
                 </button>
 
-                {open && (
-                  <ul className="worries">
-                    {door.ids.map((id) => {
-                      const t = tc.topics[id]
-                      if (!t) return null
-                      return (
-                        <li key={id}>
-                          <Link to={`/explore/${id}`} className="worry">
-                            <span className="worry__text">
-                              <span className="serif worry__voice">{t.title}</span>
-                              <span className="worry__reply">{t.tagline}</span>
-                            </span>
-                            <ArrowRight size={17} className="worry__arrow" />
-                          </Link>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                )}
+                {open && <FirstClick door={door} tc={tc} consideringLabel={c.considering} />}
               </li>
             )
           })}
-
-          {/* The gentle catch-all, for anyone who doesn't see their own thought */}
-          <li className="way way--unsure">
-            <Link to="/checkup" className="way__head way__head--link">
-              <span className="way__text">
-                <span className="serif way__feeling">{c.unsure.feeling}</span>
-                <span className="way__reply">{c.unsure.reply}</span>
-              </span>
-              <span className="way__cta">{c.unsure.cta}<ArrowRight size={16} /></span>
-            </Link>
-          </li>
         </ul>
       </section>
 
