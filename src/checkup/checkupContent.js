@@ -6,11 +6,11 @@ export const checkupContent = {
   en: {
     intro: {
       eyebrow: 'Where you are today',
-      title: "Let’s look at a few things, together.",
-      sub: 'You already know more than enough to begin. We’re just going to notice a few plain things about your money — out loud, together — and see what they quietly tell you. Nothing to study, nothing to get right.',
+      title: "Let’s look at a few things together.",
+      sub: 'You know more than enough to start. We’ll go through a few plain things about your money and see what they tell you. Nothing to study, nothing to get right.',
       time: '~2 minutes',
-      privacy: 'Private — stays on your device',
-      start: 'Let’s take a look',
+      privacy: 'Private. Stays on your device.',
+      start: 'I’m ready',
       assure: ['A rough estimate is always fine', 'Skip anything you\u2019re not sure of', 'Educational — never advice'],
       resumeTitle: 'You finished a checkup before.',
       resume: 'View your last checkup',
@@ -20,17 +20,17 @@ export const checkupContent = {
     currency: { label: 'Amounts in', usd: '$ USD', krw: '₩ KRW' },
     qReassure: 'No wrong answers · A rough number is fine · Your answers stay on this device',
     firstReflection: {
-      aloud: 'Here’s something most people never notice: we can usually picture the money that comes in far more clearly than where it quietly slips back out. So let’s start with the part you already know by heart — and let the rest surprise you in a minute.',
-      response: 'Good — that’s the anchor. Almost everything else we look at hangs quietly off this one number.',
+      aloud: 'Funny thing about money: we can picture what comes in far more clearly than where it goes. So we’ll start with the part you already know by heart.',
+      response: 'Good. That’s the anchor; almost everything else hangs off this one number.',
     },
     between: {
-      essentials: 'Money coming in is the easy half to picture. Now the half that’s worth seeing — where it actually goes.',
-      savings: 'Interesting — with just a few numbers, a shape is already starting to form. One more piece: what you could reach quickly, if you ever needed to.',
-      retirement: 'Now we lift our eyes a little — from this month, to the years further out.',
-      risk: 'This next one has no right answer at all — just your honest comfort. Worth knowing about yourself.',
-      stressWorry: 'These last couple are less about numbers, more about how it all feels. However it’s felt is the honest answer.',
+      essentials: 'Money coming in is the easy half to picture. Now the half that counts: where it actually goes.',
+      savings: 'Interesting. A shape is already starting to form. One more piece and we’ll see it.',
+      retirement: 'Now we lift our eyes a little, from this month to the years further out.',
+      risk: 'This next one has no right answer. Just your honest comfort, which is worth knowing about yourself.',
+      stressWorry: 'These last couple are less about numbers and more about how it feels. However it’s felt is the true answer.',
     },
-    closing: 'Let’s look at what all this quietly adds up to — together.',
+    closing: 'Let’s see what all this quietly adds up to.',
     nav: { back: 'Back', next: 'Next', see: 'See my results', of: 'of', step: 'Question' },
     questions: [
       { id: 'income', type: 'number', label: "Roughly, what reaches you in a typical month?", help: 'Your take-home pay — the amount you actually get to spend. This is the one number you already carry in your head.' },
@@ -92,19 +92,19 @@ export const checkupContent = {
       meaning: {
         reveal: 'When you’re ready',
         strength: {
-          q: 'Your steadiest piece here — sit with it a moment. What does it quietly make possible for you?',
-          a: 'Whatever came to mind, hold onto it: that’s the floor everything else stands on. Easy to overlook, and worth more than it looks.',
+          q: 'Sit with your steadiest piece for a moment. What does it quietly make possible for you?',
+          a: 'Whatever came to mind, hold onto it. That’s the floor everything else stands on: easy to overlook, and worth more than it looks.',
         },
         priority: {
-          q: 'And the one piece worth a little care — what would ease in your life if it eased?',
-          a: 'That feeling is the point — not because anything’s wrong, but because a small move here steadies a lot else.',
+          q: 'And the one piece worth a little care. What would ease in your life if it eased?',
+          a: 'That feeling is the point. Not because anything’s wrong, but because a small move here steadies a lot else.',
         },
         close: {
-          q: 'One last thing — these pieces were never really separate. They’re one life, yours. What you take from seeing it whole is something only you can name, so we’ll leave it with you.',
+          q: 'One last thing. These pieces were never really separate; they’re one life, yours. What you take from seeing it whole is something only you can name. So we’ll leave it with you.',
         },
       },
       title: "Here's where you stand.",
-      sub: 'Read it gently. This is a snapshot of today, not a verdict.',
+      sub: 'A snapshot of today, not a verdict.',
       whatLabel: 'What this means',
       whyLabel: 'Why it matters',
       stepLabel: 'One small step',
@@ -135,7 +135,7 @@ export const checkupContent = {
 
         strengthsLabel: "What's going well",
         strengthsIntro:
-          "Before anything else, here is what you are already doing right. These are real, and they are worth holding onto.",
+          "First, what you’re already doing right.",
         strengthCopy: {
           emergency: "You have built a cash cushion — a genuine buffer between you and life's surprises.",
           cashflow: 'You keep a healthy margin each month, which is the quiet engine behind every other goal.',
@@ -150,7 +150,7 @@ export const checkupContent = {
         priorityLabel: 'One thing worth focusing on first',
         connectLabel: 'How this fits together',
         connectBody:
-          'Money areas are connected — your cash flow feeds your savings, your savings soften a setback, and less worry makes every other choice easier. You don\u2019t have to fix them one-by-one in isolation; a small move in one place tends to help the others.',
+          'These areas are connected. Your cash flow feeds your savings, your savings soften a setback, and less worry makes every other choice easier. You don\u2019t have to fix them one by one. A small move in one place tends to help the others.',
         revisitLabel: 'Why a fresh look helps',
         revisitBody:
           'This is a snapshot of one moment, not a verdict. Life keeps changing, so it\u2019s worth checking in now and then. And one small step you\u2019ll actually take beats a big plan that overwhelms you.',
@@ -318,11 +318,11 @@ export const checkupContent = {
   ko: {
     intro: {
       eyebrow: '지금 나의 자리',
-      title: '몇 가지를 함께 살펴봐요.',
-      sub: '시작하기엔 이미 충분히 알고 있어요. 그저 돈에 관한 몇 가지 단순한 것들을 — 함께, 소리 내어 — 살펴보고, 그것들이 조용히 무엇을 말해 주는지 보는 거예요. 공부할 것도, 맞혀야 할 것도 없어요.',
+      title: '몇 가지를 같이 살펴봐요.',
+      sub: '시작하기엔 이미 충분히 알고 있어요. 돈에 관한 단순한 몇 가지를 살펴보고, 그게 무엇을 말해 주는지 보는 거예요. 공부할 것도, 맞혀야 할 것도 없어요.',
       time: '약 2분',
-      privacy: '비공개 — 기기에만 저장됩니다',
-      start: '함께 살펴보기',
+      privacy: '비공개. 기기에만 저장돼요.',
+      start: '준비됐어요',
       assure: ['대략적인 추정으로 충분해요', '잘 모르는 건 건너뛰어도 돼요', '교육 목적이에요 — 자문이 아니에요'],
       resumeTitle: '이전에 마친 체크업이 있어요.',
       resume: '지난 체크업 보기',
@@ -332,17 +332,17 @@ export const checkupContent = {
     currency: { label: '금액 단위', usd: '$ 달러', krw: '₩ 원' },
     qReassure: '틀린 답은 없어요 · 대략적인 숫자면 충분해요 · 답은 기기에만 저장돼요',
     firstReflection: {
-      aloud: '대부분이 잘 눈치채지 못하는 게 있어요: 우리는 들어오는 돈은 꽤 또렷하게 떠올리면서도, 그게 조용히 어디로 빠져나가는지는 잘 못 그려요. 그러니 이미 훤히 아는 부분부터 시작해요 — 나머지는 잠시 뒤에 놀라게 두고요.',
-      response: '좋아요 — 이게 기준점이에요. 앞으로 볼 거의 모든 게 이 한 숫자에 조용히 매달려 있거든요.',
+      aloud: '돈에 관한 재미있는 점 하나. 우리는 들어오는 돈은 꽤 또렷하게 떠올리면서도, 그게 어디로 빠져나가는지는 잘 못 그려요. 그러니 이미 훤히 아는 부분부터 시작해요.',
+      response: '좋아요. 이게 기준점이에요. 앞으로 볼 거의 모든 게 이 한 숫자에 매달려 있거든요.',
     },
     between: {
-      essentials: '들어오는 돈은 그리기 쉬운 절반이에요. 이제 볼 만한 나머지 절반 — 그게 실제로 어디로 가는지요.',
-      savings: '흥미롭네요 — 몇 개의 숫자만으로도 벌써 어떤 모양이 잡히기 시작해요. 한 조각만 더: 필요할 때 빠르게 꺼낼 수 있는 게 얼마인지요.',
-      retirement: '이제 시선을 조금 들어 봐요 — 이번 달에서, 더 먼 훗날로요.',
-      risk: '이건 정답이 아예 없어요 — 그저 당신의 솔직한 편안함이요. 스스로에 대해 알아 둘 만해요.',
-      stressWorry: '마지막 두어 개는 숫자보다 느낌에 가까워요. 느껴진 그대로가 솔직한 답이에요.',
+      essentials: '들어오는 돈은 그리기 쉬운 절반이에요. 이제 중요한 나머지 절반, 그게 실제로 어디로 가는지요.',
+      savings: '흥미롭네요. 벌써 어떤 모양이 잡히기 시작해요. 한 조각만 더 놓으면 보일 거예요.',
+      retirement: '이제 시선을 조금 들어 봐요. 이번 달에서 더 먼 훗날로요.',
+      risk: '이건 정답이 아예 없어요. 그저 당신의 솔직한 편안함이고, 스스로에 대해 알아 둘 만하죠.',
+      stressWorry: '마지막 두어 개는 숫자보다 느낌에 가까워요. 느껴진 그대로가 진짜 답이에요.',
     },
-    closing: '이 모든 게 조용히 무엇으로 모이는지 — 함께 살펴봐요.',
+    closing: '이 모든 게 조용히 무엇으로 모이는지 살펴봐요.',
     nav: { back: '이전', next: '다음', see: '결과 보기', of: '중', step: '질문' },
     questions: [
       { id: 'income', type: 'number', label: '보통 한 달에, 대략 얼마가 들어오나요?', help: '실수령액 — 실제로 쓸 수 있는 돈이요. 이미 머릿속에 지니고 있는 바로 그 숫자예요.' },
@@ -404,19 +404,19 @@ export const checkupContent = {
       meaning: {
         reveal: '준비되면',
         strength: {
-          q: '여기서 가장 든든한 조각 — 잠시 머물러 봐요. 그게 당신에게 조용히 무엇을 가능하게 해 주나요?',
-          a: '무엇이 떠올랐든, 그걸 붙잡아요: 그게 나머지 모두가 딛고 서는 바닥이에요. 지나치기 쉽지만, 보이는 것보다 훨씬 값져요.',
+          q: '여기서 가장 든든한 조각에 잠시 머물러 봐요. 그게 당신에게 조용히 무엇을 가능하게 해 주나요?',
+          a: '무엇이 떠올랐든 그걸 붙잡아요. 그게 나머지 모두가 딛고 서는 바닥이에요. 지나치기 쉽지만, 보이는 것보다 훨씬 값지죠.',
         },
         priority: {
-          q: '그리고 조금 마음 써 볼 만한 한 조각 — 그게 편해지면, 당신의 삶에서 무엇이 편해질까요?',
-          a: '그 느낌이 핵심이에요 — 뭔가 잘못돼서가 아니라, 여기서의 작은 움직임이 다른 많은 것을 함께 다독이기 때문이에요.',
+          q: '그리고 조금 마음 써 볼 만한 한 조각이요. 그게 편해지면, 당신의 삶에서 무엇이 편해질까요?',
+          a: '그 느낌이 핵심이에요. 뭔가 잘못돼서가 아니라, 여기서의 작은 움직임이 다른 많은 것을 함께 다독여 주기 때문이죠.',
         },
         close: {
-          q: '마지막으로 — 이 조각들은 사실 한 번도 따로였던 적이 없어요. 하나의 삶, 당신의 삶이에요. 그걸 온전히 보고 무엇을 가져갈지는 오직 당신만이 이름 붙일 수 있어요. 그건 당신께 맡길게요.',
+          q: '마지막으로 하나. 이 조각들은 사실 한 번도 따로였던 적이 없어요. 하나의 삶, 당신의 삶이죠. 그걸 온전히 보고 무엇을 가져갈지는 오직 당신만이 이름 붙일 수 있어요. 그건 당신께 맡길게요.',
         },
       },
       title: '지금 당신은 여기에 있어요.',
-      sub: '편안하게 읽어 주세요. 이것은 오늘의 스냅샷이지 판정이 아니에요.',
+      sub: '오늘의 스냅샷이에요. 판정이 아니고요.',
       whatLabel: '무슨 뜻인가요',
       whyLabel: '왜 중요한가요',
       stepLabel: '작은 한 걸음',
@@ -446,7 +446,7 @@ export const checkupContent = {
 
         strengthsLabel: '잘되고 있는 것',
         strengthsIntro:
-          '무엇보다 먼저, 당신이 이미 잘하고 있는 것들이에요. 이건 진짜이고, 꼭 지켜 나갈 가치가 있어요.',
+          '먼저, 당신이 이미 잘하고 있는 것들이에요.',
         strengthCopy: {
           emergency: '현금 완충을 쌓아 두었어요 — 예상 밖의 일과 당신 사이의 진짜 방패죠.',
           cashflow: '매달 건강한 여유를 지키고 있어요. 다른 모든 목표를 뒤에서 움직이는 조용한 엔진이에요.',
@@ -461,7 +461,7 @@ export const checkupContent = {
         priorityLabel: '먼저 집중하면 좋을 한 가지',
         connectLabel: '이것들이 어떻게 이어지는가',
         connectBody:
-          '돈의 영역들은 서로 연결돼 있어요 — 현금 흐름이 저축을 채우고, 저축이 뜻밖의 일을 완화하고, 걱정이 줄면 다른 모든 선택이 쉬워져요. 하나씩 따로 고칠 필요는 없어요; 한 곳의 작은 변화가 다른 곳들을 돕는 경향이 있어요.',
+          '이 영역들은 서로 이어져 있어요. 현금 흐름이 저축을 채우고, 저축이 뜻밖의 일을 완화하고, 걱정이 줄면 다른 모든 선택이 쉬워져요. 하나씩 따로 고칠 필요는 없어요. 한 곳의 작은 변화가 다른 곳들을 돕는 경향이 있어요.',
         revisitLabel: '다시 보는 것이 도움이 되는 이유',
         revisitBody:
           '이건 한 순간의 스냅샷이지, 판정이 아니에요. 삶은 계속 변하니 가끔 다시 확인하는 게 좋아요. 그리고 압도하는 큰 계획보다, 실제로 밟을 작은 한 걸음이 나아요.',
