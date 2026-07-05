@@ -68,6 +68,27 @@ function TrailRec({ rm, item }) {
   )
 }
 
+/**
+ * A meaning pause — the guide uncovers with a question and waits. The person
+ * reflects before anything is said; only if they choose does the guide add one
+ * quiet line. The guide's replies grow shorter through Results, then fall silent,
+ * so by the end the person's own understanding carries more than the guide's voice.
+ */
+function MeaningPause({ item, revealLabel }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="rx-meaning">
+      <p className="serif rx-meaning__q">{item.q}</p>
+      {item.a && !open && (
+        <button type="button" className="rx-meaning__reveal" onClick={() => setOpen(true)}>
+          {revealLabel}<ArrowRight size={14} />
+        </button>
+      )}
+      {item.a && open && <p className="rx-meaning__a rise">{item.a}</p>}
+    </div>
+  )
+}
+
 export default function Results({ result, onRestart }) {
   const { lang } = useLanguage()
   const c = checkupContent[lang].results
@@ -114,6 +135,9 @@ export default function Results({ result, onRestart }) {
         </ul>
       </section>
 
+      {/* Meaning begins in strength — the guide uncovers, then waits */}
+      {c.meaning && <MeaningPause item={c.meaning.strength} revealLabel={c.meaning.reveal} />}
+
       {/* 4 + 5 — One priority, in a room */}
       <section className="room rx-priority" aria-label={story.priorityLabel}>
         <div className="rx-priority__inner">
@@ -127,6 +151,9 @@ export default function Results({ result, onRestart }) {
         </div>
       </section>
 
+      {/* The guide, quieter now — a shorter reply, if any */}
+      {c.meaning && <MeaningPause item={c.meaning.priority} revealLabel={c.meaning.reveal} />}
+
       {/* How it connects + why a fresh look helps */}
       <section className="rx-connect" aria-label={story.connectLabel}>
         <div>
@@ -138,6 +165,13 @@ export default function Results({ result, onRestart }) {
           <p className="rx-connect__body">{story.revisitBody}</p>
         </div>
       </section>
+
+      {/* The guide falls silent — the meaning here is the person's own to name */}
+      {c.meaning && (
+        <div className="rx-meaning rx-meaning--close">
+          <p className="serif rx-meaning__q">{c.meaning.close.q}</p>
+        </div>
+      )}
 
       {/* 7 — Numbers, disclosed on demand, last */}
       <section className="rx-details">

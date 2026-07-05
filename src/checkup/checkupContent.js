@@ -89,6 +89,20 @@ export const checkupContent = {
     ],
     results: {
       eyebrow: 'Your checkup',
+      meaning: {
+        reveal: 'When you’re ready',
+        strength: {
+          q: 'Your steadiest piece here — sit with it a moment. What does it quietly make possible for you?',
+          a: 'Whatever came to mind, hold onto it: that’s the floor everything else stands on. Easy to overlook, and worth more than it looks.',
+        },
+        priority: {
+          q: 'And the one piece worth a little care — what would ease in your life if it eased?',
+          a: 'That feeling is the point — not because anything’s wrong, but because a small move here steadies a lot else.',
+        },
+        close: {
+          q: 'One last thing — these pieces were never really separate. They’re one life, yours. What you take from seeing it whole is something only you can name, so we’ll leave it with you.',
+        },
+      },
       title: "Here's where you stand.",
       sub: 'Read it gently. This is a snapshot of today, not a verdict.',
       whatLabel: 'What this means',
@@ -387,6 +401,20 @@ export const checkupContent = {
     ],
     results: {
       eyebrow: '나의 체크업',
+      meaning: {
+        reveal: '준비되면',
+        strength: {
+          q: '여기서 가장 든든한 조각 — 잠시 머물러 봐요. 그게 당신에게 조용히 무엇을 가능하게 해 주나요?',
+          a: '무엇이 떠올랐든, 그걸 붙잡아요: 그게 나머지 모두가 딛고 서는 바닥이에요. 지나치기 쉽지만, 보이는 것보다 훨씬 값져요.',
+        },
+        priority: {
+          q: '그리고 조금 마음 써 볼 만한 한 조각 — 그게 편해지면, 당신의 삶에서 무엇이 편해질까요?',
+          a: '그 느낌이 핵심이에요 — 뭔가 잘못돼서가 아니라, 여기서의 작은 움직임이 다른 많은 것을 함께 다독이기 때문이에요.',
+        },
+        close: {
+          q: '마지막으로 — 이 조각들은 사실 한 번도 따로였던 적이 없어요. 하나의 삶, 당신의 삶이에요. 그걸 온전히 보고 무엇을 가져갈지는 오직 당신만이 이름 붙일 수 있어요. 그건 당신께 맡길게요.',
+        },
+      },
       title: '지금 당신은 여기에 있어요.',
       sub: '편안하게 읽어 주세요. 이것은 오늘의 스냅샷이지 판정이 아니에요.',
       whatLabel: '무슨 뜻인가요',
