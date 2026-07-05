@@ -145,13 +145,24 @@ export default function CheckupFlow() {
         </div>
       )}
 
+      {/* Between reflections, the guide stays beside — sometimes; some moments are left quiet */}
+      {!isFirst && c.between && c.between[question.id] && (
+        <div className="ck-between rise rise-1">
+          <p className="ck-between__text">{c.between[question.id]}</p>
+        </div>
+      )}
+
       <QuestionStep key={question.id} question={question} value={value} onChange={(v) => setValue(question.id, v)} currency={currency} />
 
       {/* A reflective reply, not a verdict — the conversation takes a turn */}
       {isFirst && answered && c.firstReflection && (
         <p className="ck-reflect rise">{c.firstReflection.response}</p>
       )}
-      {!isFirst && c.qReassure && <p className="ck-reassure">{c.qReassure}</p>}
+      {/* The final turn — toward Results, without summarizing */}
+      {isLast && answered && c.closing && (
+        <p className="ck-reflect rise">{c.closing}</p>
+      )}
+      {!isFirst && !isLast && c.qReassure && <p className="ck-reassure">{c.qReassure}</p>}
 
       <div className="ck-nav">
         <button type="button" className="btn btn--ghost" onClick={goBack}>{c.nav.back}</button>

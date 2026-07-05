@@ -920,6 +920,19 @@ button { font: inherit; cursor: pointer; color: inherit; background: none; borde
   color: var(--lake-deep);
   text-align: left;
 }
+
+.ck-between {
+  max-width: 40rem;
+  margin: 0 auto clamp(20px, 2.6vw, 30px);
+  padding-left: clamp(14px, 1.6vw, 18px);
+  border-left: 2px solid var(--amber);
+}
+.ck-between__text {
+  font-family: var(--serif);
+  font-size: clamp(1.06rem, 1.5vw, 1.2rem);
+  line-height: 1.5;
+  color: var(--ink);
+}
 .ck-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 2.2rem; gap: 1rem; }
 .ck-exit { margin-top: 1.6rem; text-align: center; }
 .ck-exit a { color: var(--ink-faint); font-size: 0.86rem; }

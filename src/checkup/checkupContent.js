@@ -23,6 +23,14 @@ export const checkupContent = {
       aloud: 'Here’s something most people never notice: we can usually picture the money that comes in far more clearly than where it quietly slips back out. So let’s start with the part you already know by heart — and let the rest surprise you in a minute.',
       response: 'Good — that’s the anchor. Almost everything else we look at hangs quietly off this one number.',
     },
+    between: {
+      essentials: 'Money coming in is the easy half to picture. Now the half that’s worth seeing — where it actually goes.',
+      savings: 'Interesting — with just a few numbers, a shape is already starting to form. One more piece: what you could reach quickly, if you ever needed to.',
+      retirement: 'Now we lift our eyes a little — from this month, to the years further out.',
+      risk: 'This next one has no right answer at all — just your honest comfort. Worth knowing about yourself.',
+      stressWorry: 'These last couple are less about numbers, more about how it all feels. However it’s felt is the honest answer.',
+    },
+    closing: 'Let’s look at what all this quietly adds up to — together.',
     nav: { back: 'Back', next: 'Next', see: 'See my results', of: 'of', step: 'Question' },
     questions: [
       { id: 'income', type: 'number', label: "Roughly, what reaches you in a typical month?", help: 'Your take-home pay — the amount you actually get to spend. This is the one number you already carry in your head.' },
@@ -313,6 +321,14 @@ export const checkupContent = {
       aloud: '대부분이 잘 눈치채지 못하는 게 있어요: 우리는 들어오는 돈은 꽤 또렷하게 떠올리면서도, 그게 조용히 어디로 빠져나가는지는 잘 못 그려요. 그러니 이미 훤히 아는 부분부터 시작해요 — 나머지는 잠시 뒤에 놀라게 두고요.',
       response: '좋아요 — 이게 기준점이에요. 앞으로 볼 거의 모든 게 이 한 숫자에 조용히 매달려 있거든요.',
     },
+    between: {
+      essentials: '들어오는 돈은 그리기 쉬운 절반이에요. 이제 볼 만한 나머지 절반 — 그게 실제로 어디로 가는지요.',
+      savings: '흥미롭네요 — 몇 개의 숫자만으로도 벌써 어떤 모양이 잡히기 시작해요. 한 조각만 더: 필요할 때 빠르게 꺼낼 수 있는 게 얼마인지요.',
+      retirement: '이제 시선을 조금 들어 봐요 — 이번 달에서, 더 먼 훗날로요.',
+      risk: '이건 정답이 아예 없어요 — 그저 당신의 솔직한 편안함이요. 스스로에 대해 알아 둘 만해요.',
+      stressWorry: '마지막 두어 개는 숫자보다 느낌에 가까워요. 느껴진 그대로가 솔직한 답이에요.',
+    },
+    closing: '이 모든 게 조용히 무엇으로 모이는지 — 함께 살펴봐요.',
     nav: { back: '이전', next: '다음', see: '결과 보기', of: '중', step: '질문' },
     questions: [
       { id: 'income', type: 'number', label: '보통 한 달에, 대략 얼마가 들어오나요?', help: '실수령액 — 실제로 쓸 수 있는 돈이요. 이미 머릿속에 지니고 있는 바로 그 숫자예요.' },
