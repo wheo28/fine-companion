@@ -27,11 +27,10 @@ export const checkupContent = {
       essentials: 'Money coming in is the easy half to picture. Now the half that counts: where it actually goes.',
       savings: 'Interesting. A shape is already starting to form. One more piece and we’ll see it.',
       retirement: 'Now we lift our eyes a little, from this month to the years further out.',
-      risk: 'This next one has no right answer. Just your honest comfort, which is worth knowing about yourself.',
-      stressWorry: 'These last couple are less about numbers and more about how it feels. However it’s felt is the true answer.',
     },
     closing: 'Let’s see what all this quietly adds up to.',
-    nav: { back: 'Back', next: 'Next', see: 'See my results', of: 'of', step: 'Question' },
+    nav: { back: 'Back', next: 'Next', see: 'See my results', of: 'of', step: 'Question', skip: 'Skip for now' },
+    skipAck: 'That’s okay. We already have enough to begin understanding, and you can always come back to this later.',
     questions: [
       { id: 'income', type: 'number', label: "Roughly, what reaches you in a typical month?", help: 'Your take-home pay — the amount you actually get to spend. This is the one number you already carry in your head.' },
       { id: 'essentials', type: 'number', label: 'About how much goes to essentials each month?', help: 'The must-pays: housing, food, utilities, transport, minimum bills.' },
@@ -198,6 +197,8 @@ export const checkupContent = {
           "If you'd like the full picture, here is each area on its own. No need to read it all — it will be here whenever you want it.",
         detailsShow: 'Show the full breakdown',
         detailsHide: 'Hide the full breakdown',
+        roadmapShow: 'See your roadmap',
+        roadmapHide: 'Hide roadmap',
       },
 
       snapshots: {
@@ -339,11 +340,10 @@ export const checkupContent = {
       essentials: '들어오는 돈은 그리기 쉬운 절반이에요. 이제 중요한 나머지 절반, 그게 실제로 어디로 가는지요.',
       savings: '흥미롭네요. 벌써 어떤 모양이 잡히기 시작해요. 한 조각만 더 놓으면 보일 거예요.',
       retirement: '이제 시선을 조금 들어 봐요. 이번 달에서 더 먼 훗날로요.',
-      risk: '이건 정답이 아예 없어요. 그저 당신의 솔직한 편안함이고, 스스로에 대해 알아 둘 만하죠.',
-      stressWorry: '마지막 두어 개는 숫자보다 느낌에 가까워요. 느껴진 그대로가 진짜 답이에요.',
     },
     closing: '이 모든 게 조용히 무엇으로 모이는지 살펴봐요.',
-    nav: { back: '이전', next: '다음', see: '결과 보기', of: '중', step: '질문' },
+    nav: { back: '이전', next: '다음', see: '결과 보기', of: '중', step: '질문', skip: '지금은 건너뛰기' },
+    skipAck: '괜찮아요. 이해를 시작하기엔 이미 충분하고, 이건 언제든 다시 돌아와도 돼요.',
     questions: [
       { id: 'income', type: 'number', label: '보통 한 달에, 대략 얼마가 들어오나요?', help: '실수령액 — 실제로 쓸 수 있는 돈이요. 이미 머릿속에 지니고 있는 바로 그 숫자예요.' },
       { id: 'essentials', type: 'number', label: '매달 꼭 필요한 지출은 대략 얼마인가요?', help: '반드시 나가는 돈: 주거, 식비, 공과금, 교통, 최소 청구액.' },
@@ -509,6 +509,8 @@ export const checkupContent = {
           '전체 그림을 보고 싶다면, 각 영역을 따로 정리해 두었어요. 다 읽을 필요는 없어요 — 원할 때 언제든 여기 있을 거예요.',
         detailsShow: '전체 상세 보기',
         detailsHide: '전체 상세 접기',
+        roadmapShow: '내 로드맵 보기',
+        roadmapHide: '로드맵 접기',
       },
 
       snapshots: {

@@ -22,38 +22,6 @@ function Chevron({ open }) {
  * feelings in the visitor's own voice. Choose a feeling, and it opens to the
  * specific worries within. Recognition, not navigation. One small step at a time.
  */
-/**
- * The first exhibit — a tiny experiment at the entrance. One guess, one reveal,
- * one quiet "huh, is that true about me?". Not a feature: a moment of discovery.
- */
-function FirstExhibit({ data }) {
-  const [chosen, setChosen] = useState(null)
-  if (!data) return null
-  const revealed = chosen !== null
-  return (
-    <section className="exhibit wrap" aria-label={data.label}>
-      <div className="exhibit__inner">
-        <p className="sign sign--amber exhibit__label">{data.label}</p>
-        <p className="serif exhibit__prompt">{data.prompt}</p>
-        <div className="exhibit__choices" role="group" aria-label={data.prompt}>
-          {data.choices.map((label, i) => (
-            <button
-              key={i}
-              type="button"
-              className={`exhibit__choice${chosen === i ? ' is-chosen' : ''}`}
-              aria-pressed={chosen === i}
-              disabled={revealed}
-              onClick={() => setChosen(i)}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-        {revealed && <p className="exhibit__reveal rise">{data.reveal}</p>}
-      </div>
-    </section>
-  )
-}
 
 /**
  * The First Click — clicking a situation opens a small conversation, not a menu.
@@ -61,9 +29,10 @@ function FirstExhibit({ data }) {
  * lands before the reveal) → one small discovery → a conversational invitation
  * into the existing experience. It should feel like "we started looking together."
  */
-function FirstClick({ door, tc, consideringLabel }) {
+function FirstClick({ door, tc, consideringLabel, showAllLabel }) {
   const [phase, setPhase] = useState('ask') // ask | considering | revealed
   const [guess, setGuess] = useState(null)
+  const [skipped, setSkipped] = useState(false)
   const timer = useRef(null)
   useEffect(() => () => clearTimeout(timer.current), [])
 
@@ -73,6 +42,7 @@ function FirstClick({ door, tc, consideringLabel }) {
     setPhase('considering')
     timer.current = setTimeout(() => setPhase('revealed'), 1100)
   }
+  const showAll = () => { setSkipped(true); setPhase('revealed') }
 
   return (
     <div className="fc">
@@ -94,18 +64,22 @@ function FirstClick({ door, tc, consideringLabel }) {
             </button>
           ))}
         </div>
+        {phase === 'ask' && showAllLabel && (
+          <button type="button" className="fc__showall" onClick={showAll}>{showAllLabel}</button>
+        )}
       </div>
 
       {phase === 'considering' && (
-        <p className="fc__considering" aria-label={consideringLabel}>
+        <p className="fc__considering">
           <span className="fc__dots" aria-hidden="true"><span /><span /><span /></span>
+          <span className="fc__considering-word">{consideringLabel}</span>
         </p>
       )}
 
       {phase === 'revealed' && (
         <div className="fc__reveal" aria-live="polite">
-          <p className="fc__discovery rise">{door.discovery}</p>
-          <p className="fc__invitation rise">{door.invitation}</p>
+          {!skipped && <p className="fc__discovery rise">{door.discovery}</p>}
+          {!skipped && <p className="fc__invitation rise">{door.invitation}</p>}
           <div className="fc__ways rise">
             {door.ids ? (
               door.ids.map((id) => {
@@ -150,7 +124,16 @@ export default function Hub() {
             <p className="sign sign--amber hero__kicker rise rise-1">{hero.welcome}</p>
             <h1 className="serif hero__headline rise rise-1">{hero.headline}</h1>
             <p className="hero__body rise rise-2">{hero.body}</p>
-            <p className="hero__safe rise rise-3">{hero.safeNote}</p>
+            {hero.scrollCue && (
+              <button
+                type="button"
+                className="hero__cue rise rise-3"
+                onClick={() => document.querySelector('.concerns')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              >
+                {hero.scrollCue}
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+              </button>
+            )}
           </div>
 
           {/* A dawn over a gentle path of small steps — the journey, felt, not explained */}
@@ -199,9 +182,6 @@ export default function Hub() {
         </div>
       </section>
 
-      {/* ===================== THE FIRST EXHIBIT — a tiny discovery ===================== */}
-      <FirstExhibit data={h.exhibit} />
-
       {/* ============ CONCERNS — the question, answered in the visitor's own voice ============ */}
       <section className="concerns wrap" aria-labelledby="concerns-q">
         <header className="concerns__head">
@@ -228,7 +208,7 @@ export default function Hub() {
                   <Chevron open={open} />
                 </button>
 
-                {open && <FirstClick door={door} tc={tc} consideringLabel={c.considering} />}
+                {open && <FirstClick door={door} tc={tc} consideringLabel={c.considering} showAllLabel={c.showAll} />}
               </li>
             )
           })}

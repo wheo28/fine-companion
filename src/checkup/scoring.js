@@ -2,6 +2,10 @@
 // Everything here is descriptive and educational — it classifies a person's
 // own numbers into plain-language states, then builds a supportive narrative.
 // It never recommends products, investments, insurance, tax, or legal strategies.
+//
+// Missing values are handled honestly: a question left for later is UNKNOWN,
+// never zero. Unknown areas are simply left out of the picture (understanding
+// first, completeness later) rather than counted as a strength or a concern.
 
 function num(v) {
   const n = Number(v)
@@ -15,11 +19,28 @@ function clamp04(v) {
 }
 
 export function computeResults(answers) {
+  const isSkip = (v) => v === 'skipped'
+  const known = (k) => {
+    const v = answers[k]
+    if (v === undefined || v === null || isSkip(v)) return false
+    if (typeof v === 'string' && v.trim() === '') return false
+    return true
+  }
+
   const income = num(answers.income)
   const essentials = num(answers.essentials)
   const discretionary = num(answers.discretionary)
   const debt = num(answers.debt)
   const savings = num(answers.savings)
+
+  // Which areas can be honestly assessed from what the person chose to share.
+  const cashflowKnown = known('income') && known('essentials') && known('discretionary') && known('debt')
+  const emergencyKnown = known('savings') && known('essentials') && known('debt')
+  const debtKnown = known('debt')
+  const insuranceKnown = known('insurance')
+  const retirementKnown = known('retirement')
+  const stressKnown = known('stressWorry') && known('stressControl')
+  const riskKnown = known('risk')
 
   const mustPays = essentials + debt
   const totalOut = essentials + discretionary + debt
@@ -45,8 +66,8 @@ export function computeResults(answers) {
   else if (debtRatio >= 0.15) debtState = 'moderate'
   else if (debtRatio > 0) debtState = 'light'
 
-  const insuranceState = answers.insurance || 'notAtAll'
-  const retirementState = answers.retirement || 'notsure'
+  const insuranceState = insuranceKnown ? answers.insurance : 'notAtAll'
+  const retirementState = retirementKnown ? answers.retirement : 'notsure'
 
   // ----- Basic scores -----
   const stressSum = clamp04(answers.stressWorry) + clamp04(answers.stressControl)
@@ -61,19 +82,29 @@ export function computeResults(answers) {
   if (riskScore > 66) riskBand = 'comfortable'
   else if (riskScore > 33) riskBand = 'balanced'
 
-  // ----- Roadmap focus selection (weighted concerns) -----
+  // ----- Roadmap focus selection (weighted concerns) — assessed areas only -----
   const focuses = []
-  if (cashflowState === 'short') focuses.push({ key: 'cashflow', w: 5 })
-  if (emergencyState === 'none') focuses.push({ key: 'emergency', w: 4 })
-  else if (emergencyState === 'building') focuses.push({ key: 'emergency', w: 2 })
-  if (debtState === 'heavy') focuses.push({ key: 'debt', w: 4 })
-  else if (debtState === 'moderate') focuses.push({ key: 'debt', w: 2 })
-  if (retirementState === 'notyet') focuses.push({ key: 'retirement', w: 3 })
-  else if (retirementState === 'notsure') focuses.push({ key: 'retirement', w: 2 })
-  if (insuranceState === 'notAtAll') focuses.push({ key: 'insurance', w: 3 })
-  else if (insuranceState === 'somewhat') focuses.push({ key: 'insurance', w: 1 })
-  if (stressBand === 'high') focuses.push({ key: 'stress', w: 3 })
-  else if (stressBand === 'elevated') focuses.push({ key: 'stress', w: 1 })
+  if (cashflowKnown && cashflowState === 'short') focuses.push({ key: 'cashflow', w: 5 })
+  if (emergencyKnown) {
+    if (emergencyState === 'none') focuses.push({ key: 'emergency', w: 4 })
+    else if (emergencyState === 'building') focuses.push({ key: 'emergency', w: 2 })
+  }
+  if (debtKnown) {
+    if (debtState === 'heavy') focuses.push({ key: 'debt', w: 4 })
+    else if (debtState === 'moderate') focuses.push({ key: 'debt', w: 2 })
+  }
+  if (retirementKnown) {
+    if (retirementState === 'notyet') focuses.push({ key: 'retirement', w: 3 })
+    else if (retirementState === 'notsure') focuses.push({ key: 'retirement', w: 2 })
+  }
+  if (insuranceKnown) {
+    if (insuranceState === 'notAtAll') focuses.push({ key: 'insurance', w: 3 })
+    else if (insuranceState === 'somewhat') focuses.push({ key: 'insurance', w: 1 })
+  }
+  if (stressKnown) {
+    if (stressBand === 'high') focuses.push({ key: 'stress', w: 3 })
+    else if (stressBand === 'elevated') focuses.push({ key: 'stress', w: 1 })
+  }
 
   focuses.sort((a, b) => b.w - a.w)
   const top = focuses[0] ? focuses[0].key : 'steady'
@@ -87,17 +118,20 @@ export function computeResults(answers) {
 
   const longtermVariant = top === 'steady' ? 'strengthening' : 'building'
 
-  // ----- Narrative (tone, strengths, single priority) -----
+  // ----- Narrative (tone, strengths, single priority) — assessed areas only -----
   const strengthKeys = []
-  if (emergencyState === 'solid' || emergencyState === 'cushioned') strengthKeys.push('emergency')
-  if (cashflowState === 'healthy' || cashflowState === 'strong') strengthKeys.push('cashflow')
-  if (debtState === 'none' || debtState === 'light') strengthKeys.push('debt')
-  if (retirementState === 'regularly') strengthKeys.push('retirement')
-  if (insuranceState === 'mostly' || insuranceState === 'veryClear') strengthKeys.push('insurance')
-  if (stressBand === 'low') strengthKeys.push('stress')
+  if (emergencyKnown && (emergencyState === 'solid' || emergencyState === 'cushioned')) strengthKeys.push('emergency')
+  if (cashflowKnown && (cashflowState === 'healthy' || cashflowState === 'strong')) strengthKeys.push('cashflow')
+  if (debtKnown && (debtState === 'none' || debtState === 'light')) strengthKeys.push('debt')
+  if (retirementKnown && retirementState === 'regularly') strengthKeys.push('retirement')
+  if (insuranceKnown && (insuranceState === 'mostly' || insuranceState === 'veryClear')) strengthKeys.push('insurance')
+  if (stressKnown && stressBand === 'low') strengthKeys.push('stress')
 
   const hardConcern =
-    cashflowState === 'short' || emergencyState === 'none' || debtState === 'heavy' || stressBand === 'high'
+    (cashflowKnown && cashflowState === 'short') ||
+    (emergencyKnown && emergencyState === 'none') ||
+    (debtKnown && debtState === 'heavy') ||
+    (stressKnown && stressBand === 'high')
   const strengthsCount = strengthKeys.length
   const concernsCount = focuses.length
 
@@ -115,6 +149,16 @@ export function computeResults(answers) {
   }
   const strengths = displayStrengths.slice(0, 3)
 
+  const unknown = {
+    cashflow: !cashflowKnown,
+    emergency: !emergencyKnown,
+    debt: !debtKnown,
+    insurance: !insuranceKnown,
+    retirement: !retirementKnown,
+    stress: !stressKnown,
+    risk: !riskKnown,
+  }
+
   return {
     currency: answers.currency || 'usd',
     cashflow: { state: cashflowState, leftover, ratioPct: Math.round(cashflowRatio * 100) },
@@ -130,6 +174,7 @@ export function computeResults(answers) {
     risk: { score: riskScore, band: riskBand },
     narrative: { tone, strengths, priority: top },
     roadmap: { today: top, next30: top, sixTwelve, longterm: longtermVariant },
+    unknown,
   }
 }
 

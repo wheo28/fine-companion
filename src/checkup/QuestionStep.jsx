@@ -20,7 +20,7 @@ export default function QuestionStep({ question, value, onChange, currency }) {
             type="number"
             inputMode="numeric"
             min="0"
-            value={value ?? ''}
+            value={value === 'skipped' ? '' : (value ?? '')}
             onChange={(e) => onChange(e.target.value)}
             placeholder="0"
             autoFocus

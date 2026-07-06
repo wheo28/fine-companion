@@ -20,6 +20,7 @@ function readSaved() {
 }
 
 function isAnswered(question, value) {
+  if (value === 'skipped') return true
   if (question.type === 'number') {
     if (value === '' || value == null) return false
     const n = Number(value)
@@ -34,10 +35,11 @@ export default function CheckupFlow() {
   const { lang } = useLanguage()
   const [stage, setStage] = useState('intro')
   const [qIndex, setQIndex] = useState(0)
-  const [currency, setCurrency] = useState(lang === 'ko' ? 'krw' : 'usd')
+  const currency = lang === 'ko' ? 'krw' : 'usd'
   const [answers, setAnswers] = useState({})
   const [result, setResult] = useState(null)
   const [saved, setSaved] = useState(() => readSaved())
+  const [skipAck, setSkipAck] = useState(false)
 
   const c = checkupContent[lang]
   const questions = c.questions
@@ -55,6 +57,7 @@ export default function CheckupFlow() {
   const setValue = (id, value) => setAnswers((prev) => ({ ...prev, [id]: value }))
 
   const goNext = () => {
+    setSkipAck(false)
     if (qIndex < total - 1) { setQIndex((i) => i + 1); window.scrollTo({ top: 0 }) }
     else {
       const finalAnswers = { ...answers, currency }
@@ -62,7 +65,20 @@ export default function CheckupFlow() {
       persist(finalAnswers); setResult(computed); setStage('results'); window.scrollTo({ top: 0 })
     }
   }
+  // Skip for now: the value is left UNKNOWN (never zero); the guide reassures.
+  const skipCurrent = () => {
+    const next = { ...answers, [questions[qIndex].id]: 'skipped' }
+    setAnswers(next)
+    setSkipAck(true)
+    if (qIndex < total - 1) { setQIndex((i) => i + 1); window.scrollTo({ top: 0 }) }
+    else {
+      const finalAnswers = { ...next, currency }
+      const computed = computeResults(finalAnswers)
+      persist(finalAnswers); setResult(computed); setStage('results'); window.scrollTo({ top: 0 })
+    }
+  }
   const goBack = () => {
+    setSkipAck(false)
     if (qIndex > 0) { setQIndex((i) => i - 1); window.scrollTo({ top: 0 }) }
     else setStage('intro')
   }
@@ -79,14 +95,6 @@ export default function CheckupFlow() {
           <p className="ck-intro__sub">{c.intro.sub}</p>
 
           <p className="ck-intro__privacy">{c.intro.privacy}</p>
-
-          <div className="ck-currency" role="group" aria-label={c.currency.label}>
-            <span className="ck-currency__label">{c.currency.label}</span>
-            <div className="ck-currency__opts">
-              <button type="button" className={`ck-currency__btn${currency === 'usd' ? ' is-active' : ''}`} aria-pressed={currency === 'usd'} onClick={() => setCurrency('usd')}>{c.currency.usd}</button>
-              <button type="button" className={`ck-currency__btn${currency === 'krw' ? ' is-active' : ''}`} aria-pressed={currency === 'krw'} onClick={() => setCurrency('krw')}>{c.currency.krw}</button>
-            </div>
-          </div>
 
           <button type="button" className="btn btn--primary btn--lg ck-intro__cta" onClick={beginNew}>
             {c.intro.start}<ArrowRight size={18} />
@@ -121,21 +129,22 @@ export default function CheckupFlow() {
   const answered = isAnswered(question, value)
   const isLast = qIndex === total - 1
   const isFirst = qIndex === 0
+  const isSkippable = !['income', 'essentials'].includes(question.id)
 
   return (
     <main className="page page__reading">
       <div className="ck-progress">
-        {!isFirst && (
-          <div className="ck-progress__meta">
-            <span className="ck-progress__step">{c.nav.step} {qIndex + 1} {c.nav.of} {total}</span>
-          </div>
-        )}
         <div className="ck-progress__leaves" aria-hidden="true">
           {questions.map((q, i) => (
             <span key={q.id} className={`ck-leaf${i < qIndex ? ' is-on' : ''}${i === qIndex ? ' is-cur' : ''}`} />
           ))}
         </div>
       </div>
+
+      {/* The guide responds to a skip — kindly, understanding first */}
+      {skipAck && c.skipAck && (
+        <p className="ck-reflect ck-reflect--ack rise">{c.skipAck}</p>
+      )}
 
       {/* The guide thinks aloud first — one step ahead, walking beside */}
       {isFirst && c.firstReflection && (
@@ -170,6 +179,10 @@ export default function CheckupFlow() {
           {isLast ? c.nav.see : c.nav.next}{!isLast && <ArrowRight size={17} />}
         </button>
       </div>
+
+      {isSkippable && c.nav.skip && (
+        <button type="button" className="ck-skip" onClick={skipCurrent}>{c.nav.skip}</button>
+      )}
 
       <p className="ck-exit"><Link to="/">{c.results.home}</Link></p>
     </main>

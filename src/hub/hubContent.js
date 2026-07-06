@@ -13,11 +13,12 @@ export const hubContent = {
     },
     assure: ['About 2 minutes to start', 'No wrong answers', 'Stays on your device', 'Educational, not advice'],
     hero: {
-      welcome: 'A free place to understand your money',
-      headline: 'There’s more to your money than you’d expect.',
-      body: 'No advice, no lecture. Just a few unhurried minutes to see your own money more clearly than you do now.',
+      welcome: 'Free · private · no sign-up',
+      headline: 'A clear, honest look at your money.',
+      body: 'In a few quiet minutes, see where you stand and one small step to take next. No advice, nothing to sign up for.',
       begin: 'Take a two-minute look',
       safeNote: 'Free · no sign-up · nothing you do here leaves your device.',
+      scrollCue: 'Not sure where to start? It’s just below.',
     },
     exhibit: {
       label: 'A tiny experiment',
@@ -30,6 +31,7 @@ export const hubContent = {
       lead: 'Pick whatever you’re curious about. Each one opens a few things to look at, and nothing here needs finishing.',
       hint: 'Open one and see what’s inside',
       considering: 'considering',
+      showAll: 'Just show me what’s here',
       doors: [
         {
           feeling: 'My money runs out before the month does. Where does it all go?',
@@ -178,11 +180,12 @@ export const hubContent = {
     },
     assure: ['시작까지 약 2분', '틀린 답은 없어요', '기기에만 저장돼요', '교육 목적, 자문 아님'],
     hero: {
-      welcome: '돈을 이해하는, 무료로 열린 공간',
-      headline: '당신의 돈에는 생각보다 많은 것이 담겨 있어요.',
-      body: '조언도 잔소리도 아니에요. 그저 몇 분, 내 돈을 지금보다 조금 더 또렷하게 들여다보는 시간이에요.',
+      welcome: '무료 · 비공개 · 가입 없음',
+      headline: '내 돈을, 맑고 솔직하게 들여다보기.',
+      body: '몇 분이면 지금 내가 어디에 서 있는지 보이고, 다음에 밟을 작은 한 걸음도 알게 돼요. 조언도, 가입도 없어요.',
       begin: '2분 살펴보기',
       safeNote: '무료 · 가입 없음 · 여기서 하는 어떤 것도 기기를 떠나지 않아요.',
+      scrollCue: '어디서 시작할지 모르겠나요? 바로 아래에 있어요.',
     },
     exhibit: {
       label: '작은 실험 하나',
@@ -195,6 +198,7 @@ export const hubContent = {
       lead: '궁금한 걸 골라 보세요. 하나하나가 살펴볼 몇 가지를 열어 주고, 여기서 끝내야 할 건 없어요.',
       hint: '하나 열어, 안을 들여다보세요',
       considering: '생각 중',
+      showAll: '그냥 뭐가 있는지 보기',
       doors: [
         {
           feeling: '월급이 다음 달이 오기도 전에 사라져요. 대체 어디로 가는 걸까요?',

@@ -37,6 +37,7 @@ function SnapCard({ title, headline, value, caption, meter, band, note, children
 function DetailedBreakdown({ c, result }) {
   const s = c.snapshots
   const currency = result.currency
+  const u = result.unknown || {}
   const cf = s.cashflow.states[result.cashflow.state]
   const em = s.emergency.states[result.emergency.state]
   const db = s.debt.states[result.debt.state]
@@ -47,13 +48,13 @@ function DetailedBreakdown({ c, result }) {
 
   return (
     <div className="snap-grid">
-      <SnapCard title={s.cashflow.title} headline={cf.headline} value={formatCurrency(result.cashflow.leftover, currency)} caption={s.cashflow.perMonth}><Fields c={c} item={cf} /></SnapCard>
-      <SnapCard title={s.emergency.title} headline={em.headline} value={result.emergency.monthsDisplay} caption={s.emergency.unit}><Fields c={c} item={em} /></SnapCard>
-      <SnapCard title={s.debt.title} headline={db.headline} value={`${result.debt.ratioPct}%`} caption={s.debt.ofIncome}><Fields c={c} item={db} /></SnapCard>
-      <SnapCard title={s.insurance.title} headline={ins.headline}><Fields c={c} item={ins} /></SnapCard>
-      <SnapCard title={s.retirement.title} headline={ret.headline}><Fields c={c} item={ret} /></SnapCard>
-      <SnapCard title={s.stress.title} headline={st.headline} value={`${result.stress.score}`} caption={c.scoreOutOf} meter={result.stress.score} band={`stress-${result.stress.band}`}><Fields c={c} item={st} /></SnapCard>
-      <SnapCard title={s.risk.title} headline={rk.headline} value={`${result.risk.score}`} caption={c.scoreOutOf} meter={result.risk.score} band="risk" note={s.risk.note}><Fields c={c} item={rk} /></SnapCard>
+      {!u.cashflow && <SnapCard title={s.cashflow.title} headline={cf.headline} value={formatCurrency(result.cashflow.leftover, currency)} caption={s.cashflow.perMonth}><Fields c={c} item={cf} /></SnapCard>}
+      {!u.emergency && <SnapCard title={s.emergency.title} headline={em.headline} value={result.emergency.monthsDisplay} caption={s.emergency.unit}><Fields c={c} item={em} /></SnapCard>}
+      {!u.debt && <SnapCard title={s.debt.title} headline={db.headline} value={`${result.debt.ratioPct}%`} caption={s.debt.ofIncome}><Fields c={c} item={db} /></SnapCard>}
+      {!u.insurance && <SnapCard title={s.insurance.title} headline={ins.headline}><Fields c={c} item={ins} /></SnapCard>}
+      {!u.retirement && <SnapCard title={s.retirement.title} headline={ret.headline}><Fields c={c} item={ret} /></SnapCard>}
+      {!u.stress && <SnapCard title={s.stress.title} headline={st.headline} value={`${result.stress.score}`} caption={c.scoreOutOf} meter={result.stress.score} band={`stress-${result.stress.band}`}><Fields c={c} item={st} /></SnapCard>}
+      {!u.risk && <SnapCard title={s.risk.title} headline={rk.headline} value={`${result.risk.score}`} caption={c.scoreOutOf} meter={result.risk.score} band="risk" note={s.risk.note}><Fields c={c} item={rk} /></SnapCard>}
     </div>
   )
 }
@@ -96,6 +97,7 @@ export default function Results({ result, onRestart }) {
   const rm = c.roadmap
   const n = result.narrative
   const [showDetails, setShowDetails] = useState(false)
+  const [showRoadmap, setShowRoadmap] = useState(false)
   const priority = story.priorityCopy[n.priority]
 
   const stations = [
@@ -187,30 +189,44 @@ export default function Results({ result, onRestart }) {
         )}
       </section>
 
-      {/* Roadmap — the trail */}
-      <section className="trail" aria-label={rm.title}>
-        <header className="trail__head">
-          <p className="sign sign--amber">{rm.eyebrow}</p>
-          <h2 className="serif trail__title">{rm.title}</h2>
-          <p className="trail__sub">{rm.sub}</p>
-        </header>
+      {/* Roadmap — the trail. On phones it opens on demand to keep Results calm;
+          on larger screens it is always shown (the toggle is hidden by CSS). */}
+      <div className="trail-section">
+        <button
+          type="button"
+          className="trail-toggle"
+          aria-expanded={showRoadmap}
+          onClick={() => setShowRoadmap((v) => !v)}
+        >
+          {showRoadmap ? story.roadmapHide : story.roadmapShow}
+          <ArrowRight size={16} className={showRoadmap ? 'rx-chev rx-chev--up' : 'rx-chev'} />
+        </button>
+        <div className={`trail-wrap${showRoadmap ? ' is-open' : ''}`}>
+          <section className="trail" aria-label={rm.title}>
+            <header className="trail__head">
+              <p className="sign sign--amber">{rm.eyebrow}</p>
+              <h2 className="serif trail__title">{rm.title}</h2>
+              <p className="trail__sub">{rm.sub}</p>
+            </header>
 
-        {stations.map((st) => (
-          <div className="trailstation" key={st.key}>
-            <span className="trailstation__dot" aria-hidden="true"><Sun size={15} /></span>
-            <p className="trailstation__label">{st.label}</p>
-            {st.recs.map((rec, i) => (<TrailRec key={i} rm={rm} item={rec} />))}
-          </div>
-        ))}
+            {stations.map((st) => (
+              <div className="trailstation" key={st.key}>
+                <span className="trailstation__dot" aria-hidden="true"><Sun size={15} /></span>
+                <p className="trailstation__label">{st.label}</p>
+                {st.recs.map((rec, i) => (<TrailRec key={i} rm={rm} item={rec} />))}
+              </div>
+            ))}
 
-        <div className="trailstation">
-          <span className="trailstation__dot" aria-hidden="true"><Sun size={15} /></span>
-          <div className="vision room">
-            <p className="sign vision__label">{rm.horizons.longterm}</p>
-            <p className="serif vision__text">{rm.longterm[result.roadmap.longterm]}</p>
-          </div>
+            <div className="trailstation">
+              <span className="trailstation__dot" aria-hidden="true"><Sun size={15} /></span>
+              <div className="vision room">
+                <p className="sign vision__label">{rm.horizons.longterm}</p>
+                <p className="serif vision__text">{rm.longterm[result.roadmap.longterm]}</p>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
 
       <div className="ck-disclaimer">
         <ShieldCheck size={16} />
